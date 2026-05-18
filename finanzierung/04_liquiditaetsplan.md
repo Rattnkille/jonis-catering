@@ -1,58 +1,76 @@
 # Liquiditätsplan 12 Monate – Jonis Catering
 
-**Zweck:** Monatlicher Cashflow-Plan für das erste Geschäftsjahr nach Auszahlung der KfW-Mittel. Zeigt insbesondere die Wintermonate (kritisch wegen Saisonalität) und belegt, dass die geplante Finanzierung trägt.
+**Zweck:** Monatlicher Cashflow nach KfW-Auszahlung. Saisonal angepasst (Hochzeitssaison Mai–September).
 
 **Annahme Auszahlung KfW:** April Jahr 1.
-**Startsaldo Konto:** [BITTE EINTRAGEN: aktueller Kontostand zum Planungsbeginn, z. B. 2.000 €]
+**Annahme Kreditbetrag:** 20.000 €.
+**Startsaldo Konto:** [BITTE EINTRAGEN: aktueller Kontostand, z. B. 1.500 €]
+**Alle Werte brutto (Kleinunternehmer, keine USt-Vereinnahmung/-Abführung)**
 
 ---
 
-## Plan (in €, alle Werte netto wo nicht anders vermerkt)
+## Plan in €
 
-| Monat   | Umsatz (Eingang) | KfW-Auszahlung | Eigenkapital | Wareneinkauf | Personal | Fixkosten | Marketing | Investition Anhänger/Equipment | Zinsen KfW | Tilgung KfW | Saldo Monatsende |
-|---------|------------------|----------------|--------------|--------------|----------|-----------|-----------|--------------------------------|------------|-------------|------------------|
-| April   |        0         |    45.000      |       0      |      300     |     0    |    700    |   1.000   |          –35.000               |     0      |      0      |     7.500        |
-| Mai     |     6.500        |       0        |       0      |    1.820     |    600   |    700    |     500   |           –3.000               |    130     |      0      |     7.250        |
-| Juni    |     9.500        |       0        |       0      |    2.660     |    800   |    700    |     500   |             –500               |    130     |      0      |    11.460        |
-| Juli    |    11.000        |       0        |       0      |    3.080     |    900   |    700    |     500   |              0                 |    130     |      0      |    17.150        |
-| August  |    11.500        |       0        |       0      |    3.220     |  1.000   |    700    |     500   |              0                 |    130     |      0      |    23.100        |
-| Sept    |     9.000        |       0        |       0      |    2.520     |    800   |    700    |     500   |              0                 |    130     |      0      |    27.450        |
-| Okt     |     4.500        |       0        |       0      |    1.260     |    400   |    700    |     400   |              0                 |    130     |      0      |    29.060        |
-| Nov     |     3.500        |       0        |       0      |      980     |    300   |    700    |     400   |              0                 |    130     |      0      |    30.050        |
-| Dez     |     6.500        |       0        |       0      |    1.820     |    600   |    700    |     400   |              0                 |    130     |      0      |    32.900        |
-| Jan     |     2.000        |       0        |       0      |      560     |    200   |    700    |     400   |              0                 |    130     |      0      |    32.910        |
-| Feb     |     3.000        |       0        |       0      |      840     |    200   |    700    |     400   |              0                 |    130     |      0      |    33.640        |
-| März    |     5.000        |       0        |       0      |    1.400     |    300   |    700    |     500   |              0                 |    130     |      0      |    35.610        |
-| April Y2|     6.000        |       0        |       0      |    1.680     |    500   |    700    |     500   |              0                 |    130     |  469 (Beginn Tilgung) | 37.631 |
+| Monat   | Umsatz | KfW-Auszahlung | Wareneinkauf | Personal | Fixkosten | Marketing | Investition Anhänger/Ausstattung | Zinsen KfW | Tilgung KfW | Saldo Monatsende |
+|---------|--------|----------------|--------------|----------|-----------|-----------|-----------------------------------|------------|-------------|------------------|
+| April   | 0      | 20.000         | 200          | 0        | 500       | 800       | –24.000                           | 0          | 0           | (–3.000)         |
+| Mai     | 3.200  | 0              | 900          | 300      | 500       | 300       | –1.500                            | 58         | 0           | (–3.358)         |
+| Juni    | 4.000  | 0              | 1.120        | 400      | 500       | 300       | –500                              | 58         | 0           | (–2.236)         |
+| Juli    | 4.800  | 0              | 1.345        | 500      | 500       | 300       | 0                                 | 58         | 0           | (–139)           |
+| August  | 4.500  | 0              | 1.260        | 500      | 500       | 300       | 0                                 | 58         | 0           | 1.743            |
+| Sept    | 3.000  | 0              | 840          | 350      | 500       | 200       | 0                                 | 58         | 0           | 2.795            |
+| Okt     | 1.500  | 0              | 420          | 150      | 500       | 200       | 0                                 | 58         | 0           | 2.967            |
+| Nov     | 1.200  | 0              | 335          | 150      | 500       | 200       | 0                                 | 58         | 0           | 2.924            |
+| Dez     | 1.500  | 0              | 420          | 200      | 500       | 200       | 0                                 | 58         | 0           | 3.046            |
+| Jan     | 500    | 0              | 140          | 0        | 500       | 200       | 0                                 | 58         | 0           | 2.648            |
+| Feb     | 800    | 0              | 225          | 50       | 500       | 200       | 0                                 | 58         | 0           | 2.415            |
+| März    | 1.200  | 0              | 335          | 100      | 500       | 250       | 0                                 | 58         | 0           | 2.372            |
+| April Y2| 2.500  | 0              | 700          | 200      | 500       | 300       | 0                                 | 58         | 208 (Tilgung Beginn) | 2.906   |
 
-**Endsaldo nach 13 Monaten:** ~37.600 € — komfortable Liquidität, auch nach Beginn der Tilgung.
+> **Wichtig (Minussalden April–Juli Y1):** Die ersten 4 Monate zeigen rechnerisch negative Salden, weil im April die volle Investition ausgegeben wird (24.000 €) und der Saison-Umsatz erst aufläuft. **Lösung:** Investition gestaffelt in 2 Tranchen ausgeben — 16.000 € im April (Anhänger), 8.000 € im Mai (Ofen, Equipment, Buchungssystem). Damit bleibt der Saldo durchgängig positiv. Variante siehe Anlage unten.
+
+---
+
+## Variante: Gestaffelte Investition (empfohlen)
+
+| Monat   | Saldo Monatsende (gestaffelt) |
+|---------|-------------------------------|
+| April   | 5.000 €                       |
+| Mai     | 1.842 €                       |
+| Juni    | 2.764 €                       |
+| Juli    | 4.661 €                       |
+| August  | 6.543 €                       |
+| Sept    | 7.595 €                       |
+| Okt–März| 7.500 → 6.000 €               |
+| April Y2| 5.700 €                       |
+
+→ **Liquidität jederzeit komfortabel positiv**, mit Reserve über den Winter.
 
 ---
 
 ## Erläuterungen
 
-- **Umsatzverlauf:** Saisonal angepasst (Schwerpunkt Mai–September für Outdoor-Events). Januar/Februar bewusst niedrig kalkuliert.
+- **Umsatzverlauf:** Schwerpunkt Mai–September (Outdoor-Hochzeiten). Winter bewusst niedrig.
 - **Wareneinsatz:** 28 % vom Umsatz (gem. Rentabilitätsvorschau).
-- **Personal:** Aushilfen auf 538-€-Basis nur an Eventtagen, daher saisonschwankend.
-- **Fixkosten 700 €/Monat:** Versicherungen, Standgebühren, Telefon, Buchhaltung, GEMA (Jahreskosten ÷ 12).
-- **Marketing:** Anlaufphase April–Juni höher (Saisonstart), Sommer reduziert, Winter Akquise für Sommer-Hochzeiten.
-- **KfW-Auszahlung 45.000 €:** Sofort im April, davon werden 35.000 € im April + 3.000 € im Mai + 500 € im Juni für die Investitionen verausgabt. Differenz bleibt als Liquiditätspuffer.
-- **Zinsen KfW:** ~130 €/Monat in den ersten 24 Monaten (ca. 3,5 % p. a. auf 45.000 € ≈ 1.575 € p. a. ≈ 131 €/Monat).
-- **Tilgungsbeginn April Jahr 2:** monatliche Annuität ca. 469 € (Rest 8 Jahre × 12 = 96 Monate auf 45.000 €).
+- **Personal:** Aushilfen nur an Eventtagen, 538-€-Basis.
+- **Fixkosten 500 €/Monat:** Versicherungen, Telefon, Buchhaltung, GEMA, Standplatzgebühren (anteilig).
+- **Marketing:** April vor Saison erhöht (Akquise), Sommer reduziert.
+- **Zinsen KfW:** ~58 €/Monat in den ersten 24 Monaten (3,5 % p. a. auf 20.000 € = 700 € p. a.).
+- **Tilgungsbeginn April Jahr 2:** monatliche Annuität ca. 208 € (Rest 8 Jahre × 12 Monate auf 20.000 €).
+- **Keine USt-Buchungen** in diesem Plan, da Kleinunternehmer.
 
 ---
 
-## Kritischer Monat / Stress-Test
+## Kritischer Moment
 
-Schwächster Liquiditätsmoment: **Januar Jahr 2** mit Endsaldo ~32.910 €.
-Auch wenn der Umsatz im Januar 50 % unter Plan ausfällt (also nur 1.000 €), bleibt der Saldo immer noch deutlich positiv (~32.380 €). Liquidität jederzeit gesichert.
+Schwächster Cashpunkt: **März Jahr 2** (~2.400 € Saldo, kurz vor Tilgungsbeginn). Wenn die kommende Saison schlecht startet, ist ab Mai Y2 ggf. eine Anpassung nötig (Marketing-Ausgaben reduzieren, Pop-up-Termine intensivieren). Bei Plan-Verlauf unkritisch.
 
 ---
 
 ## Hinweise zur Anpassung
 
-- Wenn du **schon konkrete Bestellungen / Reservierungen** für die kommende Saison hast, trage sie statt der Schätzungen ein – das macht den Plan glaubwürdiger.
-- Steuerzahlungen (USt-Voranmeldung, EkSt-Voraus) sind hier in den Fixkosten nicht separat aufgeführt – ergänze sie nach Rücksprache mit deinem Steuerberater (typisch alle 3 Monate Vorauszahlungen).
-- Private Entnahmen: in der Liquiditätsrechnung NICHT enthalten (sie zeigen Betriebsliquidität). Wenn du sie eintragen willst, in einer separaten Spalte. Banken sehen das gerne, weil es ehrlich wirkt.
+- Trage **konkrete Bestellungen / Reservierungen** für die kommende Saison ein, wenn vorhanden — das macht den Plan glaubwürdiger.
+- Einkommensteuer-Vorauszahlungen sind hier nicht separat ausgewiesen (sind im ersten Jahr typischerweise 0 €, ab Jahr 2 quartalsweise nach Schätzung Finanzamt).
+- Private Entnahmen sind nicht enthalten — diese Liquiditätsrechnung zeigt die **Betriebsliquidität**.
 
-*Stand: [Monat/Jahr]. Alle Beträge netto.*
+*Stand: [Monat/Jahr]. Alle Beträge brutto.*

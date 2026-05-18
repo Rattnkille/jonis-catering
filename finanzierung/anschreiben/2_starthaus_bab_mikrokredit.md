@@ -31,9 +31,11 @@ Bremen, [TT.MM.JJJJ]
 
 Sehr geehrte Damen und Herren,
 
-mein Einzelunternehmen **Jonis Catering** – mobile neapolitanische Pizza-Catering-Marke in Bremen – steht nach erfolgreichem Marktstart vor der nächsten Wachstumsstufe: Anschaffung eines eigenen, voll ausgestatteten Catering-Anhängers mit professionellem Steinofen. Gesamtinvestition 55.000 €, davon 12.000 € bereits eingebrachte Eigenmittel (6.000 € Crowdfunding + 6.000 € privat).
+mein Einzelunternehmen **Jonis Catering** – mobile neapolitanische Pizza-Catering-Marke in Bremen, Schwerpunkt Hochzeits- und Privatevent-Catering – plant die nächste Stufe: Anschaffung eines aufgerüsteten Catering-Anhängers mit Premium-Steinofen. Gesamtinvestition 34.000 € brutto, davon 12.000 € bereits eingebrachte Eigenmittel (6.000 € Crowdfunding + 6.000 € privat).
 
-Ich möchte die Finanzierung **vorzugsweise über den KfW-Gründerkredit StartGeld (Programm 067, 45.000 €)** abwickeln und bin dabei bereits in Vorbereitung mit Hausbanken in Bremen.
+Hinweis zur Steuersituation: Jonis Catering ist **Kleinunternehmer nach § 19 UStG**; die USt-ID DE455581228 dient ausschließlich dem Reverse-Charge-Verfahren bei EU-Dienstleistungs-Einkäufen. Alle Beträge daher brutto.
+
+Ich möchte die Finanzierung **vorzugsweise über den KfW-Gründerkredit StartGeld (Programm 067, 20.000 €)** abwickeln und bin dabei bereits in Vorbereitung mit Hausbanken in Bremen.
 
 Parallel möchte ich Sie um zwei Dinge bitten:
 

@@ -1,48 +1,48 @@
 # Investitionsplan – Jonis Catering
 
-**Vorhaben:** Anschaffung eines voll ausgestatteten mobilen Pizza-Catering-Anhängers zur Skalierung von Jonis Catering.
-**Gesamtinvestition:** 50.000 €
+**Vorhaben:** Anschaffung eines aufgerüsteten Catering-Anhängers mit Premium-Steinofen — bewusst kleiner und auf Hochzeits-/Privatevent-Markt zugeschnitten.
+**Gesamtinvestition (brutto):** ~32.000 €
+
+> **Hinweis zur Steuersituation:** Jonis Catering ist **Kleinunternehmer nach § 19 UStG**. Die USt-ID DE455581228 dient ausschließlich dem Reverse-Charge-Verfahren für EU-Dienstleistungs-Einkäufe (z. B. Wolt aus Finnland). Daher werden **alle Beträge brutto angegeben** — eine Vorsteuer-Erstattung ist nicht möglich.
 
 ---
 
 ## A. Sachanlagen (Investitionsgüter)
 
-| Position                                                    | Anbieter / Referenz                          | Betrag (netto) |
-|-------------------------------------------------------------|----------------------------------------------|----------------|
-| Catering-Anhänger, gebraucht/aufbereitet, ausgestattet      | [BITTE EINTRAGEN: Anbieter Angebot 1]        | 22.000 €       |
-| Innenausbau (Edelstahl-Arbeitsflächen, Stromverkabelung, Schubladensystem) | [BITTE EINTRAGEN]                | 6.000 €        |
-| Mobiler Steinofen, Profimodell (z. B. Alfa Forni Zeno Pro, Stoke, oder Marra Forni Mobile) | [BITTE EINTRAGEN: Angebot]    | 7.000 €        |
-| Kühlung (Vor- & Untertheken-Kühlschrank, 2-türig)           |                                              | 1.800 €        |
-| Stromgenerator leise (≥ 5 kW, Inverter)                     |                                              | 2.000 €        |
-| Knetmaschine Profi (40 kg Teig)                             |                                              | 1.500 €        |
-| Teigboxen, Pizzaschieber, Werkzeug                          |                                              | 700 €          |
-| Geschirr / Servierausstattung Premium                       |                                              | 600 €          |
-| Pavillon / Wetterschutz, Stehtische, Beleuchtung            |                                              | 1.400 €        |
-| **Zwischensumme Sachanlagen**                               |                                              | **43.000 €**   |
+| Position                                                       | Anbieter / Referenz                          | Betrag (brutto) |
+|----------------------------------------------------------------|----------------------------------------------|-----------------|
+| Catering-Anhänger gebraucht, aufbereitet                       | [BITTE EINTRAGEN: Anbieter Angebot 1]        | 14.000 €        |
+| Innenausbau (Edelstahl-Arbeitsflächen, Elektrik, Stauraum)     | [BITTE EINTRAGEN]                            | 3.000 €         |
+| Mobiler Steinofen Premium-Klasse (z. B. Gozney Dome, Alfa Forni Brio) | [BITTE EINTRAGEN: Angebot]            | 3.500 €         |
+| Kühlung (Untertheken-Kühlschrank, kompakt)                     |                                              | 1.200 €         |
+| Stromgenerator leise (Inverter, 3,5–5 kW)                      |                                              | 1.500 €         |
+| Knetmaschine kompakt + Teigboxen + Pizzaschieber + Werkzeug    |                                              | 1.300 €         |
+| Geschirr / Servierausstattung (Premium, hochzeitstauglich)     |                                              | 800 €           |
+| Pavillon, Beleuchtung, Deko-Elemente (Hochzeits-Look)          |                                              | 1.500 €         |
+| **Zwischensumme Sachanlagen**                                  |                                              | **26.800 €**    |
 
-> Bitte vor Antragstellung **zwei Kostenvoranschläge je größere Position** beilegen (Anhänger, Steinofen). Banken verlangen das.
+> Bitte **zwei Kostenvoranschläge je größere Position** (Anhänger, Steinofen) beilegen. Banken verlangen das.
 
 ---
 
 ## B. Immaterielle Investitionen (Digital / Marketing)
 
-| Position                                                    | Betrag (netto) | Förderkontext                           |
-|-------------------------------------------------------------|----------------|------------------------------------------|
-| Buchungs- & Anfragesystem auf Website                       | 2.500 €        | förderfähig „Digitaler Mittelstand KI"   |
-| CRM + automatisierte Angebots-/Rechnungserstellung          | 1.500 €        | förderfähig „Digitaler Mittelstand KI"   |
-| Marketingkampagne (Google Ads, Hochzeitsportale, Fotoshoot) | 1.000 €        | nicht förderfähig                        |
-| **Zwischensumme Digital/Marketing**                         | **5.000 €**    |                                          |
+| Position                                                       | Betrag (brutto) | Förderkontext                            |
+|----------------------------------------------------------------|-----------------|-------------------------------------------|
+| Buchungs- & Anfragesystem auf Website                          | 2.500 €         | förderfähig „Digitaler Mittelstand KI"    |
+| Marketing-Anschub (Google Ads, Hochzeitsportale, Fotoshoot)    | 1.500 €         | nicht förderfähig                         |
+| **Zwischensumme Digital/Marketing**                            | **4.000 €**     |                                           |
 
 ---
 
 ## C. Betriebsmittel & Liquiditätsreserve
 
-| Position                                                    | Betrag         |
-|-------------------------------------------------------------|----------------|
-| Anfangs-Warenlager (Mehl, Tomaten, Mozzarella, Verpackung)  | 1.000 €        |
-| Versicherungen, GEMA, Gewerbe-Anmeldung Erweiterung         | 500 €          |
-| Liquiditätspuffer Winter (4 Monate Fixkostenreserve)        | 5.500 €        |
-| **Zwischensumme Betriebsmittel**                            | **7.000 €**    |
+| Position                                                       | Betrag         |
+|----------------------------------------------------------------|----------------|
+| Anfangs-Warenlager (Mehl, Tomaten, Mozzarella, Verpackung)     | 500 €          |
+| Versicherungen, GEMA, Anmeldungen                              | 500 €          |
+| Liquiditätspuffer Winter (3 Monate Fixkostenreserve)           | 2.500 €        |
+| **Zwischensumme Betriebsmittel**                               | **3.500 €**    |
 
 ---
 
@@ -50,25 +50,39 @@
 
 | Kategorie                | Betrag       |
 |--------------------------|--------------|
-| A. Sachanlagen           | 43.000 €     |
-| B. Digital / Marketing   | 5.000 €      |
-| C. Betriebsmittel        | 7.000 €      |
-| **Gesamt netto**         | **55.000 €** |
+| A. Sachanlagen           | 26.800 €     |
+| B. Digital / Marketing   | 4.000 €      |
+| C. Betriebsmittel        | 3.500 €      |
+| **Gesamt brutto**        | **34.300 €** |
 
-> Abzug Eigenleistung 12.000 € (siehe 05_kapitalbedarfs_und_finanzierungsplan) → **Finanzierungsbedarf 43.000 €** + Reserve aufgerundet **45.000 €** über KfW + ergänzend **2.000 € Zuschuss** für Digital-Posten.
+→ aufgerundet als Antragsvolumen **34.000 €** kommuniziert (kleine Reserve ist immer gut).
 
 ---
 
-## E. Anlagen zum Investitionsplan (vor Versand beilegen)
+## E. Mittelherkunft (Vorschau)
+
+| Quelle                                              | Betrag       |
+|-----------------------------------------------------|--------------|
+| Eigenleistung (bereits eingebracht)                 | 12.000 €     |
+| KfW 067 ERP-Gründerkredit StartGeld                 | 20.000 €     |
+| BAB Zuschuss „Digitaler Mittelstand KI" (40 % auf 2.500 €) | 1.000 € |
+| Aus Geschäftsliquidität / Saison-Cashflow           | 1.000 €      |
+| **Summe**                                           | **34.000 €** |
+
+Detail siehe `05_kapitalbedarfs_und_finanzierungsplan.md`.
+
+---
+
+## F. Anlagen zum Investitionsplan (vor Versand beilegen)
 
 - [ ] Angebot Anhänger #1 – [BITTE EINTRAGEN]
 - [ ] Angebot Anhänger #2 (Vergleich) – [BITTE EINTRAGEN]
 - [ ] Angebot Steinofen #1 – [BITTE EINTRAGEN]
 - [ ] Angebot Steinofen #2 (Vergleich) – [BITTE EINTRAGEN]
 - [ ] Angebot/Skizze Innenausbau – [BITTE EINTRAGEN]
-- [ ] Angebote Kühlung / Generator / Knetmaschine (Sammelangebot Gastro-Händler reicht)
-- [ ] Angebot Buchungssystem (z. B. von Webdesigner) – [BITTE EINTRAGEN]
+- [ ] Sammelangebot Gastro-Händler (Kühlung, Generator, Knetmaschine) – [BITTE EINTRAGEN]
+- [ ] Angebot Buchungssystem (Webdesigner) – [BITTE EINTRAGEN: mind. 2 Angebote]
 
 ---
 
-*Stand: [Monat/Jahr]. Preise als Netto-Beträge, USt wird separat ausgewiesen.*
+*Stand: [Monat/Jahr]. Alle Beträge **brutto**, da Kleinunternehmer-Status (kein Vorsteuerabzug).*

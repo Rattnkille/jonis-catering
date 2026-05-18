@@ -1,62 +1,107 @@
 # Rentabilitätsvorschau 3 Jahre – Jonis Catering
 
-**Methodik:** Gewinn- und Verlustrechnung auf Vollkostenbasis (Einnahmen-Überschuss-Logik gem. § 4 Abs. 3 EStG, da Einzelunternehmen).
-**Annahmen sind konservativ kalkuliert** und basieren auf der ersten Geschäftssaison + branchenüblichen Steigerungen.
+**Strategie:** Bewusst skaliertes Premium-Hochzeits- und Privatevent-Catering im Kleinunternehmer-Rahmen nach § 19 UStG. **Wenige hochwertige Events** statt vieler kleiner — höhere Marge, geringerer operativer Stress, klare Markenpositionierung.
+**Methodik:** Einnahmen-Überschuss-Rechnung (§ 4 Abs. 3 EStG), keine USt-Aus­weisung, keine Vorsteuer.
 
 ---
 
-## Annahmen (Plan)
+## Zielsetzung & Annahmen
 
-| Parameter                                  | Jahr 1 (Ausbau-Jahr) | Jahr 2 | Jahr 3 |
-|--------------------------------------------|----------------------|--------|--------|
-| Events Hochsaison (Mai–Sep, 5 Mon.)        | 25                   | 40     | 50     |
-| Events Nebensaison (Okt–Apr, 7 Mon.)       | 8                    | 18     | 25     |
-| Events gesamt                              | 33                   | 58     | 75     |
-| ø Gäste je Event                           | 80                   | 90     | 100    |
-| ø Erlös pro Gast (netto)                   | 28 €                 | 30 €   | 32 €   |
+| Parameter                                          | Jahr 1 (Ausbau)  | Jahr 2 | Jahr 3 |
+|----------------------------------------------------|------------------|--------|--------|
+| Hochzeiten (Mai–Sep, ø 80 Gäste)                   | 5                | 7      | 8      |
+| Privatfeiern / Firmenevents (ø 50 Gäste)           | 3                | 4      | 4      |
+| Pop-ups / kleinere Termine                         | 4                | 5      | 5      |
+| ø Erlös pro Gast (Premium-Hochzeit)                | 32 €             | 34 €   | 36 €   |
+| ø Erlös pro Gast (Privatfeier)                     | 28 €             | 30 €   | 30 €   |
+| Pop-up-Erlös je Termin                             | 600 €            | 700 €  | 700 €  |
 
-**Erlösformel:** Events × Gäste × ø Erlös pro Gast
-
----
-
-## G+V (Plan)
-
-| Posten                          | Jahr 1         | Jahr 2         | Jahr 3         |
-|---------------------------------|----------------|----------------|----------------|
-| **Umsatzerlöse**                | **73.920 €**   | **156.600 €**  | **240.000 €**  |
-| Wareneinsatz (28 % vom Umsatz)  | 20.700 €       | 43.850 €       | 67.200 €       |
-| **Rohertrag**                   | **53.220 €**   | **112.750 €**  | **172.800 €**  |
-|                                 |                |                |                |
-| Personalkosten Aushilfen (Eventhelfer auf 538€-Basis, Wochenenden) | 8.000 €    | 18.000 €  | 28.000 €  |
-| Treibstoff / Fahrzeugkosten     | 2.500 €        | 4.000 €        | 5.500 €        |
-| Werbung / Marketing (laufend)   | 4.000 €        | 5.000 €        | 6.000 €        |
-| Versicherungen                  | 1.800 €        | 2.000 €        | 2.200 €        |
-| Reparatur / Wartung Equipment   | 1.000 €        | 2.000 €        | 3.000 €        |
-| Beiträge (HK, GEMA, etc.)       | 800 €          | 900 €          | 1.000 €        |
-| Buchhaltung / Steuerberater     | 1.800 €        | 2.400 €        | 3.000 €        |
-| Sonstige Betriebskosten         | 2.000 €        | 2.500 €        | 3.000 €        |
-| Abschreibung (AfA Sachanlagen, 8 J. linear, 43.000 € Basis) | 5.375 €  | 5.375 €  | 5.375 €  |
-| **Betriebskosten gesamt**       | **27.275 €**   | **42.175 €**   | **57.075 €**   |
-|                                 |                |                |                |
-| **EBIT (operatives Ergebnis)**  | **25.945 €**   | **70.575 €**   | **115.725 €**  |
-| Zinsaufwand KfW 067 (~3,5 % auf ø Restsaldo) | 1.500 €  | 1.400 €        | 1.250 €        |
-| **Ergebnis vor Steuern**        | **24.445 €**   | **69.175 €**   | **114.475 €**  |
-| Einkommensteuer (gesch. ø 25 %) | 6.100 €        | 17.300 €       | 28.600 €       |
-| **Ergebnis nach Steuern**       | **18.345 €**   | **51.875 €**   | **85.875 €**   |
-|                                 |                |                |                |
-| Unternehmerlohn / Privatentnahme | 18.000 €      | 36.000 €       | 48.000 €       |
-| **Thesauriert (im Betrieb verbleibend)** | **345 €** | **15.875 €** | **37.875 €**   |
+**Erlösformel:**
+- Hochzeiten: Events × 80 × ø Preis
+- Privatfeiern: Events × 50 × ø Preis
+- Pop-ups: Events × Pauschal-Erlös
 
 ---
 
-## Kapitaldienst (zur Plausibilität)
+## G+V (Plan, alle Werte brutto = netto wegen KU)
 
-KfW 067 StartGeld 45.000 €, 10 Jahre, 2 Jahre tilgungsfrei:
-- Jahr 1–2: nur Zinsen ca. 1.500 € p. a.
-- Jahr 3–10: Tilgung ca. 5.625 € + Zinsen → ca. 6.500–7.000 € p. a.
+| Posten                                             | Jahr 1         | Jahr 2         | Jahr 3         |
+|----------------------------------------------------|----------------|----------------|----------------|
+| Erlöse Hochzeiten                                  | 12.800 €       | 19.040 €       | 23.040 €       |
+| Erlöse Privatfeiern                                | 4.200 €        | 6.000 €        | 6.000 €        |
+| Erlöse Pop-ups                                     | 2.400 €        | 3.500 €        | 3.500 €        |
+| **Umsatzerlöse**                                   | **19.400 €**   | **28.540 €**   | **32.540 €**   |
+| Wareneinsatz (28 % vom Umsatz)                     | 5.430 €        | 7.990 €        | 9.110 €        |
+| **Rohertrag**                                      | **13.970 €**   | **20.550 €**   | **23.430 €**   |
+|                                                    |                |                |                |
+| Personalkosten Aushilfen (538 €-Basis, eventbezogen) | 2.000 €      | 3.000 €        | 3.500 €        |
+| Treibstoff / Fahrzeugkosten                        | 1.200 €        | 1.500 €        | 1.700 €        |
+| Werbung / Marketing (laufend)                      | 2.000 €        | 2.000 €        | 2.000 €        |
+| Versicherungen                                     | 1.400 €        | 1.500 €        | 1.500 €        |
+| Reparatur / Wartung Equipment                      | 500 €          | 800 €          | 1.000 €        |
+| Beiträge (HK, GEMA, etc.)                          | 600 €          | 700 €          | 800 €          |
+| Buchhaltung / Steuerberater                        | 1.000 €        | 1.200 €        | 1.300 €        |
+| Sonstige Betriebskosten                            | 600 €          | 800 €          | 900 €          |
+| Abschreibung (8 J. linear auf 26.800 € Sachanlagen) | 3.350 €       | 3.350 €        | 3.350 €        |
+| **Betriebskosten gesamt**                          | **12.650 €**   | **14.850 €**   | **16.050 €**   |
+|                                                    |                |                |                |
+| **EBIT**                                           | **1.320 €**    | **5.700 €**    | **7.380 €**    |
+| Zinsaufwand KfW 067 (ca. 3,5 % auf ø Restsaldo)    | 700 €          | 670 €          | 590 €          |
+| **Ergebnis vor Steuern**                           | **620 €**      | **5.030 €**    | **6.790 €**    |
+| Einkommensteuer (ø 18 %, Grundfreibetrag bedacht)  | 110 €          | 900 €          | 1.220 €        |
+| **Ergebnis nach Steuern (frei verfügbar)**         | **510 €**      | **4.130 €**    | **5.570 €**    |
 
-→ Im **Ausbau-Jahr 1 kein Tilgungsdruck**, dank der 2 tilgungsfreien Jahre, was die Liquiditätsbelastung gerade im ersten Winter abfedert.
-→ Ab Jahr 3 sind Tilgung + Zinsen mit ca. 7 k € durch das geplante Ergebnis von > 100 k € problemlos zu bedienen.
+> **Wichtige Lesehilfe:** Die Zahlen sind bewusst konservativ. Das Ergebnis nach Steuern ist im Aufbau-Jahr klein, weil die volle Abschreibung von 3.350 € drücken — buchhalterische Größe, kein echter Cashabfluss. Der reale Cashflow ist deutlich höher (siehe Liquiditätsplan).
+>
+> **Charakter des Geschäfts:** Jonis Catering ist als profitabler **Nebenerwerb** geplant — bewusste Wahl, um KU-Status zu halten. Vollerwerbs-Skalierung ist später jederzeit möglich (dann mit Wechsel zur Regelbesteuerung).
+
+---
+
+## KU-Schwellen-Tracking
+
+| Jahr   | Umsatz Plan | KU-Grenze Vorjahr 25 k € | KU-Grenze lfd. Jahr 100 k € | Status                |
+|--------|-------------|---------------------------|------------------------------|-----------------------|
+| Jahr 1 | 19.400 €    | ✓ unter Grenze            | ✓ deutlich drunter           | bleibt Kleinunternehmer |
+| Jahr 2 | 28.540 €    | ✓ (Vorjahr 19,4 k)        | ✓ deutlich drunter           | wechselt 2027 (Vorjahr 25 k+) |
+| Jahr 3 | 32.540 €    | ✗ (Vorjahr 28,5 k > 25 k) | ✓                            | **Regelbesteuerung**  |
+
+> **Operative Konsequenz:** Wenn die Plan-Zahlen so eintreten, fällst du **ab Jahr 3** automatisch in die Regelbesteuerung. Dazu drei Optionen:
+> 1. **Bewusst drosseln** auf ~24.000 €/Jahr (z. B. 1 Hochzeit weniger oder kleinere Pakete) → KU-Status bleibt erhalten.
+> 2. **Geplanter Übergang zur RB** in Jahr 3 — dann Preise an Privatkunden um 19 % anheben oder Marge entsprechend reduzieren.
+> 3. **Sich treiben lassen** — wenn der Markt es hergibt, beim Sprung in RB die Erweiterungs-Vorteile mitnehmen (z. B. Vorsteuer auf Folgeinvestitionen).
+>
+> Diese Entscheidung musst du nicht heute treffen — sondern frühestens Anfang Jahr 2, wenn du die Halbjahreszahlen kennst.
+
+---
+
+## Kapitaldienst (Plausibilität)
+
+KfW 067 StartGeld 20.000 €, 10 Jahre, 2 Jahre tilgungsfrei:
+
+| Jahr      | Zins p. a. | Tilgung p. a. | Kapitaldienst p. a. | davon Monat |
+|-----------|------------|---------------|----------------------|-------------|
+| 1–2       | 700 €      | 0 €           | 700 €                | 58 €        |
+| 3–10      | 590 € → 80 € fallend | 2.500 € | ~3.000 €     | 250 €       |
+
+→ **Sehr moderate monatliche Belastung von ~250 €/Monat ab Jahr 3** — passt zur Größenordnung des Geschäfts und sichert die Hauskauf-Bonität (siehe Punkt 3).
+
+---
+
+## Sensitivität (Stress-Test)
+
+Was passiert, wenn der Umsatz **25 % unter Plan** liegt (schlechtes Hochzeitsjahr, Wetter, weniger Buchungen)?
+
+| Posten                              | Jahr 2 Plan | Jahr 2 Stress |
+|-------------------------------------|-------------|---------------|
+| Umsatz                              | 28.540 €    | 21.405 €      |
+| Wareneinsatz (28 %)                 | 7.990 €     | 5.995 €       |
+| Variable Kosten anteilig            | 6.500 €     | 5.000 €       |
+| Fixkosten (unverändert)             | 8.350 €     | 8.350 €       |
+| EBIT                                | 5.700 €     | 2.060 €       |
+| Zinsen                              | 670 €       | 670 €         |
+| Ergebnis vor Steuern                | 5.030 €     | 1.390 €       |
+
+→ Selbst unter 25 %-Stress bleibt das Ergebnis positiv und der Kapitaldienst gesichert. Im Stress-Szenario würde sogar der KU-Status erhalten bleiben (~21 k €).
 
 ---
 
@@ -65,36 +110,11 @@ KfW 067 StartGeld 45.000 €, 10 Jahre, 2 Jahre tilgungsfrei:
 | Kennzahl                          | Jahr 1 | Jahr 2 | Jahr 3 |
 |-----------------------------------|--------|--------|--------|
 | Rohertragsquote                   | 72 %   | 72 %   | 72 %   |
-| EBIT-Marge                        | 35 %   | 45 %   | 48 %   |
-| Schuldendienstdeckungsgrad (DSCR) | n/a (tilgungsfrei) | n/a | ~16x   |
+| EBIT-Marge                        | 7 %    | 20 %   | 23 %   |
+| Schuldendienstdeckungsgrad        | tilgungsfrei | tilgungsfrei | 2,5x |
 
-DSCR ab Jahr 3: EBIT 115 k € ÷ Kapitaldienst ~7 k € ≈ 16 – sehr komfortabel und für Banken ein deutliches Sicherheitspolster.
-
----
-
-## Sensitivität (Stress-Test)
-
-Was passiert, wenn der Umsatz **20 % unter Plan** liegt?
-
-| Posten                              | Jahr 2 Plan | Jahr 2 Stress |
-|-------------------------------------|-------------|---------------|
-| Umsatz                              | 156.600 €   | 125.280 €     |
-| Wareneinsatz (28 %)                 | 43.850 €    | 35.080 €      |
-| Variable Kosten anteilig            | 22.000 €    | 18.000 €      |
-| Fixkosten (unverändert)             | 20.175 €    | 20.175 €      |
-| EBIT                                | 70.575 €    | 52.025 €      |
-| Zinsen                              | 1.400 €     | 1.400 €       |
-| Ergebnis vor Steuern                | 69.175 €    | 50.625 €      |
-
-→ Auch unter 20 % Stress-Szenario bleibt das Ergebnis deutlich positiv und Kapitaldienst gesichert.
+Ein DSCR von 2,5x bedeutet: das EBIT ist 2,5-mal so hoch wie die Kreditrate. Für Banken ein klares „grünes Licht" auf der Tragfähigkeitsseite.
 
 ---
 
-## Hinweise zur Anpassung
-
-- Die hier hinterlegten Eventzahlen sind ein **plausibler Mittelwert** für Bremen mit dem geplanten neuen Anhänger. Ersetze sie ggf. mit deinen realistischen Zahlen aus Saison 1, wenn du sie genauer kennst.
-- ø Preis pro Gast 28 € ist konservativ – Premium-Pakete liegen oft bei 35–45 €. Lieber zu vorsichtig planen, das wirkt seriös.
-- Abschreibung 8 Jahre linear ist Standard für Anhänger; für den Steinofen wären auch 5 Jahre vertretbar. Mit Steuerberater abstimmen.
-- Falls du im ersten Jahr schon eine BWA hast, **füge sie als Vergleich bei** – Banken lieben das.
-
-*Stand: [Monat/Jahr]. Alle Beträge netto.*
+*Stand: [Monat/Jahr]. Brutto-Werte (Kleinunternehmer), keine USt enthalten.*

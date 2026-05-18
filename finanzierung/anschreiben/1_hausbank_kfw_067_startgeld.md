@@ -33,20 +33,24 @@ Bremen, [TT.MM.JJJJ]
 
 Sehr geehrte Damen und Herren,
 
-mit diesem Schreiben möchte ich Sie bitten, für mein Einzelunternehmen **Jonis Catering** (Pizza-Catering mit mobilem Steinofen in Bremen) einen Förderkredit aus dem KfW-Programm 067 (ERP-Gründerkredit StartGeld) in Höhe von **45.000 €** zu vermitteln.
+mit diesem Schreiben möchte ich Sie bitten, für mein Einzelunternehmen **Jonis Catering** (Pizza-Catering mit mobilem Steinofen in Bremen) einen Förderkredit aus dem KfW-Programm 067 (ERP-Gründerkredit StartGeld) in Höhe von **20.000 €** zu vermitteln.
 
 ### Vorhaben
 
-Nach erfolgreichem Marktstart der ersten Saison plane ich die Anschaffung eines **eigenen, voll ausgestatteten Catering-Anhängers mit professionellem Steinofen**. Damit erweitere ich die Kapazität, professionalisiere die Außenwirkung und erschließe mir den Premium-Hochzeits- und Firmenmarkt in Bremen und Umgebung. Gesamtinvestition: 55.000 € (davon 12.000 € Eigenleistung bereits erbracht).
+Nach erfolgreichem Marktstart der ersten Saison plane ich die Anschaffung eines **aufgerüsteten Catering-Anhängers mit Premium-Steinofen**, gezielt für den Hochzeits- und Privatevent-Markt in Bremen und Umgebung. Gesamtinvestition: 34.000 € brutto (davon 12.000 € Eigenleistung bereits erbracht).
+
+### Steuerlicher Hintergrund
+
+Jonis Catering ist **Kleinunternehmer nach § 19 UStG**. Die USt-ID DE455581228 dient ausschließlich dem Reverse-Charge-Verfahren für EU-Dienstleistungs-Einkäufe (Wolt u. a.) und hat keinen Einfluss auf den Kleinunternehmer-Status. Alle Beträge sind daher brutto angegeben, ein Vorsteuerabzug erfolgt nicht.
 
 ### Eckdaten
 
-- **Antragssumme:** 45.000 € (KfW 067)
+- **Antragssumme:** 20.000 € (KfW 067)
 - **Laufzeit:** 10 Jahre, 2 tilgungsfreie Anlaufjahre
 - **Sollzinsbindung:** 10 Jahre
-- **Verwendungszweck:** 90 % Investition (Anhänger, Steinofen, Equipment), 10 % Betriebsmittel (Liquiditätsreserve, Anlaufkosten)
+- **Verwendungszweck:** 95 % Investition (Anhänger, Steinofen, Equipment, Buchungssystem), 5 % Betriebsmittel (Anlaufkosten)
 - **Eigenkapital:** 12.000 € (6.000 € Crowdfunding + 6.000 € privat) — bereits in das Unternehmen eingebracht
-- **Sicherheiten:** Sicherungsübereignung Anhänger + Steinofen + Equipment (~43.000 €); ergänzend persönliche Bürgschaft des Inhabers; bei Bedarf Ausfallbürgschaft Bürgschaftsbank Bremen („BoB"-Antrag wird parallel gestellt)
+- **Sicherheiten:** Sicherungsübereignung Anhänger + Steinofen + Equipment (~26.800 €); ergänzend persönliche Bürgschaft des Inhabers
 
 ### Beigefügte Unterlagen
 

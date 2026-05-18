@@ -6,21 +6,23 @@
 **USt-ID:** DE455581228
 **Tel:** +49 176 3237 0375
 **E-Mail:** info@jonis-catering.de
-**Gesamtkapitalbedarf:** 50.000 €
+**Gesamtkapitalbedarf:** 34.000 € brutto
+**Steuerstatus:** Kleinunternehmer nach § 19 UStG (alle Beträge brutto, kein Vorsteuerabzug)
 
 ---
 
-## Empfohlene Finanzierungsstruktur (durchgerechnet)
+## Empfohlene Finanzierungsstruktur (durchgerechnet, KU-konform)
 
 | #  | Quelle                                  | Betrag    | Zweck                                                    | Zinssatz       | Status                |
 |----|-----------------------------------------|-----------|----------------------------------------------------------|----------------|-----------------------|
-| 1  | **KfW 067 – ERP-Gründerkredit StartGeld** (via Hausbank) | **45.000 €** | Anhänger + Steinofen + Equipment + Liquiditätsreserve   | ~3,5 % eff.    | **Hauptantrag**       |
+| 1  | **KfW 067 – ERP-Gründerkredit StartGeld** (via Hausbank) | **20.000 €** | Anhänger + Steinofen + Equipment + Reserve              | ~3,5 % eff.    | **Hauptantrag**       |
+| 5  | **BAB – Digitaler Mittelstand KI**      | **1.000 € Zuschuss** | 40 % von 2.500 € Buchungssystem                          | nicht rückzahlbar | Eigener Antrag        |
 | 2  | **BAB-Mikrokredit (Bremen)**            | Backup   | Falls KfW von Hausbank nicht durchgewunken wird          | ~3–5 %         | Plan B – parallel an Starthaus |
-| 3  | **Bürgschaftsbank Bremen "BoB"**        | Flankierend | 80 % Ausfallbürgschaft, falls Hausbank wegen knapper Bilanz/Sicherheiten zögert | + Bankzins     | Flankierend zu #1     |
-| 5  | **BAB – Digitaler Mittelstand KI**      | **~2.000 € Zuschuss** | 40 % von ~5.000 € Projekt: Buchungssystem, KI-Kalkulation, CRM | nicht rückzahlbar | Eigener Antrag        |
-| 6  | **Mikrokreditfonds Deutschland**        | bis 25.000 € | NUR als Notbrücke, falls 1–3 scheitern (8,1 % – teuer!) Antrag bis 30.06.2026 | 8,1 %         | Nur Reserve           |
+| 3  | **Bürgschaftsbank Bremen "BoB"**        | Flankierend (optional) | Bei 20 k € meist nicht nötig — KfW-Haftungsfreistellung reicht der Hausbank i. d. R. | + Bankzins | Nur falls Hausbank zögert |
+| 6  | **Mikrokreditfonds Deutschland**        | bis 25.000 € | NUR als Notbrücke, falls 1–3 scheitern (8,1 % – teuer!) Antrag bis 30.06.2026 | 8,1 % | Nur Reserve |
 
 **Eigenkapital bisher investiert:** 12.000 € (6.000 € Crowdfunding + 6.000 € privat) — wird im Antrag als Eigenleistung angegeben.
+**Aus laufender Liquidität:** 1.000 € (Saison-Cashflow).
 
 ---
 

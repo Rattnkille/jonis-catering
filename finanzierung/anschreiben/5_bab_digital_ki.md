@@ -57,25 +57,24 @@ Im Rahmen der Wachstumsphase von Jonis Catering soll ein **integriertes digitale
 - **Conversion:** schnellere Angebotserstellung führt nach Branchenwerten zu ~20 % höherer Buchungsrate
 - **Nachhaltigkeit:** durch KI-gestützte Mengenplanung weniger Lebensmittelverschwendung
 
-### Projektkosten (geplant)
+### Projektkosten (geplant, brutto — Kleinunternehmer ohne Vorsteuerabzug)
 
-| Kostenposition                                              | Betrag (netto) |
-|-------------------------------------------------------------|----------------|
-| Entwicklung Online-Buchungs- und Konfiguratorstrecke        | 2.500 €        |
-| CRM-System inkl. Automatisierungs-Workflows                 | 1.500 €        |
-| KI-Kalkulationsmodul (Aufsatz auf vorhandenes CRM)          | 1.000 €        |
-| **Zuwendungsfähige Projektkosten gesamt**                   | **5.000 €**    |
+| Kostenposition                                              | Betrag (brutto) |
+|-------------------------------------------------------------|-----------------|
+| Entwicklung Online-Buchungs- und Konfiguratorstrecke        | 2.000 €         |
+| KI-gestütztes Kalkulationsmodul (Mengen, Personalplanung)   | 500 €           |
+| **Zuwendungsfähige Projektkosten gesamt**                   | **2.500 €**     |
 
 ### Beantragte Zuwendung
 
 - **Fördersatz:** 40 % (Kleinstunternehmen)
-- **Zuwendung:** 2.000 € nicht rückzahlbarer Zuschuss
+- **Zuwendung:** 1.000 € nicht rückzahlbarer Zuschuss
 - **Geplanter Projektstart:** [BITTE EINTRAGEN: nach Förderzusage, z. B. MM/JJJJ]
 - **Geplante Projektdauer:** 3 Monate
 
 ### Eigenanteil / Restfinanzierung
 
-Restbetrag von 3.000 € wird aus den Investitionsmitteln des parallel laufenden KfW-Antrags getragen (siehe Investitionsplan, Position „Buchungssystem / CRM / Marketing").
+Restbetrag von 1.500 € wird aus den Investitionsmitteln des parallel laufenden KfW-Antrags getragen (siehe Investitionsplan, Position B).
 
 ### Beigefügte Unterlagen
 

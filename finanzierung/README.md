@@ -1,7 +1,7 @@
 # Finanzierungsmappe Jonis Catering
 
 Komplettpaket für die Finanzierung der Geschäftserweiterung
-(neuer Catering-Anhänger + Steinofen + Equipment, Gesamtvolumen 50.000 €).
+(aufgerüsteter Catering-Anhänger + Premium-Steinofen + Equipment, Gesamtvolumen **34.000 € brutto**, Kleinunternehmer nach § 19 UStG).
 
 **Bitte zuerst lesen:** [`00_UEBERSICHT_CHECKLISTE.md`](./00_UEBERSICHT_CHECKLISTE.md)
 
@@ -17,6 +17,7 @@ finanzierung/
 ├── 05_kapitalbedarfs_und_finanzierungsplan.md ← Mittelherkunft + KfW-Konditionsplan
 ├── 06_lebenslauf_jonathan_sibbing.md        ← Lebenslauf-Vorlage
 ├── 07_selbstauskunft.md                     ← Vermögensaufstellung (Bank-Standard)
+├── pitch_deck.html                          ← Pitch-Deck für Bankgespräch (im Browser öffnen, Strg+P → als PDF speichern)
 └── anschreiben/
     ├── 1_hausbank_kfw_067_startgeld.md      ← HAUPTANTRAG (KfW über Hausbank)
     ├── 2_starthaus_bab_mikrokredit.md       ← Beratung + Plan B
