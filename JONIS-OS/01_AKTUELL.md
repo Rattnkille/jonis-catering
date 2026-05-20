@@ -4,6 +4,7 @@ tags:
   - global
 status: aktiv
 erstellt: 2026-05-18
+aktualisiert: 2026-05-20
 ---
 
 # Aktuelle Prioritäten — global
@@ -13,15 +14,22 @@ Bereichsspezifische Prioritäten gehören in `01_AKTUELL.md` des jeweiligen Bere
 
 ## In Arbeit
 
-- JONIS OS einrichten (Setup-Branch `claude/setup-jonis-os-workflow-LxfzW`)
+- _leer_
+
+## Erledigt
+
+- JONIS OS eingerichtet — Vault-Struktur, alle Bereiche (2026-05-20)
+- Catering-Bereich mit Website-Daten befüllt — [[Catering/Pakete]], [[Catering/Menue]]
 
 ## Geplant
 
-- _leer_
+- Antipasti-Inhalte (Event / Premium) dokumentieren — siehe [[Catering/02_ENTSCHEIDUNGEN]]
+- Anfahrts-Aufpreis über 30 km festlegen
+- Weitere Bereiche bei Bedarf befüllen (Equipment, Finanzen)
 
 ## Wartet auf
 
-- _leer_
+- Reale Eventanfragen → [[Catering/01_AKTUELL]]
 
 ## Nächste Reviews
 
