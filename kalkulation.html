@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event-Kalkulation – Jonis Catering (intern)</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #e0572f;
+            --primary-dark: #c4461f;
+            --accent: #ffb703;
+            --dark: #1a1a1a;
+            --text: #333;
+            --text-light: #666;
+            --text-muted: #999;
+            --bg: #fffaf5;
+            --bg-warm: #fff5eb;
+            --bg-card: #fff;
+            --border: #e8e0d8;
+            --border-light: #f0ebe5;
+            --green: #2e8b57;
+            --green-bg: #e6f4ec;
+            --yellow: #d97706;
+            --yellow-bg: #fef3c7;
+            --red: #c0392b;
+            --red-bg: #fde8e6;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+        }
+
+        .wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        .logo span { color: var(--primary); }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .intern-badge {
+            display: inline-block;
+            background: var(--yellow-bg);
+            color: var(--yellow);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.7rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 900px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.75rem;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .field {
+            margin-bottom: 1rem;
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.35rem;
+        }
+
+        .field .hint {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-left: 0.4rem;
+        }
+
+        .field input {
+            width: 100%;
+            padding: 0.65rem 0.85rem;
+            font-size: 0.95rem;
+            font-family: inherit;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #fff;
+            color: var(--text);
+            transition: border-color 0.2s;
+        }
+
+        .field input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(224, 87, 47, 0.1);
+        }
+
+        .row2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin: 1.25rem 0 0.75rem;
+        }
+        .section-label:first-child { margin-top: 0; }
+
+        /* Results */
+        .kpi-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .kpi {
+            background: var(--bg-warm);
+            border-radius: 10px;
+            padding: 0.85rem 1rem;
+        }
+
+        .kpi-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .kpi-value {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .kpi-value span {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-left: 0.25rem;
+        }
+
+        /* Big result */
+        .result-big {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.25rem 0;
+            transition: background 0.3s;
+        }
+
+        .result-big.green { background: var(--green-bg); }
+        .result-big.yellow { background: var(--yellow-bg); }
+        .result-big.red { background: var(--red-bg); }
+
+        .result-big-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-big-value {
+            font-size: 2.75rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-big.green .result-big-value { color: var(--green); }
+        .result-big.yellow .result-big-value { color: var(--yellow); }
+        .result-big.red .result-big-value { color: var(--red); }
+
+        .result-big-status {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .result-big.green .result-big-status { color: var(--green); }
+        .result-big.yellow .result-big-status { color: var(--yellow); }
+        .result-big.red .result-big-status { color: var(--red); }
+
+        /* Breakdown table */
+        .breakdown {
+            margin-top: 1.25rem;
+        }
+
+        .breakdown-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.55rem 0;
+            font-size: 0.88rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .breakdown-row:last-child {
+            border-bottom: none;
+        }
+
+        .breakdown-row.total {
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-top: 2px solid var(--dark);
+            border-bottom: none;
+            margin-top: 0.4rem;
+            padding-top: 0.7rem;
+        }
+
+        .breakdown-row.profit {
+            font-weight: 700;
+            color: var(--green);
+        }
+        .breakdown-row.profit.negative {
+            color: var(--red);
+        }
+
+        .breakdown-label {
+            color: var(--text);
+        }
+        .breakdown-row .pct {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            margin-left: 0.4rem;
+        }
+
+        .breakdown-value {
+            color: var(--dark);
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Bar chart */
+        .bars {
+            margin-top: 1rem;
+        }
+        .bar-row {
+            margin-bottom: 0.7rem;
+        }
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+        .bar-label .pct {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .bar-track {
+            height: 8px;
+            background: var(--border-light);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        .bar-fill.warenkosten { background: #e0572f; }
+        .bar-fill.personal { background: #ffb703; }
+        .bar-fill.fix { background: #888; }
+        .bar-fill.gewinn { background: #2e8b57; }
+
+        /* Notes */
+        .notes {
+            background: var(--bg-warm);
+            border-radius: 10px;
+            padding: 1rem 1.15rem;
+            margin-top: 1.25rem;
+            font-size: 0.82rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .notes strong {
+            color: var(--dark);
+        }
+
+        .warning {
+            background: var(--yellow-bg);
+            color: #92400e;
+            padding: 0.7rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            margin-top: 0.75rem;
+            display: none;
+        }
+        .warning.show { display: block; }
+
+        footer {
+            text-align: center;
+            margin-top: 2.5rem;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .reset-btn {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-light);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 0.5rem;
+        }
+        .reset-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <span class="intern-badge">Intern – nicht öffentlich</span>
+            <div class="logo">JONIS <span>CATERING</span></div>
+            <div class="subtitle">Event-Kalkulation & Prime-Cost-Rechner</div>
+        </header>
+
+        <div class="grid">
+            <!-- INPUT CARD -->
+            <div class="card">
+                <h2>Eingaben</h2>
+
+                <div class="section-label">Umsatz</div>
+                <div class="row2">
+                    <div class="field">
+                        <label>Anzahl Gäste</label>
+                        <input type="number" id="gaeste" value="80" min="1" step="1">
+                    </div>
+                    <div class="field">
+                        <label>Preis pro Gast (€)</label>
+                        <input type="number" id="preis" value="27" min="0" step="0.5">
+                    </div>
+                </div>
+                <div class="row2">
+                    <div class="field">
+                        <label>USt-Satz <span class="hint">% (i.d.R. 19)</span></label>
+                        <input type="number" id="ust" value="19" min="0" step="1">
+                    </div>
+                    <div class="field">
+                        <label>Preis ist <span class="hint">brutto/netto</span></label>
+                        <select id="preisart" style="width:100%;padding:0.65rem 0.85rem;font-size:0.95rem;font-family:inherit;border:1px solid var(--border);border-radius:8px;background:#fff;">
+                            <option value="brutto">brutto (inkl. USt)</option>
+                            <option value="netto">netto</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="section-label">Wareneinsatz</div>
+                <div class="row2">
+                    <div class="field">
+                        <label>Pro Gast (€) <span class="hint">netto</span></label>
+                        <input type="number" id="ware_pro_gast" value="9" min="0" step="0.5">
+                    </div>
+                    <div class="field">
+                        <label>Pauschale (€) <span class="hint">Verpackung, Gas</span></label>
+                        <input type="number" id="ware_pauschal" value="50" min="0" step="10">
+                    </div>
+                </div>
+
+                <div class="section-label">Personal</div>
+                <div class="row2">
+                    <div class="field">
+                        <label>Anzahl Helfer</label>
+                        <input type="number" id="helfer" value="2.5" min="0" step="0.5">
+                    </div>
+                    <div class="field">
+                        <label>Stunden pro Helfer</label>
+                        <input type="number" id="stunden" value="8" min="0" step="0.5">
+                    </div>
+                </div>
+                <div class="row2">
+                    <div class="field">
+                        <label>Stundenlohn (€)</label>
+                        <input type="number" id="lohn" value="15" min="0" step="0.5">
+                    </div>
+                    <div class="field">
+                        <label>AG-Pauschale <span class="hint">% Minijob</span></label>
+                        <input type="number" id="pauschale" value="31.5" min="0" step="0.5">
+                    </div>
+                </div>
+
+                <div class="section-label">Fixkosten-Anteil (optional)</div>
+                <div class="field">
+                    <label>Fahrt, Versicherung, Marketing, Abschreibung (€)</label>
+                    <input type="number" id="fixkosten" value="200" min="0" step="10">
+                </div>
+
+                <button class="reset-btn" onclick="resetForm()">Auf Standardwerte zurücksetzen</button>
+            </div>
+
+            <!-- RESULT CARD -->
+            <div class="card">
+                <h2>Ergebnis pro Event</h2>
+
+                <div class="kpi-row">
+                    <div class="kpi">
+                        <div class="kpi-label">Umsatz brutto</div>
+                        <div class="kpi-value" id="umsatz_brutto">–</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-label">Umsatz netto</div>
+                        <div class="kpi-value" id="umsatz_netto">–</div>
+                    </div>
+                </div>
+
+                <div class="result-big" id="prime_box">
+                    <div class="result-big-label">Prime Cost (Ware + Personal)</div>
+                    <div class="result-big-value" id="prime_pct">–</div>
+                    <div class="result-big-status" id="prime_status">–</div>
+                </div>
+
+                <div class="bars">
+                    <div class="bar-row">
+                        <div class="bar-label"><span>Wareneinsatz</span><span class="pct" id="bar_ware_pct">–</span></div>
+                        <div class="bar-track"><div class="bar-fill warenkosten" id="bar_ware" style="width:0%"></div></div>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-label"><span>Personal</span><span class="pct" id="bar_pers_pct">–</span></div>
+                        <div class="bar-track"><div class="bar-fill personal" id="bar_pers" style="width:0%"></div></div>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-label"><span>Fixkosten-Anteil</span><span class="pct" id="bar_fix_pct">–</span></div>
+                        <div class="bar-track"><div class="bar-fill fix" id="bar_fix" style="width:0%"></div></div>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-label"><span>Gewinn</span><span class="pct" id="bar_gewinn_pct">–</span></div>
+                        <div class="bar-track"><div class="bar-fill gewinn" id="bar_gewinn" style="width:0%"></div></div>
+                    </div>
+                </div>
+
+                <div class="breakdown">
+                    <div class="breakdown-row">
+                        <span class="breakdown-label">Umsatz netto</span>
+                        <span class="breakdown-value" id="br_umsatz">–</span>
+                    </div>
+                    <div class="breakdown-row">
+                        <span class="breakdown-label">– Wareneinsatz <span class="pct" id="br_ware_pct">–</span></span>
+                        <span class="breakdown-value" id="br_ware">–</span>
+                    </div>
+                    <div class="breakdown-row">
+                        <span class="breakdown-label">– Personal inkl. AG-Anteil <span class="pct" id="br_pers_pct">–</span></span>
+                        <span class="breakdown-value" id="br_pers">–</span>
+                    </div>
+                    <div class="breakdown-row">
+                        <span class="breakdown-label">– Fixkosten-Anteil <span class="pct" id="br_fix_pct">–</span></span>
+                        <span class="breakdown-value" id="br_fix">–</span>
+                    </div>
+                    <div class="breakdown-row profit" id="profit_row">
+                        <span class="breakdown-label">= Gewinn vor Steuern <span class="pct" id="br_gewinn_pct">–</span></span>
+                        <span class="breakdown-value" id="br_gewinn">–</span>
+                    </div>
+                </div>
+
+                <div class="warning" id="minijob_warn">
+                    ⚠️ Minijob-Hinweis: Bei diesen Stunden × Stundenlohn pro Event darf eine Person <strong id="max_events">–</strong> Events/Monat machen, sonst überschreitet sie die 556 €-Grenze.
+                </div>
+
+                <div class="notes">
+                    <strong>Faustregel:</strong> Prime Cost &lt; 55 % sehr gut · 55–60 % gesund · 60–65 % grenzwertig · &gt; 65 % kritisch.
+                    Fixkosten und dein eigener Unternehmerlohn sind im Prime Cost nicht enthalten — die siehst du im Breakdown extra.
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            Lokale Berechnung — Daten werden nicht gespeichert oder übertragen.
+        </footer>
+    </div>
+
+    <script>
+        const $ = id => document.getElementById(id);
+        const fmt = n => new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(n);
+        const pct = n => n.toLocaleString('de-DE', { maximumFractionDigits: 1, minimumFractionDigits: 1 }) + ' %';
+
+        const inputs = ['gaeste','preis','ust','preisart','ware_pro_gast','ware_pauschal','helfer','stunden','lohn','pauschale','fixkosten'];
+
+        function num(id) { return parseFloat($(id).value) || 0; }
+
+        function calc() {
+            const gaeste = num('gaeste');
+            const preis = num('preis');
+            const ust = num('ust') / 100;
+            const preisart = $('preisart').value;
+
+            // Umsatz
+            let umsatzBrutto, umsatzNetto;
+            if (preisart === 'brutto') {
+                umsatzBrutto = gaeste * preis;
+                umsatzNetto = umsatzBrutto / (1 + ust);
+            } else {
+                umsatzNetto = gaeste * preis;
+                umsatzBrutto = umsatzNetto * (1 + ust);
+            }
+
+            // Ware
+            const ware = gaeste * num('ware_pro_gast') + num('ware_pauschal');
+
+            // Personal
+            const helfer = num('helfer');
+            const stunden = num('stunden');
+            const lohn = num('lohn');
+            const pauschale = num('pauschale') / 100;
+            const lohnBrutto = helfer * stunden * lohn;
+            const personal = lohnBrutto * (1 + pauschale);
+
+            // Fix
+            const fix = num('fixkosten');
+
+            // Prime Cost & Profit
+            const primeCost = ware + personal;
+            const primePctVal = umsatzNetto > 0 ? (primeCost / umsatzNetto) * 100 : 0;
+            const gewinn = umsatzNetto - primeCost - fix;
+            const gewinnPct = umsatzNetto > 0 ? (gewinn / umsatzNetto) * 100 : 0;
+
+            // KPIs
+            $('umsatz_brutto').innerHTML = fmt(umsatzBrutto) + '<span>inkl. USt</span>';
+            $('umsatz_netto').innerHTML = fmt(umsatzNetto) + '<span>ohne USt</span>';
+
+            // Prime Cost box
+            $('prime_pct').textContent = pct(primePctVal);
+            const box = $('prime_box');
+            box.classList.remove('green','yellow','red');
+            let status;
+            if (primePctVal < 55) { box.classList.add('green'); status = '✓ Sehr gut – komfortabler Puffer'; }
+            else if (primePctVal < 60) { box.classList.add('green'); status = '✓ Gesund – unter 60 % Schwelle'; }
+            else if (primePctVal < 65) { box.classList.add('yellow'); status = '⚠ Grenzwertig – wenig Spielraum'; }
+            else { box.classList.add('red'); status = '✗ Kritisch – über 65 %'; }
+            $('prime_status').textContent = status;
+
+            // Bars (% vom Netto-Umsatz, max 100%)
+            const warePct = umsatzNetto > 0 ? (ware / umsatzNetto) * 100 : 0;
+            const persPct = umsatzNetto > 0 ? (personal / umsatzNetto) * 100 : 0;
+            const fixPct = umsatzNetto > 0 ? (fix / umsatzNetto) * 100 : 0;
+
+            $('bar_ware').style.width = Math.min(warePct, 100) + '%';
+            $('bar_pers').style.width = Math.min(persPct, 100) + '%';
+            $('bar_fix').style.width = Math.min(fixPct, 100) + '%';
+            $('bar_gewinn').style.width = Math.max(0, Math.min(gewinnPct, 100)) + '%';
+
+            $('bar_ware_pct').textContent = pct(warePct);
+            $('bar_pers_pct').textContent = pct(persPct);
+            $('bar_fix_pct').textContent = pct(fixPct);
+            $('bar_gewinn_pct').textContent = pct(gewinnPct);
+
+            // Breakdown
+            $('br_umsatz').textContent = fmt(umsatzNetto);
+            $('br_ware').textContent = '– ' + fmt(ware);
+            $('br_pers').textContent = '– ' + fmt(personal);
+            $('br_fix').textContent = '– ' + fmt(fix);
+            $('br_gewinn').textContent = (gewinn < 0 ? '' : '+ ') + fmt(gewinn);
+            $('br_ware_pct').textContent = pct(warePct);
+            $('br_pers_pct').textContent = pct(persPct);
+            $('br_fix_pct').textContent = pct(fixPct);
+            $('br_gewinn_pct').textContent = pct(gewinnPct);
+
+            const profitRow = $('profit_row');
+            profitRow.classList.toggle('negative', gewinn < 0);
+
+            // Minijob Warnung
+            const lohnProEvent = stunden * lohn;
+            if (lohnProEvent > 0 && lohnProEvent <= 556) {
+                const maxEvents = Math.floor(556 / lohnProEvent);
+                $('max_events').textContent = 'max. ' + maxEvents;
+                $('minijob_warn').classList.add('show');
+            } else if (lohnProEvent > 556) {
+                $('max_events').textContent = 'kein Minijob mehr möglich (>556 € pro Event)';
+                $('minijob_warn').classList.add('show');
+            } else {
+                $('minijob_warn').classList.remove('show');
+            }
+        }
+
+        function resetForm() {
+            const defaults = { gaeste:80, preis:27, ust:19, ware_pro_gast:9, ware_pauschal:50, helfer:2.5, stunden:8, lohn:15, pauschale:31.5, fixkosten:200 };
+            for (const k in defaults) $(k).value = defaults[k];
+            $('preisart').value = 'brutto';
+            calc();
+        }
+
+        inputs.forEach(id => $(id).addEventListener('input', calc));
+        calc();
+    </script>
+</body>
+</html>
