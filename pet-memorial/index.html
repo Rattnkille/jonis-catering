@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wieder da – Erinnerung an dein Haustier</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- ============== SETUP VIEW ============== -->
+        <section id="setup-view" class="view">
+            <div class="setup-card">
+                <h1>Wieder da</h1>
+                <p class="subtitle">Eine kleine Erinnerung an dein Haustier.<br>Sprich mit ihm – es hört dir zu.</p>
+
+                <div class="setup-step">
+                    <label for="api-key">Claude API-Key</label>
+                    <input type="password" id="api-key" placeholder="sk-ant-...">
+                    <small>Wird nur lokal im Browser gespeichert. <a href="https://console.anthropic.com/settings/keys" target="_blank">Key holen</a></small>
+                </div>
+
+                <div class="setup-step">
+                    <label for="pet-name">Name</label>
+                    <input type="text" id="pet-name" placeholder="z. B. Bello">
+                </div>
+
+                <div class="setup-step">
+                    <label for="pet-species">Tierart</label>
+                    <input type="text" id="pet-species" placeholder="z. B. Labrador, schwarz">
+                </div>
+
+                <div class="setup-step">
+                    <label for="pet-personality">Persönlichkeit & Erinnerungen</label>
+                    <textarea id="pet-personality" rows="5" placeholder="Wie war dein Tier? Was hat es geliebt? Welche Eigenheiten? Lieblingsspielzeug, Lieblingsorte, Macken..."></textarea>
+                </div>
+
+                <div class="setup-step">
+                    <label for="pet-photo">Foto (für den Ruhe-Zustand)</label>
+                    <input type="file" id="pet-photo" accept="image/*">
+                </div>
+
+                <button id="start-btn" class="primary-btn">Beginnen</button>
+
+                <details class="advanced">
+                    <summary>Erweitert: Video-Clips & Sounds</summary>
+                    <p>Lege Video-Clips in den Ordner <code>clips/</code> mit folgenden Namen:</p>
+                    <ul>
+                        <li><code>idle.mp4</code> – Ruhezustand (Loop)</li>
+                        <li><code>wag.mp4</code> – Schwanzwedeln</li>
+                        <li><code>run_to.mp4</code> – läuft auf dich zu</li>
+                        <li><code>sit.mp4</code> – setzt sich</li>
+                        <li><code>lay_down.mp4</code> – legt sich hin</li>
+                        <li><code>head_tilt.mp4</code> – Kopf zur Seite</li>
+                        <li><code>sleep.mp4</code> – schläft</li>
+                        <li><code>play.mp4</code> – spielt</li>
+                        <li><code>eat.mp4</code> – frisst</li>
+                        <li><code>look_around.mp4</code> – schaut sich um</li>
+                    </ul>
+                    <p>Sounds in den Ordner <code>sounds/</code>:</p>
+                    <ul>
+                        <li><code>happy_bark.mp3</code>, <code>soft_woof.mp3</code>, <code>whine.mp3</code>,
+                            <code>pant.mp3</code>, <code>snore.mp3</code></li>
+                    </ul>
+                    <p>Siehe <code>pet-memorial/README.md</code> für Beispiel-Prompts zum Generieren der Clips mit Runway/Luma.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- ============== SCENE VIEW ============== -->
+        <section id="scene-view" class="view hidden">
+            <div class="scene">
+                <video id="pet-video" muted playsinline loop></video>
+                <img id="pet-photo-fallback" alt="">
+
+                <div id="narration" class="narration"></div>
+
+                <div class="controls">
+                    <button id="settings-btn" class="icon-btn" title="Einstellungen">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 8a4 4 0 100 8 4 4 0 000-8zm0 6a2 2 0 110-4 2 2 0 010 4zm7.43-2c.04.33.07.66.07 1s-.03.67-.07 1l2.11 1.65a.5.5 0 01.12.64l-2 3.46a.5.5 0 01-.61.22l-2.49-1a7.03 7.03 0 01-1.73 1l-.38 2.65a.5.5 0 01-.5.42h-4a.5.5 0 01-.5-.42l-.38-2.65a7.03 7.03 0 01-1.73-1l-2.49 1a.5.5 0 01-.61-.22l-2-3.46a.5.5 0 01.12-.64L4.57 13c-.04-.33-.07-.66-.07-1s.03-.67.07-1L2.46 9.35a.5.5 0 01-.12-.64l2-3.46a.5.5 0 01.61-.22l2.49 1a7.03 7.03 0 011.73-1l.38-2.65A.5.5 0 0110 2h4a.5.5 0 01.5.42l.38 2.65c.61.24 1.2.56 1.73 1l2.49-1a.5.5 0 01.61.22l2 3.46a.5.5 0 01-.12.64L19.43 11z"/></svg>
+                    </button>
+
+                    <button id="mic-btn" class="mic-btn" title="Halten zum Sprechen">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12 14a3 3 0 003-3V5a3 3 0 00-6 0v6a3 3 0 003 3zm5-3a5 5 0 01-10 0H5a7 7 0 006 6.92V21h2v-3.08A7 7 0 0019 11h-2z"/></svg>
+                    </button>
+
+                    <div class="status" id="status">Halte das Mikrofon und sprich mit <span id="status-name">deinem Tier</span></div>
+                </div>
+
+                <div id="transcript" class="transcript hidden"></div>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
