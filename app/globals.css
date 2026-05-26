@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+:root {
+  --background: #080808;
+  --foreground: #e5e5e5;
+}
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+/* Range slider styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 2px;
+  background: #262626;
+  border-radius: 999px;
+}
+
+input[type="range"]::-moz-range-track {
+  height: 2px;
+  background: #262626;
+  border-radius: 999px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 14px;
+  width: 14px;
+  border-radius: 999px;
+  background: #e85b2e;
+  margin-top: -6px;
+  cursor: pointer;
+  border: 2px solid #080808;
+  box-shadow: 0 0 0 1px #e85b2e;
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 14px;
+  width: 14px;
+  border-radius: 999px;
+  background: #e85b2e;
+  cursor: pointer;
+  border: 2px solid #080808;
+  box-shadow: 0 0 0 1px #e85b2e;
+}
