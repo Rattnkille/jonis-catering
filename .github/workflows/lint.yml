@@ -1,0 +1,25 @@
+name: Lint
+
+# Fehler-Wächter: prüft index.html bei jedem Push und Pull Request automatisch.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  htmlhint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code auschecken
+        uses: actions/checkout@v4
+
+      - name: Node einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Dev-Abhängigkeiten installieren
+        run: npm install
+
+      - name: HTML prüfen
+        run: npm run lint
