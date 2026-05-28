@@ -1,0 +1,13 @@
+{
+  "name": "jonis-catering",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Statische Website für Jonis Catering – neapolitanisches Pizza-Catering in Bremen",
+  "scripts": {
+    "lint": "htmlhint index.html",
+    "serve": "python3 -m http.server 8000"
+  },
+  "devDependencies": {
+    "htmlhint": "^1.1.4"
+  }
+}
