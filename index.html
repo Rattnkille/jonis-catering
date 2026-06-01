@@ -2185,14 +2185,14 @@
                 <div class="faq-item">
                     <button class="faq-question">In welchem Umkreis liefert ihr?</button>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">Wir sind in Bremen und Umgebung unterwegs. Bei größeren Events fahren wir auch gerne weiter – sprich uns einfach an, und wir finden eine Lösung.</div>
+                        <div class="faq-answer-inner">Wir sind in Bremen und im Umkreis von rund 50 km unterwegs – zum Beispiel in Delmenhorst, Stuhr, Weyhe, Achim, Oyten, Lilienthal, Verden, Oldenburg, Osterholz-Scharmbeck und Ganderkesee. Die An- und Abfahrt im Umkreis von 30 km um Bremen ist inklusive; für weiter entfernte Events finden wir gerne eine Lösung – sprich uns einfach an.</div>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">Was ist alles im Catering-Preis enthalten?</button>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">Alle Pakete beinhalten Steinofen, frische Zutaten, An- und Abfahrt (bis 30 km), Auf- und Abbau sowie Servicepersonal. Im Classic-Paket sind 2 Pizzen p.P. enthalten, im Event-Paket kommen Antipasti dazu, im Premium-Paket zusätzlich individuell abgestimmte Menüoptionen. Es gibt keine versteckten Kosten.</div>
+                        <div class="faq-answer-inner">Alle Pakete beinhalten Steinofen, frische Zutaten, An- und Abfahrt im Umkreis von 30 km um Bremen, Auf- und Abbau sowie Servicepersonal. Im Classic-Paket sind 2 Pizzen p.P. enthalten (ab 27 € p.P.), im Event-Paket kommen Antipasti dazu (ab 37 € p.P.), im Premium-Paket zusätzlich individuell abgestimmte Menüoptionen und Dessert (ab 47 € p.P.). Es gibt keine versteckten Kosten.</div>
                     </div>
                 </div>
 
@@ -2673,45 +2673,222 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "CateringService",
-        "name": "Jonis Catering",
-        "description": "Neapolitanische Pizza Catering für Hochzeiten, Firmenevents und private Feiern in Bremen.",
-        "url": "https://jonis-catering.de",
-        "telephone": "+4917632370375",
-        "email": "info@jonis-catering.de",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Konsul-Smidt-Straße 35",
-            "addressLocality": "Bremen",
-            "postalCode": "28217",
-            "addressCountry": "DE"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "53.0793",
-            "longitude": "8.7809"
-        },
-        "areaServed": {
-            "@type": "GeoCircle",
-            "geoMidpoint": {
-                "@type": "GeoCoordinates",
-                "latitude": "53.0793",
-                "longitude": "8.7809"
-            },
-            "geoRadius": "50000"
-        },
-        "priceRange": "€€",
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "47"
-        },
-        "openingHoursSpecification": [
+        "@graph": [
             {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
-                "opens": "11:00",
-                "closes": "15:00"
+                "@type": ["CateringService", "LocalBusiness"],
+                "@id": "https://jonis-catering.de/#business",
+                "name": "Jonis Catering",
+                "description": "Neapolitanische Pizza Catering für Hochzeiten, Firmenevents und private Feiern in Bremen und Umgebung. Live im Steinofen gebacken, ab 50 Personen.",
+                "url": "https://jonis-catering.de",
+                "telephone": "+4917632370375",
+                "email": "info@jonis-catering.de",
+                "image": "https://jonis-catering.de/img/hero.jpg",
+                "logo": "https://jonis-catering.de/img/hero.jpg",
+                "currenciesAccepted": "EUR",
+                "paymentAccepted": "Überweisung, Rechnung",
+                "founder": {
+                    "@type": "Person",
+                    "name": "Jonathan Sibbing"
+                },
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Konsul-Smidt-Straße 35",
+                    "addressLocality": "Bremen",
+                    "postalCode": "28217",
+                    "addressCountry": "DE"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": "53.0793",
+                    "longitude": "8.7809"
+                },
+                "areaServed": [
+                    {
+                        "@type": "GeoCircle",
+                        "geoMidpoint": {
+                            "@type": "GeoCoordinates",
+                            "latitude": "53.0793",
+                            "longitude": "8.7809"
+                        },
+                        "geoRadius": "50000"
+                    },
+                    { "@type": "City", "name": "Bremen" },
+                    { "@type": "City", "name": "Delmenhorst" },
+                    { "@type": "City", "name": "Stuhr" },
+                    { "@type": "City", "name": "Weyhe" },
+                    { "@type": "City", "name": "Achim" },
+                    { "@type": "City", "name": "Oyten" },
+                    { "@type": "City", "name": "Lilienthal" },
+                    { "@type": "City", "name": "Verden" },
+                    { "@type": "City", "name": "Oldenburg" },
+                    { "@type": "City", "name": "Osterholz-Scharmbeck" },
+                    { "@type": "City", "name": "Ganderkesee" },
+                    { "@type": "City", "name": "Syke" }
+                ],
+                "priceRange": "€€",
+                "sameAs": [
+                    "https://share.google/FRjTIIzTegjiOZa4u"
+                ],
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "4.9",
+                    "reviewCount": "47",
+                    "bestRating": "5",
+                    "worstRating": "1"
+                },
+                "review": [
+                    {
+                        "@type": "Review",
+                        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                        "author": { "@type": "Person", "name": "Lisa & Markus" },
+                        "reviewBody": "Die Pizza war der absolute Hit auf unserer Hochzeit. Alle Gäste waren begeistert, und der Service war super professionell. Können wir nur weiterempfehlen!"
+                    },
+                    {
+                        "@type": "Review",
+                        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                        "author": { "@type": "Person", "name": "Thomas K." },
+                        "reviewBody": "Unser Firmensommerfest war dank Jonis Catering ein voller Erfolg. Pünktlich, unkompliziert und die Qualität der Pizza war erstklassig. Gerne wieder!"
+                    },
+                    {
+                        "@type": "Review",
+                        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                        "author": { "@type": "Person", "name": "Sarah M." },
+                        "reviewBody": "Authentisch neapolitanisch, direkt aus dem Steinofen. Die Gäste auf meinem Geburtstag haben noch Wochen danach davon geschwärmt. Top!"
+                    }
+                ],
+                "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": "Catering-Pakete",
+                    "itemListElement": [
+                        {
+                            "@type": "Offer",
+                            "name": "Classic",
+                            "description": "Pizza pur – 2 Pizzen p.P. aus 6 Sorten, live im Steinofen gebacken, 2 Stunden Servierzeit, Auf- & Abbau und Servicepersonal inklusive.",
+                            "priceCurrency": "EUR",
+                            "price": "27",
+                            "priceSpecification": {
+                                "@type": "UnitPriceSpecification",
+                                "price": "27",
+                                "priceCurrency": "EUR",
+                                "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitText": "Person" }
+                            },
+                            "eligibleQuantity": { "@type": "QuantitativeValue", "minValue": "50", "unitText": "Person" }
+                        },
+                        {
+                            "@type": "Offer",
+                            "name": "Event",
+                            "description": "Pizza + Antipasti – 2–3 Pizzen p.P. aus 6 Sorten, Antipasti-Platten als Empfang, 3 Stunden Servierzeit, Echtholz-Servierbretter, Auf- & Abbau und Servicepersonal inklusive.",
+                            "priceCurrency": "EUR",
+                            "price": "37",
+                            "priceSpecification": {
+                                "@type": "UnitPriceSpecification",
+                                "price": "37",
+                                "priceCurrency": "EUR",
+                                "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitText": "Person" }
+                            },
+                            "eligibleQuantity": { "@type": "QuantitativeValue", "minValue": "50", "unitText": "Person" }
+                        },
+                        {
+                            "@type": "Offer",
+                            "name": "Premium",
+                            "description": "Vom Aperitif bis zum Dessert – erweiterte Antipasti-Auswahl, Tiramisu oder Panna Cotta, individuelle Menü-Abstimmung, Auf- & Abbau und Servicepersonal inklusive.",
+                            "priceCurrency": "EUR",
+                            "price": "47",
+                            "priceSpecification": {
+                                "@type": "UnitPriceSpecification",
+                                "price": "47",
+                                "priceCurrency": "EUR",
+                                "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitText": "Person" }
+                            },
+                            "eligibleQuantity": { "@type": "QuantitativeValue", "minValue": "50", "unitText": "Person" }
+                        }
+                    ]
+                },
+                "hasMenu": { "@id": "https://jonis-catering.de/#menu" },
+                "openingHoursSpecification": [
+                    {
+                        "@type": "OpeningHoursSpecification",
+                        "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+                        "opens": "11:00",
+                        "closes": "15:00"
+                    }
+                ]
+            },
+            {
+                "@type": "Menu",
+                "@id": "https://jonis-catering.de/#menu",
+                "name": "Pizza-Karte",
+                "description": "Neapolitanische Pizzen, live im Steinofen gebacken. Ideen-Auswahl – weitere Sorten möglich.",
+                "hasMenuSection": {
+                    "@type": "MenuSection",
+                    "name": "Pizza",
+                    "hasMenuItem": [
+                        { "@type": "MenuItem", "name": "La Marinera Noble", "description": "Tomatensauce, Knoblauch, Oregano, Olivenöl – der Klassiker ohne Käse", "suitableForDiet": ["https://schema.org/VeganDiet", "https://schema.org/GlutenFreeDiet"] },
+                        { "@type": "MenuItem", "name": "La Reina Margarita", "description": "San-Marzano-Tomaten, Fior di Latte, frisches Basilikum", "suitableForDiet": ["https://schema.org/VegetarianDiet", "https://schema.org/GlutenFreeDiet"] },
+                        { "@type": "MenuItem", "name": "San Champiñón", "description": "Fior di Latte, frische Champignons, Trüffelöl, Petersilie", "suitableForDiet": ["https://schema.org/VegetarianDiet", "https://schema.org/GlutenFreeDiet"] },
+                        { "@type": "MenuItem", "name": "La Guerrera OG Pepperoni", "description": "Fior di Latte, scharfe Salami, Chilihonig", "suitableForDiet": "https://schema.org/GlutenFreeDiet" },
+                        { "@type": "MenuItem", "name": "El Atún Valiente", "description": "Fior di Latte, Thunfisch, rote Zwiebeln, Kapern", "suitableForDiet": "https://schema.org/GlutenFreeDiet" },
+                        { "@type": "MenuItem", "name": "La Picante Dulzura", "description": "Fior di Latte, 'Nduja, süße Paprika, Honig" },
+                        { "@type": "MenuItem", "name": "Quattro Formaggi", "description": "Fior di Latte, Gorgonzola, Parmesan, Ricotta, Rucola", "suitableForDiet": "https://schema.org/VegetarianDiet" },
+                        { "@type": "MenuItem", "name": "La Diavola", "description": "San-Marzano-Tomaten, Fior di Latte, Salami Piccante, Chili" },
+                        { "@type": "MenuItem", "name": "La Verde", "description": "Tomatensauce, gegrillte Zucchini, Paprika, Rucola, Olivenöl", "suitableForDiet": "https://schema.org/VeganDiet" },
+                        { "@type": "MenuItem", "name": "La Funghi Vegana", "description": "Tomatensauce, gemischte Pilze, Artischocken, Kapern, frische Kräuter", "suitableForDiet": "https://schema.org/VeganDiet" }
+                    ]
+                }
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "https://jonis-catering.de/#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Ab wie vielen Personen kann ich Catering buchen?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Unser Catering ist ab 50 Personen buchbar. Für kleinere Gruppen empfehlen wir, direkt bei unserem Pop-Up vorbeizukommen oder Pizzen vorzubestellen."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "In welchem Umkreis liefert ihr?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Wir sind in Bremen und im Umkreis von rund 50 km unterwegs – zum Beispiel in Delmenhorst, Stuhr, Weyhe, Achim, Oyten, Lilienthal, Verden, Oldenburg, Osterholz-Scharmbeck und Ganderkesee. Die An- und Abfahrt im Umkreis von 30 km um Bremen ist inklusive; für weiter entfernte Events finden wir gerne eine Lösung – sprich uns einfach an."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Was ist alles im Catering-Preis enthalten?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Alle Pakete beinhalten Steinofen, frische Zutaten, An- und Abfahrt im Umkreis von 30 km um Bremen, Auf- und Abbau sowie Servicepersonal. Im Classic-Paket sind 2 Pizzen p.P. enthalten (ab 27 € p.P.), im Event-Paket kommen Antipasti dazu (ab 37 € p.P.), im Premium-Paket zusätzlich individuell abgestimmte Menüoptionen und Dessert (ab 47 € p.P.). Es gibt keine versteckten Kosten."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Bietet ihr auch vegane oder glutenfreie Optionen an?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Ja, wir können vegane Pizzen und auf Anfrage auch glutenfreie Varianten anbieten. Teile uns deine Wünsche einfach bei der Anfrage mit, und wir passen das Menü entsprechend an."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Wie reserviere ich meinen Wunschtermin verbindlich?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Nach deiner Angebotsbestätigung wird eine Anzahlung von 10% fällig. Sobald diese eingegangen ist, ist dein Termin fest in unserem Kalender reserviert."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Wie weit im Voraus sollte ich für ein Event buchen?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Wir empfehlen eine Anfrage mindestens 4–6 Wochen vor dem Event. Beliebte Termine (besonders im Sommer) sind schnell vergeben. Aber frag gerne auch kurzfristiger an – wenn wir können, machen wir es möglich."
+                        }
+                    }
+                ]
             }
         ]
     }
