@@ -1,0 +1,16 @@
+# === Jonis Catering – Schutz des Web-Roots ===
+# Das Git-Deployment legt das komplette Repository ins Web-Root.
+# Diese Regeln verhindern, dass Entwickler-/Repo-Dateien öffentlich
+# abrufbar sind (z. B. .git, package.json, CLAUDE.md, scripts/).
+
+# Keine Verzeichnis-Auflistung
+Options -Indexes
+
+# Zugriff auf versteckte Dateien/Ordner verbieten (z. B. .git), außer .well-known
+RewriteEngine On
+RewriteRule (^|/)\.(?!well-known/)([^/]+) - [F,L]
+
+# Entwickler- und Repo-Dateien nicht ausliefern
+<FilesMatch "\.(md|json|lock|sh|mjs|yml|yaml)$">
+    Require all denied
+</FilesMatch>
