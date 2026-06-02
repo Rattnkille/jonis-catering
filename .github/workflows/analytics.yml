@@ -1,0 +1,41 @@
+name: Analytics-Bericht
+
+on:
+  schedule:
+    # Jeden Montag um 06:00 UTC
+    - cron: '0 6 * * 1'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  cloudflare-report:
+    name: Cloudflare Web Analytics
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Bericht generieren
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node scripts/cf-analytics.mjs
+
+      - name: Bericht committen (falls geändert)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain reports/analytics.md)" ]; then
+            git add reports/analytics.md
+            git commit -m "Analytics-Bericht aktualisiert"
+            git push
+          else
+            echo "Keine Änderungen am Bericht."
+          fi
