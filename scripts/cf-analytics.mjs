@@ -85,6 +85,60 @@ const sumVisits = (rows) => rows.reduce((a, r) => a + (r.sum?.visits || 0), 0);
 
 const byDate = account.byDate || [];
 const last7 = byDate.slice(-7);
+const prev7 = byDate.slice(-14, -7);
+
+// --- Automatische Auswertung (regelbasiert, ohne KI / ohne Credits) ---
+const views7 = sumCount(last7);
+const viewsPrev7 = sumCount(prev7);
+const views30 = sumCount(byDate);
+const visits7 = sumVisits(last7);
+
+// Prozentuale Veränderung 7 Tage ggü. Vorwoche, als lesbarer Pfeil.
+const trend = (cur, prev) => {
+    if (prev === 0) return cur === 0 ? '±0 %' : 'neu (Vorwoche 0)';
+    const d = ((cur - prev) / prev) * 100;
+    const arrow = d > 0.5 ? '▲ +' : d < -0.5 ? '▼ ' : '± ';
+    return `${arrow}${Math.round(d)} %`;
+};
+
+// Ersten echten Wert einer Dimension finden (leere/„none" überspringen).
+const firstReal = (rows, key) => {
+    const r = (rows || []).find((x) => {
+        const v = (x.dimensions?.[key] || '').trim();
+        return v && v.toLowerCase() !== 'none';
+    });
+    return r ? { label: r.dimensions[key], count: r.count } : null;
+};
+
+const topRef = firstReal(account.topReferers, 'refererHost');
+const topPage = firstReal(account.topPaths, 'requestPath');
+
+const insights = [];
+insights.push(`- **Seitenaufrufe (7 Tage):** ${views7} — Trend ggü. Vorwoche: ${trend(views7, viewsPrev7)}`);
+insights.push(`- **Besuche (7 Tage):** ${visits7}`);
+insights.push(`- **Stärkste Quelle:** ${topRef ? `${topRef.label} (${topRef.count} Aufrufe)` : 'überwiegend direkt/unbekannt'}`);
+insights.push(`- **Beliebteste Seite:** ${topPage ? `${topPage.label} (${topPage.count} Aufrufe)` : '–'}`);
+
+// Einfache, regelbasierte Hinweise/Empfehlungen.
+const tips = [];
+if (views30 === 0) {
+    tips.push('Noch keine Daten im Zeitraum. Der Beacon ist live — Werte erscheinen, sobald die Seite besucht wird. Prüfen: Cloudflare-Beacon im Quelltext vorhanden und Seite über die korrekte Domain aufgerufen.');
+} else if (views7 === 0) {
+    tips.push('In den letzten 7 Tagen kein Traffic, im 30-Tage-Fenster aber schon. Saisonaler Einbruch oder fehlende Sichtbarkeit — ggf. Google-Business-Profil und Social-Posts ankurbeln.');
+} else {
+    if (viewsPrev7 > 0 && views7 < viewsPrev7 * 0.8) {
+        tips.push('Deutlicher Rückgang ggü. Vorwoche (>20 %). Quellen prüfen: Ist eine wichtige Referrer-Quelle weggebrochen?');
+    }
+    if (viewsPrev7 > 0 && views7 > viewsPrev7 * 1.2) {
+        tips.push('Deutliches Wachstum ggü. Vorwoche (>20 %). Schauen, welche Quelle/Seite den Anstieg trägt, und dort nachlegen.');
+    }
+    if (!topRef) {
+        tips.push('Fast nur Direktzugriffe, kaum Referrer. Sichtbarkeit über Google-Suche/-Maps und Verlinkungen (Branchenverzeichnisse, Social) ausbauen.');
+    }
+}
+if (!tips.length) tips.push('Keine Auffälligkeiten — Werte im erwartbaren Rahmen.');
+
+const autoEval = `${insights.join('\n')}\n\n**Hinweise:**\n${tips.map((t) => `- ${t}`).join('\n')}\n`;
 
 const table = (rows, key, label) => {
     if (!rows || !rows.length) return `_Noch keine Daten._\n`;
@@ -114,6 +168,9 @@ const report = `# Cloudflare Web Analytics – Bericht
 | Seitenaufrufe | ${sumCount(last7)} | ${sumCount(byDate)} |
 | Besuche | ${sumVisits(last7)} | ${sumVisits(byDate)} |
 
+## Automatische Auswertung
+
+${autoEval}
 ## Verlauf pro Tag
 
 ${seriesTable(byDate)}
