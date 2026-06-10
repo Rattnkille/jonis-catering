@@ -945,6 +945,186 @@
         }
 
         /* ============================================
+           SOFORT-ANGEBOT (PREISRECHNER)
+           ============================================ */
+        .quote {
+            background: var(--bg-warm);
+        }
+
+        .quote-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .quote-header .subheading {
+            margin: 0.75rem auto 0;
+        }
+
+        .quote-card {
+            background: #fff;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .quote-fields {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+
+        .quote-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .quote-pakete {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+
+        .quote-paket {
+            padding: 0.75rem 0.5rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: #fff;
+            text-align: center;
+            transition: all var(--transition);
+        }
+
+        .quote-paket strong {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        .quote-paket span {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .quote-paket:hover {
+            border-color: var(--primary-light);
+        }
+
+        .quote-paket.active {
+            border-color: var(--primary);
+            background: rgba(224, 87, 47, 0.06);
+        }
+
+        .quote-range {
+            width: 100%;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .quote-guests-out {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .quote-date {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            font-family: inherit;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: #fff;
+            color: var(--text);
+            transition: border-color var(--transition);
+        }
+
+        .quote-date:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(224, 87, 47, 0.1);
+        }
+
+        .quote-date-hint {
+            margin-top: 0.6rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            min-height: 1.2em;
+            line-height: 1.4;
+        }
+
+        .quote-date-hint.peak { color: var(--primary); }
+        .quote-date-hint.busy { color: #c0392b; }
+        .quote-date-hint.ok   { color: #2e7d32; }
+
+        .quote-result {
+            background: linear-gradient(160deg, var(--dark), var(--dark-soft));
+            color: #fff;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .quote-result-label {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.3rem;
+        }
+
+        .quote-result-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .quote-result-per {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0.4rem 0 0.9rem;
+        }
+
+        .quote-result-note {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.5;
+            margin-bottom: 1.25rem;
+        }
+
+        .quote-result .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .quote-result .btn + .btn {
+            margin-top: 0.6rem;
+        }
+
+        .quote-result .btn-outline {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .quote-result .btn-outline:hover {
+            border-color: #fff;
+            color: #fff;
+        }
+
+        @media (min-width: 768px) {
+            .quote-card {
+                grid-template-columns: 1.3fr 1fr;
+            }
+        }
+
+        /* ============================================
            GALERIE
            ============================================ */
         .gallery {
@@ -1255,6 +1435,42 @@
         .reviews-cta {
             text-align: center;
             margin-top: 2rem;
+        }
+
+        .review-ask {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            max-width: 680px;
+            margin: 0 auto 1.5rem;
+            padding: 1.5rem 1.75rem;
+            background: var(--bg-warm);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            text-align: left;
+        }
+
+        .review-ask-text {
+            flex: 1 1 240px;
+        }
+
+        .review-ask-text strong {
+            display: block;
+            font-size: 1.05rem;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .review-ask-text span {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .review-ask .btn {
+            flex-shrink: 0;
         }
 
         /* ============================================
@@ -1733,6 +1949,7 @@
         <nav class="nav-mobile" id="navMobile">
             <a href="#leistungen" class="nav-mobile-link">Leistungen</a>
             <a href="#pakete" class="nav-mobile-link">Pakete</a>
+            <a href="#angebot" class="nav-mobile-link">Sofort-Angebot</a>
             <a href="#galerie" class="nav-mobile-link">Galerie</a>
             <a href="#menu" class="nav-mobile-link">Menü</a>
             <a href="#ablauf" class="nav-mobile-link">Ablauf</a>
@@ -1914,7 +2131,7 @@
                         <li>Vegane Optionen möglich</li>
                         <li>Glutenfrei möglich</li>
                     </ul>
-                    <a href="#kontakt" class="btn btn-outline">Anfragen</a>
+                    <a href="#angebot" class="btn btn-outline" data-jump="Classic">Anfragen</a>
                 </div>
 
                 <!-- Paket Event (Featured) -->
@@ -1934,7 +2151,7 @@
                         <li>Vegane Optionen möglich</li>
                         <li>Glutenfrei möglich</li>
                     </ul>
-                    <a href="#kontakt" class="btn btn-primary">Anfragen</a>
+                    <a href="#angebot" class="btn btn-primary" data-jump="Event">Anfragen</a>
                 </div>
 
                 <!-- Paket Premium -->
@@ -1953,9 +2170,57 @@
                         <li>Glutenfrei möglich</li>
                         <li>Priorität bei Terminkonflikten</li>
                     </ul>
-                    <a href="#kontakt" class="btn btn-outline">Anfragen</a>
+                    <a href="#angebot" class="btn btn-outline" data-jump="Premium">Anfragen</a>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SOFORT-ANGEBOT (PREISRECHNER)
+         ============================================ -->
+    <section class="quote" id="angebot">
+        <div class="container">
+            <div class="quote-header">
+                <span class="section-label">Sofort-Angebot</span>
+                <h2 class="heading-section">Dein Richtpreis in 2 Minuten</h2>
+                <p class="subheading">Paket wählen, Gästezahl und Wunschdatum angeben – du siehst sofort deinen Richtpreis und sicherst dir den Termin direkt per WhatsApp.</p>
+            </div>
+            <div class="quote-card">
+                <div class="quote-fields">
+                    <div class="quote-field">
+                        <span class="quote-label" id="quotePaketLabel">Paket</span>
+                        <div class="quote-pakete" role="group" aria-labelledby="quotePaketLabel">
+                            <button type="button" class="quote-paket" data-paket="Classic" data-price="27">
+                                <strong>Classic</strong><span>ab €27 p.P.</span>
+                            </button>
+                            <button type="button" class="quote-paket active" data-paket="Event" data-price="37">
+                                <strong>Event</strong><span>ab €37 p.P.</span>
+                            </button>
+                            <button type="button" class="quote-paket" data-paket="Premium" data-price="47">
+                                <strong>Premium</strong><span>ab €47 p.P.</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="quote-field">
+                        <label class="quote-label" for="quoteGuests">Gästezahl: <span class="quote-guests-out" id="quoteGuestsOut">80</span></label>
+                        <input type="range" class="quote-range" id="quoteGuests" min="50" max="300" step="10" value="80">
+                    </div>
+                    <div class="quote-field">
+                        <label class="quote-label" for="quoteDate">Wunschdatum</label>
+                        <input type="date" class="quote-date" id="quoteDate">
+                        <p class="quote-date-hint" id="quoteDateHint" role="status" aria-live="polite"></p>
+                    </div>
+                </div>
+                <div class="quote-result">
+                    <div class="quote-result-label">Dein Richtpreis (ab)</div>
+                    <div class="quote-result-price" id="quotePrice">€2.960</div>
+                    <div class="quote-result-per" id="quotePricePer">Event-Paket · 80 Gäste · ab €37 p.P.</div>
+                    <p class="quote-result-note">Richtwert (ab-Preis), inkl. MwSt., Auf-/Abbau und Service. Der finale Preis hängt von Menü, Anfahrt und Wünschen ab – dein verbindliches Angebot bekommst du nach kurzer Abstimmung.</p>
+                    <a href="https://wa.me/4942168431162" class="btn btn-whatsapp btn-lg" id="quoteWhatsapp" target="_blank" rel="noopener">Angebot per WhatsApp sichern</a>
+                    <button type="button" class="btn btn-outline" id="quoteToForm">Per Formular anfragen</button>
+                </div>
             </div>
         </div>
     </section>
@@ -2163,6 +2428,13 @@
                 </div>
             </div>
             <div class="reviews-cta">
+                <div class="review-ask">
+                    <div class="review-ask-text">
+                        <strong>Schon bei uns gefeiert?</strong>
+                        <span>Deine Bewertung hilft anderen bei der Entscheidung – und uns riesig weiter. Dauert nur 30 Sekunden.</span>
+                    </div>
+                    <a href="https://share.google/FRjTIIzTegjiOZa4u" target="_blank" rel="noopener" class="btn btn-primary">⭐ Jetzt auf Google bewerten</a>
+                </div>
                 <a href="https://share.google/FRjTIIzTegjiOZa4u" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Alle Bewertungen auf Google ansehen →</a>
             </div>
         </div>
@@ -2346,6 +2618,7 @@
                     <h4>Navigation</h4>
                     <a href="#leistungen">Leistungen</a>
                     <a href="#pakete">Pakete</a>
+                    <a href="#angebot">Sofort-Angebot</a>
                     <a href="#ablauf">Ablauf</a>
                     <a href="#bewertungen">Bewertungen</a>
                     <a href="#kontakt">Kontakt</a>
@@ -2558,6 +2831,118 @@
                 a.classList.toggle('active', a.getAttribute('href') === '#' + current);
             });
         });
+
+        // ── Sofort-Angebot (Preisrechner) ──
+        (function () {
+            const WHATSAPP = '4942168431162';
+            // Ausgebuchte Termine (Format: 'YYYY-MM-DD') – hier manuell pflegen:
+            const blockedDates = [
+                // '2026-07-18',
+            ];
+
+            const paketBtns = document.querySelectorAll('.quote-paket');
+            const guests    = document.getElementById('quoteGuests');
+            const guestsOut = document.getElementById('quoteGuestsOut');
+            const dateInput = document.getElementById('quoteDate');
+            const dateHint  = document.getElementById('quoteDateHint');
+            const priceEl   = document.getElementById('quotePrice');
+            const perEl     = document.getElementById('quotePricePer');
+            const waBtn     = document.getElementById('quoteWhatsapp');
+            const toFormBtn = document.getElementById('quoteToForm');
+            if (!guests || !priceEl) return;
+
+            const euro = new Intl.NumberFormat('de-DE');
+            let paket = 'Event';
+            let price = 37;
+
+            function fmtDate(v) {
+                if (!v) return '';
+                return new Date(v + 'T00:00:00').toLocaleDateString('de-DE', {
+                    day: '2-digit', month: 'long', year: 'numeric'
+                });
+            }
+
+            function dateStatus(v) {
+                if (!v) return { cls: '', text: '' };
+                if (blockedDates.includes(v)) {
+                    return { cls: 'busy', text: '⚠️ An diesem Tag sind wir leider ausgebucht – frag nach einem Alternativtermin.' };
+                }
+                const d = new Date(v + 'T00:00:00');
+                const day = d.getDay();      // 6 = Samstag
+                const month = d.getMonth();  // 4–8 = Mai–September
+                if (day === 6 && month >= 4 && month <= 8) {
+                    return { cls: 'peak', text: '🔥 Beliebter Sommer-Samstag – diese Termine sind schnell vergeben. Jetzt sichern!' };
+                }
+                if (day === 6) {
+                    return { cls: 'ok', text: '✓ Samstag – beliebter Termin. Früh anfragen lohnt sich.' };
+                }
+                return { cls: 'ok', text: '✓ Termin grundsätzlich anfragbar – sende uns deine Anfrage.' };
+            }
+
+            function quoteMessage() {
+                const g = parseInt(guests.value, 10);
+                const total = price * g;
+                const dateTxt = dateInput.value ? (' am ' + fmtDate(dateInput.value)) : '';
+                return 'Hallo Jonis Catering, ich interessiere mich für das ' + paket +
+                    '-Paket für ca. ' + g + ' Gäste' + dateTxt +
+                    '. Richtpreis laut Rechner: ab €' + euro.format(total) +
+                    '. Bitte sendet mir ein Angebot.';
+            }
+
+            function update() {
+                const g = parseInt(guests.value, 10);
+                const total = price * g;
+                guestsOut.textContent = g;
+                priceEl.textContent = '€' + euro.format(total);
+                perEl.textContent = paket + '-Paket · ' + g + ' Gäste · ab €' + price + ' p.P.';
+
+                const st = dateStatus(dateInput.value);
+                dateHint.className = 'quote-date-hint ' + st.cls;
+                dateHint.textContent = st.text;
+
+                waBtn.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(quoteMessage());
+            }
+
+            paketBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    paketBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    paket = btn.dataset.paket;
+                    price = parseInt(btn.dataset.price, 10);
+                    update();
+                });
+            });
+
+            guests.addEventListener('input', update);
+            dateInput.addEventListener('change', update);
+            dateInput.min = new Date().toISOString().split('T')[0];
+
+            // Paket aus den "Anfragen"-Buttons der Paket-Sektion vorauswählen
+            document.querySelectorAll('[data-jump]').forEach(link => {
+                link.addEventListener('click', () => {
+                    const target = document.querySelector('.quote-paket[data-paket="' + link.dataset.jump + '"]');
+                    if (target) target.click();
+                });
+            });
+
+            // Werte in das Kontaktformular übernehmen
+            toFormBtn.addEventListener('click', () => {
+                const g = parseInt(guests.value, 10);
+                const guestsField = document.getElementById('guests');
+                const dateField = document.getElementById('date');
+                const msgField = document.getElementById('message');
+                if (guestsField) guestsField.value = g;
+                if (dateField && dateInput.value) dateField.value = dateInput.value;
+                if (msgField) {
+                    msgField.value = 'Ich interessiere mich für das ' + paket + '-Paket für ca. ' + g + ' Gäste' +
+                        (dateInput.value ? (' am ' + fmtDate(dateInput.value)) : '') +
+                        '. Richtpreis laut Rechner: ab €' + euro.format(price * g) + '.';
+                }
+                document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            update();
+        })();
     </script>
 
     <!-- ============================================
