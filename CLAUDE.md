@@ -2,6 +2,27 @@
 
 Bedienungsanleitung dieses Repos für Claude Code. Lies das zuerst, bevor du Änderungen machst.
 
+## Gedächtnis (über Sessions hinweg)
+
+Das Langzeit-Gedächtnis liegt in **Google Drive**, Ordner `skill-observations/`
+(erreichbar über den Google-Drive-MCP). Es ist die gemeinsame Quelle für lokale
+und Web-Sessions.
+
+| Datei | Zweck |
+|-------|-------|
+| `memory.md` | Geschäfts-Learnings: Kunden, Preise, Konditionen, Abläufe. |
+| `cross-cutting-principles.md` | Übergreifende Prinzipien, gegen die Skills geprüft werden. |
+| `log.md` | Beobachtungs-Log für Skill-Verbesserungen (OBS-Einträge). |
+| `skill-updates/` | Aktualisierte Skill-Versionen aus dem wöchentlichen Review. |
+
+**Zu Session-Beginn:** `memory.md` und `cross-cutting-principles.md` aus Drive
+lesen, bevor du mit Geschäftsthemen arbeitest.
+
+**Zu Session-Ende:** Neue, dauerhaft relevante Erkenntnisse in `memory.md`
+eintragen (Kunde X mag Y, Preisentscheidung, was funktioniert hat). Wenn ein
+Skill/Workflow nicht wie erwartet lief, eine Beobachtung in `log.md` ergänzen.
+Bei reinen Website-Änderungen ohne neue Geschäftserkenntnis ist kein Eintrag nötig.
+
 ## Was ist das hier?
 
 Statische One-Page-Website für **Jonis Catering** – neapolitanisches Pizza-Catering
