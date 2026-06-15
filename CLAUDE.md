@@ -4,24 +4,32 @@ Bedienungsanleitung dieses Repos für Claude Code. Lies das zuerst, bevor du Än
 
 ## Gedächtnis (über Sessions hinweg)
 
-Das Langzeit-Gedächtnis liegt in **Google Drive**, Ordner `skill-observations/`
-(erreichbar über den Google-Drive-MCP). Es ist die gemeinsame Quelle für lokale
-und Web-Sessions.
+Das Langzeit-Gedächtnis liegt im **Obsidian Vault `JONIS-Brain`**, der über
+Google Drive erreichbar ist (Drive-MCP). Er ist die Single Source of Truth
+für lokale und Web-Sessions.
+
+**Zu Session-Beginn – immer diese drei Dateien lesen:**
 
 | Datei | Zweck |
 |-------|-------|
-| `memory.md` | Geschäfts-Learnings: Kunden, Preise, Konditionen, Abläufe. |
-| `cross-cutting-principles.md` | Übergreifende Prinzipien, gegen die Skills geprüft werden. |
-| `log.md` | Beobachtungs-Log für Skill-Verbesserungen (OBS-Einträge). |
-| `skill-updates/` | Aktualisierte Skill-Versionen aus dem wöchentlichen Review. |
+| `JONIS-Brain/CRITICAL_FACTS.md` | Kernfakten: Preise, Kontakt, Tech-Stack (~120 Tokens) |
+| `JONIS-Brain/SOUL.md` | Identität, Werte, aktueller Fokus von Jonathan |
+| `JONIS-Brain/_CLAUDE.md` | Betriebshandbuch: Ordnerstruktur, Auto-Save-Regeln, Konventionen |
 
-**Zu Session-Beginn:** `memory.md` und `cross-cutting-principles.md` aus Drive
-lesen, bevor du mit Geschäftsthemen arbeitest.
-
-**Zu Session-Ende:** Neue, dauerhaft relevante Erkenntnisse in `memory.md`
-eintragen (Kunde X mag Y, Preisentscheidung, was funktioniert hat). Wenn ein
-Skill/Workflow nicht wie erwartet lief, eine Beobachtung in `log.md` ergänzen.
+**Zu Session-Ende:** Neue Erkenntnisse gemäß den Auto-Save-Regeln in `_CLAUDE.md`
+in die jeweiligen Vault-Dateien schreiben (Leads → `10 JONIS/Leads/`, Business-Daten
+→ `10 JONIS/Unternehmens-Profil.md`, Skill-Beobachtungen → `skill-observations/log.md`).
 Bei reinen Website-Änderungen ohne neue Geschäftserkenntnis ist kein Eintrag nötig.
+
+**Vault-Kurzstruktur:**
+
+| Ordner | Inhalt |
+|--------|--------|
+| `00 Inbox/` | Ungefiltert rein, später sortieren |
+| `10 JONIS/` | Business-Stammdaten, Leads, Events |
+| `40 Tagesnotizen/` | Daily Notes (YYYY-MM-DD.md) |
+| `60 Claude AI/` | Skills, Prompts, Claude-Zusammenarbeit |
+| `skill-observations/` | Skill-Reviews (Ordner in Drive, außerhalb des Vaults) |
 
 ## Was ist das hier?
 
