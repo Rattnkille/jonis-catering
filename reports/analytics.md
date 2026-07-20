@@ -1,7 +1,7 @@
 # Cloudflare Web Analytics – Bericht
 
-> Automatisch generiert am 2026-07-13 09:36 UTC.
-> Zeitraum: **2026-06-14 bis 2026-07-13** (letzte 30 Tage). Quelle: Cloudflare Web Analytics (RUM), cookieless.
+> Automatisch generiert am 2026-07-20 09:23 UTC.
+> Zeitraum: **2026-06-21 bis 2026-07-20** (letzte 30 Tage). Quelle: Cloudflare Web Analytics (RUM), cookieless.
 
 ## Überblick
 
