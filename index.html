@@ -1676,6 +1676,91 @@
         }
 
         /* ============================================
+           EXTRAS (UPSELL ADD-ONS)
+           ============================================ */
+        .extras {
+            background: var(--bg-warm);
+        }
+
+        .extras-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .extras-header .subheading {
+            margin: 0.75rem auto 0;
+        }
+
+        .extras-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .extra-card {
+            background: #fff;
+            border-radius: var(--radius-lg);
+            padding: 1.75rem 1.5rem;
+            border: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            transition: all var(--transition);
+        }
+
+        .extra-card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .extra-icon {
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .extra-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0;
+        }
+
+        .extra-card p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            flex-grow: 1;
+            margin: 0;
+        }
+
+        .extra-price {
+            display: inline-block;
+            background: rgba(224, 87, 47, 0.1);
+            color: var(--primary);
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 0.3rem 0.75rem;
+            border-radius: 50px;
+            align-self: flex-start;
+            margin-top: 0.25rem;
+        }
+
+        .extras-note {
+            text-align: center;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .extras-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* ============================================
            ANIMATIONS
            ============================================ */
         @keyframes fadeInUp {
@@ -1711,6 +1796,7 @@
             <nav class="nav-desktop">
                 <a href="#leistungen">Leistungen</a>
                 <a href="#pakete">Pakete</a>
+                <a href="#extras">Extras</a>
                 <a href="#galerie">Galerie</a>
                 <a href="#menu">Menü</a>
                 <a href="#ablauf">Ablauf</a>
@@ -1721,7 +1807,7 @@
 
             <div class="header-actions">
                 <a href="#kontakt" class="btn btn-primary btn-sm header-cta">Anfrage senden</a>
-                <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen">
+                <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navMobile">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -1733,6 +1819,7 @@
         <nav class="nav-mobile" id="navMobile">
             <a href="#leistungen" class="nav-mobile-link">Leistungen</a>
             <a href="#pakete" class="nav-mobile-link">Pakete</a>
+            <a href="#extras" class="nav-mobile-link">Extras & Upgrades</a>
             <a href="#galerie" class="nav-mobile-link">Galerie</a>
             <a href="#menu" class="nav-mobile-link">Menü</a>
             <a href="#ablauf" class="nav-mobile-link">Ablauf</a>
@@ -1763,8 +1850,8 @@
                     </div>
                     <div class="hero-stats">
                         <div class="hero-stat">
-                            <strong>100%</strong>
-                            <span>Leidenschaft</span>
+                            <strong>~90 Sek.</strong>
+                            <span>pro Pizza im Steinofen</span>
                         </div>
                         <div class="hero-stat">
                             <strong>5.0 ★</strong>
@@ -1956,6 +2043,68 @@
                     <a href="#kontakt" class="btn btn-outline">Anfragen</a>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         EXTRAS & UPGRADES (UPSELL)
+         ============================================ -->
+    <section class="extras" id="extras">
+        <div class="container">
+            <div class="extras-header">
+                <span class="section-label">Extras & Upgrades</span>
+                <h2 class="heading-section">Mach dein Event noch unvergesslicher</h2>
+                <p class="subheading">Alle Add-ons sind frei kombinierbar und passen zu jedem Paket – einfach bei der Anfrage angeben.</p>
+            </div>
+            <div class="extras-grid">
+
+                <div class="extra-card animate-in">
+                    <div class="extra-icon">🍽️</div>
+                    <h3>Porzellangeschirr</h3>
+                    <p>Elegante Porzellanteller & echtes Besteck statt Einwegware – der Unterschied zwischen „nett" und „wow", besonders bei Hochzeiten.</p>
+                    <span class="extra-price">+2,50 € / Person</span>
+                </div>
+
+                <div class="extra-card animate-in">
+                    <div class="extra-icon">🍦</div>
+                    <h3>Gelato-Station</h3>
+                    <p>Sizilianisches Gelato live serviert – 3 Sorten nach Wahl. Das perfekte, authentisch-italienische Finish für Sommerfeste und Hochzeiten.</p>
+                    <span class="extra-price">+5 € / Person</span>
+                </div>
+
+                <div class="extra-card animate-in">
+                    <div class="extra-icon">🥂</div>
+                    <h3>Aperitivo-Empfang</h3>
+                    <p>Prosecco, Aperol Spritz & alkoholfreie Alternative als Begrüßungsdrink für deine Gäste. Eröffnet jedes Event mit Stil.</p>
+                    <span class="extra-price">+6 € / Person</span>
+                </div>
+
+                <div class="extra-card animate-in">
+                    <div class="extra-icon">🍰</div>
+                    <h3>Dessert-Paket</h3>
+                    <p>Hausgemachtes Tiramisu, Cannoli & Panna Cotta – authentisch italienisch, aufwendig zubereitet. Der süße Abschluss, der in Erinnerung bleibt.</p>
+                    <span class="extra-price">+4 € / Person</span>
+                </div>
+
+                <div class="extra-card animate-in">
+                    <div class="extra-icon">⏱️</div>
+                    <h3>Service-Verlängerung</h3>
+                    <p>Zusätzliche Serviertstunde mit vollem Pizza-Betrieb – ideal für lange Feiern, größere Gästezahlen oder wenn einfach niemand aufhören will.</p>
+                    <span class="extra-price">+5 € / Person</span>
+                </div>
+
+                <div class="extra-card animate-in">
+                    <div class="extra-icon">🎨</div>
+                    <h3>Event-Personalisierung</h3>
+                    <p>Individuelle Pizzanamen für euer Event, gedruckte Menükarte in eurem Design & eine persönliche Begrüßungstafel an der Pizza-Station.</p>
+                    <span class="extra-price">auf Anfrage</span>
+                </div>
+
+            </div>
+            <p class="extras-note">Alle Preise pro Person, inkl. MwSt. – kombinierbar mit jedem Paket.</p>
+            <div class="text-center">
+                <a href="#kontakt" class="btn btn-primary btn-lg">Extras zur Anfrage hinzufügen</a>
             </div>
         </div>
     </section>
@@ -2374,7 +2523,6 @@
         <div class="modal">
             <button class="modal-close" onclick="closeModal('impressum')" aria-label="Schließen">×</button>
             <h2>Impressum</h2>
-            <!-- TODO: Impressum-Daten anpassen -->
             <h3>Angaben gemäß § 5 TMG</h3>
             <p>Jonathan Sibbing<br>Jonis Catering<br>Konsul-Smidt-Straße 35<br>28217 Bremen</p>
             <h3>Kontakt</h3>
@@ -2449,18 +2597,20 @@
         const menuToggle = document.getElementById('menuToggle');
         const navMobile = document.getElementById('navMobile');
 
+        function setMenuState(isOpen) {
+            menuToggle.classList.toggle('active', isOpen);
+            navMobile.classList.toggle('open', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            menuToggle.setAttribute('aria-label', isOpen ? 'Menü schließen' : 'Menü öffnen');
+        }
+
         menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            navMobile.classList.toggle('open');
-            document.body.style.overflow = navMobile.classList.contains('open') ? 'hidden' : '';
+            setMenuState(!navMobile.classList.contains('open'));
         });
 
         document.querySelectorAll('.nav-mobile a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navMobile.classList.remove('open');
-                document.body.style.overflow = '';
-            });
+            link.addEventListener('click', () => setMenuState(false));
         });
 
         // ── Contact Form ──
@@ -2576,7 +2726,7 @@
         const data = {
             hochzeit: {
                 icon: '💒', title: 'Hochzeiten',
-                showImage: true,
+                showImage: false,
                 pizzas: [
                     { name: 'La Sposa', desc: 'Büffelmozzarella, Rucola, Parmaschinken, Parmesan' },
                     { name: 'Margherita Reale', desc: 'San-Marzano-Tomate, Fior di Latte, frisches Basilikum' },
@@ -2750,7 +2900,7 @@
                 "aggregateRating": {
                     "@type": "AggregateRating",
                     "ratingValue": "5.0",
-                    "reviewCount": "47",
+                    "reviewCount": "20",
                     "bestRating": "5",
                     "worstRating": "1"
                 },
