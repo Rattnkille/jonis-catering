@@ -61,7 +61,7 @@ Exporte pro Durchlauf: Eventakte JSON, Einkauf CSV + XLSX, Einsatzbrief HTML (dr
 ## Der selbstverbessernde Loop
 
 1. **Deterministisch (kostenlos):** `.github/workflows/forno-twin-loop.yml` läuft sonntags und bei jedem Push in `forno-twin/`: Tests, Evaluation, Kalibrierung aus Ist-Daten, Bericht. Berichte werden committet.
-2. **KI-Lauf (Claude Routine, wöchentlich):** öffnet mit `loop/IMPROVE_PROMPT.md` einen Draft-PR, der genau einen Backlog-Punkt erledigt und einen neuen Testfall ergänzt. Genauigkeit darf nicht sinken, Allergenfehler bleiben 0.
+2. **KI-Lauf (Claude Routine „FORNO TWIN Verbesserungslauf“, dienstags 05:23 UTC):** arbeitet `loop/IMPROVE_PROMPT.md` ab, erledigt genau einen Backlog-Punkt mit neuem Testfall und pusht auf `claude/forno-twin-loop`. Genauigkeit darf nicht sinken, Allergenfehler bleiben 0. Hinweis: Die Routine wurde ohne Connector-Zugriffe angelegt; sie kann pushen, aber keinen PR über die GitHub-Integration öffnen. Für automatische Draft-PRs die Routine in der claude.ai-Routinen-Ansicht mit GitHub verbinden, sonst den Branch manuell als PR öffnen. Pausieren jederzeit in der Routinen-Ansicht.
 3. **Lernen aus Events:** Ist-Daten in `data/actuals/` (nicht committet) kalibrieren Ofenleistung, Gäste je Helfer und Puffer per gedämpftem EMA. Synthetische Daten kalibrieren nie.
 
 ## Sicherheitsregeln (fest eingebaut)

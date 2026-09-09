@@ -13,7 +13,7 @@ Stand: 2026-09-09 (Session 1, Masterprompt vollständig durchlaufen)
 | 4 Pilot | erledigt: Gradio-App mit 7 Ansichten, CLI, Exporte, Screenshot-Prüfung |
 | 5 Evaluation | erledigt: 21 Tests grün, 104/104 Eval-Prüfungen, 0 Allergenfehler |
 | 6 Training | bewusst nicht: keine gemessene Baseline-Lücke, keine echten Daten. Training-ready Schema + Eval-Set vorhanden |
-| 7 Betriebsreife | Doku vollständig (docs/), Loop aktiv (Workflow + Routine) |
+| 7 Betriebsreife | Doku vollständig (docs/), Loop aktiv: GitHub-Workflow (sonntags + Push) und Claude-Routine `trig_01VZeB5f9TJVuCrzv6wein2v` (dienstags 05:23 UTC, ohne Connector-Zugriffe: pusht Branch, öffnet keinen PR) |
 
 ## Befehle
 
@@ -22,6 +22,12 @@ cd forno-twin && python3 -m venv .venv && source .venv/bin/activate && pip insta
 python -m pytest tests -q && python eval/run_eval.py && python app.py
 bash loop/improve.sh
 ```
+
+## Links
+
+- Draft-PR: https://github.com/Rattnkille/jonis-catering/pull/19
+- Branch: `claude/masterprompt-self-improving-loop-lf5ycf`
+- Loop-Branch der Routine: `claude/forno-twin-loop`
 
 ## Artefakte
 
