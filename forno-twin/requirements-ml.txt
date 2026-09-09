@@ -1,0 +1,6 @@
+# Optionale HF-Modelle (lokal, CPU/Apple Silicon). Erst installieren, wenn Modelle wirklich gebraucht werden.
+torch
+transformers
+sentence-transformers
+soundfile
+huggingface_hub

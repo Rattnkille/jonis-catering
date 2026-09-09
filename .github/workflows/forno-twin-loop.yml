@@ -1,0 +1,45 @@
+name: FORNO TWIN Loop
+
+on:
+  schedule:
+    # Jeden Sonntag 04:17 UTC – deterministischer Verbesserungs-Loop (Tests, Eval, Kalibrierung, Bericht)
+    - cron: '17 4 * * 0'
+  workflow_dispatch: {}
+  push:
+    paths:
+      - 'forno-twin/**'
+
+permissions:
+  contents: write
+
+jobs:
+  loop:
+    name: Tests, Evaluation, Kalibrierung
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Loop ausführen (ohne ML-Pakete, ohne Credits)
+        working-directory: forno-twin
+        run: |
+          pip install -q pytest
+          bash loop/improve.sh
+
+      - name: Berichte committen (nur bei Cron oder manuell)
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add forno-twin/docs/eval-report.md forno-twin/docs/loop-status.md forno-twin/eval/history.jsonl forno-twin/data/calibration.json
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen."
+          else
+            git commit -m "FORNO TWIN Loop: Evaluationsbericht aktualisiert"
+            git push
+          fi

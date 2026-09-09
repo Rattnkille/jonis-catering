@@ -33,3 +33,4 @@ jobs:
             **/package*.json
             **/CLAUDE.md
             **/README.md
+            **/forno-twin/**
