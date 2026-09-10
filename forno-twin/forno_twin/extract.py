@@ -13,7 +13,9 @@ import re
 from datetime import date
 from typing import Optional
 
+from . import geo
 from .knowledge import COMPANY, VERIFIZIERT, ABLEITUNG, ANNAHME, KONFLIKT, TBD
+from .numbers import digits_before, parse_number_phrase
 from .schema import EventFile
 
 MONTHS = {"januar": 1, "februar": 2, "märz": 3, "maerz": 3, "april": 4, "mai": 5, "juni": 6,
@@ -22,8 +24,9 @@ MONTHS = {"januar": 1, "februar": 2, "märz": 3, "maerz": 3, "april": 4, "mai": 
           "okt": 10, "nov": 11, "dez": 12,
           "january": 1, "february": 2, "march": 3, "june": 6, "july": 7, "october": 10, "december": 12}
 
-NUM_WORDS = {"fünfzig": 50, "sechzig": 60, "siebzig": 70, "achtzig": 80, "neunzig": 90,
-             "hundert": 100, "einhundert": 100, "hundertfünfzig": 150, "zweihundert": 200}
+GUEST_UNITS = (r"personen|gäste|gaeste|leute|pax|people|guests|persone|ospiti|mann|köpfe|"
+               r"kollegen|mitarbeiter|erwachsene|teilnehmer|gästen")
+GUEST_UNIT_RE = re.compile(GUEST_UNITS)
 
 EVENT_TYPES = [
     ("hochzeit", ["hochzeit", "heiraten", "trauung", "wedding", "matrimonio", "brautpaar", "married", "marry", "sposiamo", "nozze"]),
@@ -69,6 +72,15 @@ def pseudonymize(text: str) -> tuple[str, dict]:
         mapping[key] = m.group(group)
         return key
 
+    counters["ADRESSE"] = 0
+
+    def street_sub(m):
+        counters["ADRESSE"] += 1
+        key = f"[ADRESSE_{counters['ADRESSE']}]"
+        mapping[key] = m.group(0)
+        return key
+
+    text = geo.STREET_RE.sub(street_sub, text)
     text = PII_EMAIL.sub(lambda m: sub("EMAIL", m), text)
     text = PII_PHONE.sub(lambda m: sub("TEL", m) if not re.search(r"\d{1,2}[.:]\d{2}\s*uhr", m.group(0), re.I) else m.group(0), text)
 
@@ -103,13 +115,19 @@ def detect_language(text: str) -> str:
 def extract_guests(text: str) -> tuple[Optional[int], list[int]]:
     low = text.lower()
     found = []
-    for m in re.finditer(r"(?:ca\.?|circa|etwa|rund|ungefähr|about|around|~)?\s*(\d{2,4})\s*(?:-|bis|–|to)?\s*(\d{2,4})?\s*(personen|gäste|gaeste|leute|pax|people|guests|persone|ospiti|mann|köpfe|kollegen|mitarbeiter)", low):
+    for m in re.finditer(r"(?:ca\.?|circa|etwa|rund|ungefähr|about|around|~)?\s*(\d{2,4})\s*(?:-|bis|–|to)?\s*(\d{2,4})?\s*(?:" + GUEST_UNITS + r")", low):
         a = int(m.group(1))
         b = int(m.group(2)) if m.group(2) else None
         found.append(b if b else a)  # bei Spanne: Obergrenze planen
-    for w, n in NUM_WORDS.items():
-        if re.search(rf"\b{w}\b\s*(personen|gäste|leute|gaeste)", low):
-            found.append(n)
+    # Zahlwörter vor dem Mengenwort: "zwei Dutzend Leute", "hundertzwanzig Gäste",
+    # "achtzig bis hundert Personen". Nur wenn an derselben Stelle keine Ziffer stand.
+    for m in GUEST_UNIT_RE.finditer(low):
+        before = low[max(0, m.start() - 12):m.start()]
+        if re.search(r"\d\s*$", before):
+            continue
+        values = parse_number_phrase([t.lower() for t in digits_before(low, m.start())])
+        if values:
+            found.append(max(values))
     if not found:
         return None, []
     return max(found), sorted(set(found))
@@ -177,12 +195,20 @@ def extract_budget(text: str) -> tuple[Optional[float], Optional[float]]:
     return total, pp
 
 
-def extract_location(text: str) -> tuple[Optional[str], Optional[str], list[str]]:
+def extract_location(text: str) -> tuple[Optional[str], Optional[str], list[str], Optional[float], Optional[int]]:
+    """Gibt (Ort, Umgebungstyp, Hinweise, geschätzte Entfernung km, PLZ) zurück."""
     loc = None
+    plz_hit = geo.find_plz(text)
+    plz = plz_hit[0] if plz_hit else None
+    distance = None
+    if plz_hit and plz_hit[1]:
+        loc, distance = plz_hit[1], plz_hit[2]
     for city in COMPANY["region_cities"]:
         if re.search(rf"\b{city}\b", text, re.I):
             loc = city
             break
+    if distance is None:
+        distance = geo.distance_for_city(loc)
     if not loc:
         m = re.search(r"\bin\s+([A-ZÄÖÜ][a-zäöüß]+(?:[- ][A-ZÄÖÜ][a-zäöüß]+)?)", text)
         if m and m.group(1).lower() not in ("juni", "juli", "august", "september", "oktober", "mai", "ordnung", "kürze"):
@@ -201,7 +227,9 @@ def extract_location(text: str) -> tuple[Optional[str], Optional[str], list[str]
                       (r"regen|wetter|zelt|überdach|pavillon", "Wetterschutz/Wetter erwähnt")]:
         if re.search(pat, low):
             notes.append(note)
-    return loc, ltype, notes
+    if plz and not plz_hit[1]:
+        notes.append(f"PLZ {plz} liegt nicht in der bekannten Regionsliste – Entfernung und Fahrtkosten prüfen (TBD)")
+    return loc, ltype, notes, distance, plz
 
 
 def extract_diets(text: str) -> tuple[list[str], Optional[float], Optional[float], Optional[int], list[str]]:
@@ -289,7 +317,11 @@ def extract(text: str, event_id: str = "EVT-NEU", synthetic: bool = True, today:
         ev.gaps.append("Zeitfenster / Servierbeginn fehlt")
     prov["time_window"] = {"status": VERIFIZIERT if ev.serving_start else (ABLEITUNG if ev.time_window else TBD), "source": "Anfrage"}
 
-    ev.location, ev.location_type, ev.access_notes = extract_location(clean)
+    ev.location, ev.location_type, ev.access_notes, est_distance, plz = extract_location(clean)
+    if est_distance is not None:
+        ev.distance_km = float(est_distance)
+        prov["distance_km"] = {"status": geo.DISTANCE_STATUS, "source": f"PLZ/Ort-Tabelle ({plz or ev.location})",
+                               "note": geo.DISTANCE_NOTE}
     if not ev.location:
         ev.gaps.append("Ort / Location fehlt")
     prov["location"] = {"status": VERIFIZIERT if ev.location else TBD, "source": "Anfrage"}

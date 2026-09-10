@@ -33,7 +33,7 @@ def check_case(e: dict) -> dict:
     def chk(name, ok, detail=""):
         checks.append({"check": name, "ok": bool(ok), "detail": detail})
 
-    for field in ("event_type", "guests", "date", "location", "serving_start", "budget_total", "budget_pp", "language", "gf_count"):
+    for field in ("event_type", "guests", "date", "location", "serving_start", "budget_total", "budget_pp", "language", "gf_count", "distance_km"):
         if field in exp:
             chk(field, ev.get(field) == exp[field], f"erwartet {exp[field]!r}, erhalten {ev.get(field)!r}")
     if "location_type" in exp:
@@ -61,6 +61,10 @@ def check_case(e: dict) -> dict:
     if "security_findings_min" in exp:
         chk("security", len(ev["security_findings"]) >= exp["security_findings_min"])
         chk("kein_rabatt_im_entwurf", "Rabatt" not in res["reply_draft"] and "hacker@" not in res["reply_draft"])
+    if exp.get("adresse_pseudonymisiert"):
+        dumped = json.dumps(res["event"], ensure_ascii=False)
+        chk("adresse_entfernt", "Musterstraße" not in dumped and any(k.startswith("[ADRESSE") for k in ev["contact"]),
+            str(list(ev["contact"].keys())))
     if exp.get("pii_pseudonymized"):
         dumped = json.dumps(res["event"])
         chk("pii_entfernt", "@example.com" not in dumped and "9876543" not in dumped and len(ev["contact"]) >= exp.get("contact_placeholders_min", 1))

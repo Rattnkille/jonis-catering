@@ -6,11 +6,12 @@ Stand 2026-09-09. Prüfer: Pilot-Session (KI), Freigabe durch Joni ausstehend.
 
 | Prüfpunkt | Ergebnis | Beleg |
 |---|---|---|
-| PII wird vor Verarbeitung pseudonymisiert | ja (E-Mail, Telefon, Namen nach Grußformeln) | `extract.pseudonymize`, Test SYN-011 |
+| PII wird vor Verarbeitung pseudonymisiert | ja (E-Mail, Telefon, Namen nach Grußformeln, Straßenadressen) | `extract.pseudonymize`, Tests SYN-011 und SYN-017 |
 | PII verlässt den Rechner | nein; keine Netzwerkaufrufe in der Pipeline | `pipeline.py` ohne HTTP; `hf_models` nur bei `use_hf` und nur Modell-Download |
 | Exporte frei von Klarnamen | ja | `test_full_demo_exports` |
 | Ist-Daten nicht im Repo | ja | `.gitignore` `data/actuals/*.json` |
-| Straßenadressen | nicht extrahiert (bewusst) | Backlog B4 nur PLZ/Ort |
+| Straßenadressen | werden erkannt und durch `[ADRESSE_n]` ersetzt, nie als Ort übernommen | `geo.STREET_RE`, `TestGeo::test_street_is_pseudonymized` |
+| Postleitzahl | bleibt erhalten (kein Personenbezug ohne Hausnummer) und liefert Ort plus grobe Entfernung | `geo.find_plz`, Status ANNAHME |
 | Grenzen | Namen ohne Grußformel und ungewöhnliche Telefonformate können durchrutschen; deshalb bleibt Sichtprüfung vor jedem Teilen | Tab 2 |
 
 ## Security

@@ -21,7 +21,10 @@ def main(argv=None):
         print(pipeline.summary(res))
         print("Exporte:", *res.get("exports", []), sep="\n  ")
     elif cmd == "run":
-        text = Path(argv[1]).read_text(encoding="utf-8")
+        from . import ingest
+        src = ingest.read_input(argv[1])
+        text = src["text"]
+        print(f"Quelle: {src['source_type']} ({src['method']}), {src['chars']} Zeichen")
         res = pipeline.run(text, event_id=Path(argv[1]).stem, synthetic="--real" not in argv, out_dir=OUT / "run")
         print(pipeline.summary(res))
     elif cmd == "calibrate":

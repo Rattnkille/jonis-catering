@@ -196,3 +196,113 @@ class TestEndToEnd(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestNumberWords(unittest.TestCase):
+    """Backlog B3: deutsche Zahlwörter in der Gäste-Extraktion."""
+
+    def test_parser(self):
+        from forno_twin.numbers import parse_german_number
+        for word, value in [("fünfundsechzig", 65), ("hundertzwanzig", 120), ("zweihundert", 200),
+                            ("einhundertfünfzig", 150), ("achtzig", 80), ("dreißig", 30), ("zwölf", 12)]:
+            self.assertEqual(parse_german_number(word), value, word)
+        for word in ("quatsch", "pizza", "", "und"):
+            self.assertIsNone(parse_german_number(word))
+
+    def test_range_in_words(self):
+        ev = ev_of("SYN-016")
+        self.assertEqual(ev.guests, 100)
+        self.assertEqual(ev.event_type, "firmenevent")
+
+    def test_dozen(self):
+        ev = ev_of("SYN-018")
+        self.assertEqual(ev.guests, 24)
+        self.assertTrue(any("Mindestgröße" in c for c in ev.conflicts))
+
+    def test_digits_still_win(self):
+        ev = extract.extract("Sommerfest am 01.08.2027 in Bremen, 140 Personen ab 17 Uhr.", today=TODAY)
+        self.assertEqual(ev.guests, 140)
+
+
+class TestGeo(unittest.TestCase):
+    """Backlog B4: PLZ zu Ort und geschätzter Entfernung, Adresse als PII."""
+
+    def test_plz_sets_location_and_distance(self):
+        ev = ev_of("SYN-017")
+        self.assertEqual(ev.location, "Verden")
+        self.assertEqual(ev.distance_km, 40)
+        self.assertEqual(ev.provenance["distance_km"]["status"], "ANNAHME")
+
+    def test_street_is_pseudonymized(self):
+        ev = ev_of("SYN-017")
+        dumped = ev.to_json()
+        self.assertNotIn("Musterstraße", dumped)
+        self.assertTrue(any(k.startswith("[ADRESSE") for k in ev.contact))
+
+    def test_unknown_plz_flagged(self):
+        ev = extract.extract("Feier am 12.12.2026, 60 Gäste, 80331 München, ab 18 Uhr.", today=TODAY)
+        self.assertIsNone(ev.distance_km)
+        self.assertTrue(any("80331" in n for n in ev.access_notes))
+
+    def test_explicit_distance_wins(self):
+        res = pipeline.run(EVENTS["SYN-017"]["text"], event_id="SYN-017", distance_km=55, today=TODAY)
+        self.assertEqual(res["event"]["distance_km"], 55)
+
+
+class TestPdfIngest(unittest.TestCase):
+    """Backlog B7: PDF-Eingang ohne Pflicht-Fremdpaket."""
+
+    @staticmethod
+    def _make_pdf(path, text, compress):
+        import zlib
+        content = f"BT /F1 12 Tf 72 720 Td ({text}) Tj ET".encode("latin-1")
+        if compress:
+            content = zlib.compress(content)
+            extra = b"/Filter /FlateDecode "
+        else:
+            extra = b""
+        objs = [
+            b"<< /Type /Catalog /Pages 2 0 R >>",
+            b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+            b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R "
+            b"/Resources << /Font << /F1 5 0 R >> >> >>",
+            b"<< " + extra + b"/Length " + str(len(content)).encode() + b" >>\nstream\n" + content + b"\nendstream",
+            b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>",
+        ]
+        out = bytearray(b"%PDF-1.4\n")
+        for i, body in enumerate(objs, start=1):
+            out += f"{i} 0 obj\n".encode() + body + b"\nendobj\n"
+        out += b"trailer\n<< /Size 6 /Root 1 0 R >>\n%%EOF\n"
+        Path(path).write_bytes(bytes(out))
+
+    def test_pdf_plain_and_compressed(self):
+        from forno_twin import ingest
+        tmp = Path(__file__).resolve().parent.parent / "out" / "test"
+        tmp.mkdir(parents=True, exist_ok=True)
+        body = "Hochzeit am 12.06.2027 in Oyten, 90 Gaeste, ab 18 Uhr."
+        for name, compress in (("plain.pdf", False), ("flate.pdf", True)):
+            self._make_pdf(tmp / name, body, compress)
+            res = ingest.read_input(tmp / name)
+            self.assertIn("Oyten", res["text"], f"{name}: {res}")
+            self.assertEqual(res["source_type"], "pdf")
+
+    def test_pdf_feeds_pipeline(self):
+        from forno_twin import ingest
+        tmp = Path(__file__).resolve().parent.parent / "out" / "test"
+        tmp.mkdir(parents=True, exist_ok=True)
+        self._make_pdf(tmp / "anfrage.pdf", "Hochzeit am 12.06.2027 in Oyten, 90 Gaeste, ab 18 Uhr.", True)
+        text = ingest.read_input(tmp / "anfrage.pdf")["text"]
+        ev = extract.extract(text, event_id="PDF-1", today=TODAY)
+        self.assertEqual(ev.guests, 90)
+        self.assertEqual(ev.location, "Oyten")
+        self.assertEqual(ev.date, "2027-06-12")
+
+    def test_text_file_and_unsupported(self):
+        from forno_twin import ingest
+        tmp = Path(__file__).resolve().parent.parent / "out" / "test"
+        tmp.mkdir(parents=True, exist_ok=True)
+        (tmp / "a.txt").write_text("60 Gäste am 01.02.2027 in Bremen", encoding="utf-8")
+        self.assertEqual(ingest.read_input(tmp / "a.txt")["source_type"], "text")
+        (tmp / "b.docx").write_bytes(b"x")
+        with self.assertRaises(ValueError):
+            ingest.read_input(tmp / "b.docx")

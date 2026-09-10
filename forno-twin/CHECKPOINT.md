@@ -1,6 +1,6 @@
 # CHECKPOINT – JONIS FORNO TWIN
 
-Stand: 2026-09-09 (Session 1, Masterprompt vollständig durchlaufen)
+Stand: 2026-09-10 (Session 1: Masterprompt durchlaufen; erster Verbesserungslauf erledigt)
 
 ## Status
 
@@ -11,7 +11,7 @@ Stand: 2026-09-09 (Session 1, Masterprompt vollständig durchlaufen)
 | 2 Datenvertrag | erledigt: Schema v1.0.0, 15 synthetische Events, Allergen-Matrix (Entwurf), Wissensbasis |
 | 3 Modell-Scout | erledigt als Entscheidungsmatrix; lokale Inferenz in Remote-Umgebung blockiert (huggingface.co 403 durch Netzwerkrichtlinie) |
 | 4 Pilot | erledigt: Gradio-App mit 7 Ansichten, CLI, Exporte, Screenshot-Prüfung |
-| 5 Evaluation | erledigt: 21 Tests grün, 104/104 Eval-Prüfungen, 0 Allergenfehler |
+| 5 Evaluation | erledigt: 32 Tests grün, 129/129 Eval-Prüfungen über 18 Testfälle, 0 Allergenfehler |
 | 6 Training | bewusst nicht: keine gemessene Baseline-Lücke, keine echten Daten. Training-ready Schema + Eval-Set vorhanden |
 | 7 Betriebsreife | Doku vollständig (docs/), Loop aktiv: GitHub-Workflow (sonntags + Push) und Claude-Routine `trig_01VZeB5f9TJVuCrzv6wein2v` (dienstags 05:23 UTC, ohne Connector-Zugriffe: pusht Branch, öffnet keinen PR) |
 
@@ -31,10 +31,20 @@ bash loop/improve.sh
 
 ## Artefakte
 
-- Code: `forno_twin/` (13 Module), `app.py`, `tests/test_engine.py`, `eval/run_eval.py`, `loop/`
-- Daten: `data/synthetic_events.json`, `data/allergen_matrix.json`, `data/parameters.json`, `data/calibration.json`
+- Code: `forno_twin/` (16 Module), `app.py`, `tests/test_engine.py`, `eval/run_eval.py`, `loop/`
+- Daten: `data/synthetic_events.json` (18 Fälle), `data/allergen_matrix.json`, `data/parameters.json`, `data/calibration.json`
 - Demo-Exporte: `out/demo/SYN-001_*` (lokal erzeugt, nicht committet)
 - Screenshots: `docs/screenshot-*.png`
+
+## Erster Verbesserungslauf (2026-09-10, im Repo statt per Routine)
+
+Drei Backlog-Punkte mit Owner "Loop" erledigt, Genauigkeit unverändert 100 %:
+
+- **B3 Zahlwörter** (`forno_twin/numbers.py`): "achtzig bis hundert Personen", "zwei Dutzend Leute", "fünfundsechzig Gäste". Testfälle SYN-016, SYN-018.
+- **B4 PLZ und Entfernung** (`forno_twin/geo.py`): Postleitzahl liefert Ort und eine grobe Entfernung ab Bremen (Status ANNAHME). Straßenadressen werden jetzt pseudonymisiert statt ignoriert. Testfall SYN-017.
+- **B7 PDF-Eingang** (`forno_twin/ingest.py`): PDF-Text ohne Pflicht-Fremdpaket (zlib-Fallback), `pypdf` wird bevorzugt, wenn installiert. `python -m forno_twin run anfrage.pdf` läuft durch.
+
+Neue Backlog-Punkte daraus: B9 (Entfernungen gegen echte Routen prüfen), B10 (Scan-PDF ohne Textebene sichtbar machen), B11 (Uhrzeit-Zahlwörter).
 
 ## Offene Tests
 
@@ -46,4 +56,4 @@ bash loop/improve.sh
 
 Joni entscheidet **eine** Sache: Ofenkapazität am nächsten Event messen (Pizzen pro Stunde über 60 Minuten Vollbetrieb) und in `data/actuals/<event>.json` eintragen. Damit wird der wichtigste TBD-Parameter real, und der Engpass-Alarm hört auf zu raten.
 
-Der Loop-Lauf nimmt danach Backlog-Punkt B3 (Zahlwörter in der Extraktion).
+Der nächste Loop-Lauf nimmt Backlog-Punkt B9 (Entfernungen gegen echte Routen prüfen).

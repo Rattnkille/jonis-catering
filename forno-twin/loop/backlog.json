@@ -1,13 +1,107 @@
 {
   "_note": "Priorisierter Verbesserungs-Backlog des Loops. Jeder Lauf erledigt genau einen Punkt und ergänzt neue aus Fehlerbeispielen.",
   "items": [
-    {"id": "B1", "priority": 1, "status": "offen", "title": "Ofenkapazität messen und als Parameter erfassen", "why": "oven_pizzas_per_hour ist TBD; jeder Engpass-Alarm ist derzeit eine Annahme", "metric": "Parameterstatus TBD -> KALIBRIERT", "owner": "Joni (Messung), Loop (Einbau)"},
-    {"id": "B2", "priority": 2, "status": "offen", "title": "Allergen-Matrix mit Lieferantenspezifikationen prüfen und freigeben", "why": "Blockiert jede automatische Freigabe von Menüschildern", "metric": "allergen_matrix.approved_by gesetzt, verified=true je Zutat", "owner": "Joni"},
-    {"id": "B3", "priority": 3, "status": "offen", "title": "Zahlwörter und Spannen in der Gäste-Extraktion ('zwei Dutzend', '80-100 Leute' bereits ok)", "why": "Robustere Extraktion bei umgangssprachlichen Anfragen", "metric": "neuer Testfall SYN-016 besteht", "owner": "Loop"},
-    {"id": "B4", "priority": 4, "status": "offen", "title": "Straßenadressen und PLZ als Location erkennen, Entfernung ab Bremen schätzen", "why": "Fahrtkostenlogik braucht Distanz; heute nur Ortsname", "metric": "distance_km automatisch gesetzt bei PLZ/Ort", "owner": "Loop"},
-    {"id": "B5", "priority": 5, "status": "offen", "title": "ASR-Smoke-Test mit echtem deutschen Sprachmemo (whisper-tiny vs. primeline turbo german)", "why": "Sprachmemo-Eingang ist integriert, aber ungetestet (Hub in Remote-Umgebung blockiert)", "metric": "WER auf 3 synthetischen Memos dokumentiert", "owner": "Joni lokal (Mac) oder Loop mit Hub-Zugang"},
-    {"id": "B6", "priority": 6, "status": "offen", "title": "Ist-Daten von 2 realen Events erfassen (data/actuals)", "why": "Erst dann kalibriert der Lern-Loop Parameter", "metric": "n_real_events >= 2", "owner": "Joni"},
-    {"id": "B7", "priority": 7, "status": "offen", "title": "PDF-Eingang: Textextraktion (pypdf) vor der Extraktion", "why": "Angebotsanfragen kommen teils als PDF", "metric": "Testfall mit PDF-Fixture besteht", "owner": "Loop"},
-    {"id": "B8", "priority": 8, "status": "offen", "title": "Location Scout: Bild-Hinweise (SmolVLM2) als Beobachtungen mit Status HINWEIS", "why": "Bonusfunktion, nur nach ASR/Retrieval-Basis", "metric": "3 Hinweise auf Demo-Foto, jeweils als 'zu bestätigen' markiert", "owner": "Loop mit Hub-Zugang"}
+    {
+      "id": "B1",
+      "priority": 1,
+      "status": "offen",
+      "title": "Ofenkapazität messen und als Parameter erfassen",
+      "why": "oven_pizzas_per_hour ist TBD; jeder Engpass-Alarm ist derzeit eine Annahme",
+      "metric": "Parameterstatus TBD -> KALIBRIERT",
+      "owner": "Joni (Messung), Loop (Einbau)"
+    },
+    {
+      "id": "B2",
+      "priority": 2,
+      "status": "offen",
+      "title": "Allergen-Matrix mit Lieferantenspezifikationen prüfen und freigeben",
+      "why": "Blockiert jede automatische Freigabe von Menüschildern",
+      "metric": "allergen_matrix.approved_by gesetzt, verified=true je Zutat",
+      "owner": "Joni"
+    },
+    {
+      "id": "B3",
+      "priority": 3,
+      "status": "erledigt",
+      "title": "Zahlwörter und Spannen in der Gäste-Extraktion ('zwei Dutzend', '80-100 Leute' bereits ok)",
+      "why": "Robustere Extraktion bei umgangssprachlichen Anfragen",
+      "metric": "neuer Testfall SYN-016 besteht",
+      "owner": "Loop",
+      "done_note": "erledigt 2026-09-10: forno_twin/numbers.py, Testfälle SYN-016/SYN-018"
+    },
+    {
+      "id": "B4",
+      "priority": 4,
+      "status": "erledigt",
+      "title": "Straßenadressen und PLZ als Location erkennen, Entfernung ab Bremen schätzen",
+      "why": "Fahrtkostenlogik braucht Distanz; heute nur Ortsname",
+      "metric": "distance_km automatisch gesetzt bei PLZ/Ort",
+      "owner": "Loop",
+      "done_note": "erledigt 2026-09-10: forno_twin/geo.py (PLZ-Tabelle, Entfernung ANNAHME), Adresse wird pseudonymisiert, Testfall SYN-017"
+    },
+    {
+      "id": "B5",
+      "priority": 5,
+      "status": "offen",
+      "title": "ASR-Smoke-Test mit echtem deutschen Sprachmemo (whisper-tiny vs. primeline turbo german)",
+      "why": "Sprachmemo-Eingang ist integriert, aber ungetestet (Hub in Remote-Umgebung blockiert)",
+      "metric": "WER auf 3 synthetischen Memos dokumentiert",
+      "owner": "Joni lokal (Mac) oder Loop mit Hub-Zugang"
+    },
+    {
+      "id": "B6",
+      "priority": 6,
+      "status": "offen",
+      "title": "Ist-Daten von 2 realen Events erfassen (data/actuals)",
+      "why": "Erst dann kalibriert der Lern-Loop Parameter",
+      "metric": "n_real_events >= 2",
+      "owner": "Joni"
+    },
+    {
+      "id": "B7",
+      "priority": 7,
+      "status": "erledigt",
+      "title": "PDF-Eingang: Textextraktion (pypdf) vor der Extraktion",
+      "why": "Angebotsanfragen kommen teils als PDF",
+      "metric": "Testfall mit PDF-Fixture besteht",
+      "owner": "Loop",
+      "done_note": "erledigt 2026-09-10: forno_twin/ingest.py (PDF per zlib-Fallback, pypdf optional)"
+    },
+    {
+      "id": "B8",
+      "priority": 8,
+      "status": "offen",
+      "title": "Location Scout: Bild-Hinweise (SmolVLM2) als Beobachtungen mit Status HINWEIS",
+      "why": "Bonusfunktion, nur nach ASR/Retrieval-Basis",
+      "metric": "3 Hinweise auf Demo-Foto, jeweils als 'zu bestätigen' markiert",
+      "owner": "Loop mit Hub-Zugang"
+    },
+    {
+      "id": "B9",
+      "priority": 9,
+      "status": "offen",
+      "owner": "Loop",
+      "title": "PLZ-Tabelle erweitern und Entfernungen gegen echte Routen prüfen",
+      "why": "geo.PLZ_TABLE deckt nur die 12 Orte der Website ab; Entfernungen sind Schätzwerte (ANNAHME)",
+      "metric": "Entfernungen für die 12 Orte gegen eine Routenberechnung abgeglichen, Status ABLEITUNG statt ANNAHME"
+    },
+    {
+      "id": "B10",
+      "priority": 10,
+      "status": "offen",
+      "owner": "Loop",
+      "title": "PDF-Extraktion für gescannte Anfragen (Bild-PDF ohne Textebene)",
+      "why": "ingest.pdf_text liefert bei reinen Scan-PDFs leeren Text, ohne das sichtbar zu machen",
+      "metric": "leerer PDF-Text erzeugt eine sichtbare Lücke plus Rückfrage statt stiller Nullausgabe"
+    },
+    {
+      "id": "B11",
+      "priority": 11,
+      "status": "offen",
+      "owner": "Loop",
+      "title": "Uhrzeit-Zahlwörter und Tageszeiten ('halb sieben', 'am frühen Abend')",
+      "why": "Servierbeginn ist der zweithäufigste fehlende Wert nach der Gästezahl",
+      "metric": "neuer Testfall mit Wort-Uhrzeit besteht, avg_completeness steigt"
+    }
   ]
 }

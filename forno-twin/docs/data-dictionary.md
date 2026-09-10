@@ -9,7 +9,7 @@
 | event_type | hochzeit / firmenevent / privat / null | Anlass | nein | ABLEITUNG (Schlüsselwörter) |
 | date / date_partial | ISO / Text | Termin, Teilangabe | nein | VERIFIZIERT (Anfrage) oder TBD |
 | location / location_type | str / indoor, outdoor, gemischt | Ort, Umgebung | nein* | Anfrage |
-| distance_km | float | Entfernung ab Bremen | nein | manuell / TBD |
+| distance_km | float | Entfernung ab Bremen | nein | ANNAHME aus PLZ/Ort-Tabelle (`geo.py`), von einer expliziten Angabe überschrieben |
 | guests, guests_children | int | Gästezahl (bei Spanne: Maximum) | nein | Anfrage; KONFLIKT bei mehreren Werten |
 | time_window, serving_start | str | Zeitfenster, Servierbeginn HH:MM | nein | Anfrage |
 | budget_total, budget_pp | float | Budget gesamt / pro Person | nein | Anfrage |
@@ -20,13 +20,13 @@
 | dietary_notes | list | vegetarisch, vegan, glutenfrei, laktosefrei, halal, kein_schwein | nein | Anfrage |
 | power_available, access_notes, weather_protection | bool / list / bool | Logistik | nein | Anfrage |
 | language | de / en / it | Sprache der Anfrage | nein | Heuristik |
-| contact | dict | nur Platzhalter [EMAIL_1], [TEL_1], [NAME_1] | Platzhalter | Pseudonymisierung |
+| contact | dict | nur Platzhalter [EMAIL_1], [TEL_1], [NAME_1], [ADRESSE_1] | Platzhalter | Pseudonymisierung |
 | conflicts, gaps, questions | list | Widersprüche, Lücken, max. 3 Rückfragen | nein | Regeln |
 | security_findings | list | Injection-Muster | nein | Regeln |
 | provenance | dict | Feld → {status, source, note} | nein | Regeln |
 | approvals | dict | Schritt → {approved, by, at, label} | nein | Mensch |
 
-*Ortsname allein gilt als nicht personenbezogen; Straßenadressen werden nicht extrahiert.
+*Ortsname und Postleitzahl gelten allein als nicht personenbezogen; Straßenadressen werden erkannt und pseudonymisiert.
 
 ## Plan (planning.plan)
 

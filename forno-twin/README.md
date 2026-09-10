@@ -18,9 +18,9 @@ Ohne UI:
 ```bash
 python -m forno_twin demo                # kompletter Demo-Durchlauf, Exporte in out/demo/
 python -m forno_twin demo SYN-010        # anderer synthetischer Fall
-python -m forno_twin run anfrage.txt     # eigene Anfrage (Textdatei)
-python -m pytest tests -q                # 21 Tests
-python eval/run_eval.py                  # Evaluation über 15 Testfälle
+python -m forno_twin run anfrage.txt     # eigene Anfrage (Text- oder PDF-Datei)
+python -m pytest tests -q                # 32 Tests
+python eval/run_eval.py                  # Evaluation über 18 Testfälle
 bash loop/improve.sh                     # Verbesserungs-Loop (Tests, Eval, Kalibrierung, Bericht)
 ```
 
@@ -30,7 +30,7 @@ Optionale HF-Modelle (ASR, Zero-Shot, Embeddings): `pip install -r requirements-
 
 | Ansicht | Funktion | Modul |
 |---|---|---|
-| 1 Anfrage erfassen | Text, Transkript, Audio-/Bild-Eingang; Pseudonymisierung; Injection-Erkennung | `forno_twin/extract.py` |
+| 1 Anfrage erfassen | Text, PDF, Transkript, Audio-/Bild-Eingang; Zahlwörter und PLZ; Pseudonymisierung; Injection-Erkennung | `extract.py`, `ingest.py`, `numbers.py`, `geo.py` |
 | 2 Eventakte prüfen | Fakten mit Status, Konflikte, Lücken, max. 3 Rückfragen | `schema.py`, `extract.py` |
 | 3 Menü & Kalkulation | Sortenwahl mit Begründung, Mengen, Prime-Cost-Formeln aus `kalkulation.html` | `planning.py`, `calc.py` |
 | 4 Einkauf, Vorbereitung, Personal | Einkaufsliste, 48-h-Countdown, Zeitplan, Einsatzbrief | `planning.py`, `offer.py` |

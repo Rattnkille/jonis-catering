@@ -1,16 +1,16 @@
 # FORNO TWIN – Evaluationsbericht
 
-Stand: 2026-09-09T13:09:20+00:00 | Testfälle: synthetisch (data/synthetic_events.json)
+Stand: 2026-09-10T05:55:45+00:00 | Testfälle: synthetisch (data/synthetic_events.json)
 
 ## Kennzahlen
 
 | Metrik | Wert | Vorheriger Lauf |
 |---|---|---|
-| Testfälle vollständig bestanden | 15/15 | 15/15 |
-| Einzelprüfungen bestanden | 104/104 (100.0%) | 1.0 |
-| Ø Vollständigkeit Eventakte (5 Kernfelder) | 84% | 0.84 |
+| Testfälle vollständig bestanden | 18/18 | 18/18 |
+| Einzelprüfungen bestanden | 129/129 (100.0%) | 1.0 |
+| Ø Vollständigkeit Eventakte (5 Kernfelder) | 87% | 0.867 |
 | Kritische Allergenfehler | 0 | 0 |
-| Ø Laufzeit pro Fall | 0.0028 s | 0.0026 |
+| Ø Laufzeit pro Fall | 0.0032 s | 0.0033 |
 
 Kritische Allergenfehler müssen 0 sein. Ein einziger ungeprüfter Allergen-Fakt blockiert die Freigabe.
 
@@ -33,6 +33,9 @@ Kritische Allergenfehler müssen 0 sein. Ein einziger ungeprüfter Allergen-Fakt
 | SYN-013 | kurzer_vorlauf | 5/5 | 100% | – |
 | SYN-014 | vegan_stark | 6/6 | 100% | – |
 | SYN-015 | leer_spam | 5/5 | 0% | – |
+| SYN-016 | zahlwoerter | 9/9 | 100% | – |
+| SYN-017 | plz_und_adresse | 9/9 | 100% | – |
+| SYN-018 | zahlwort_dutzend_klein | 7/7 | 100% | – |
 
 ## Fehlerbeispiele
 

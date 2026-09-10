@@ -6,8 +6,11 @@ Stand 2026-09-09. Jeder Punkt mit Beleg (Pfad, Test oder Log).
 
 | Funktion | Beleg |
 |---|---|
-| Extraktion Anfrage → Eventakte (Datum, Gäste, Ort, Zeit, Budget, Ernährungsanteile, Konflikte, Lücken, max. 3 Rückfragen) | `tests/test_engine.py::TestExtraction` (9 Tests), `eval/run_eval.py` 104/104 |
-| Pseudonymisierung von E-Mail, Telefon, Namen vor Verarbeitung | `test_pii_pseudonymized`, SYN-011 |
+| Extraktion Anfrage → Eventakte (Datum, Gäste, Ort, Zeit, Budget, Ernährungsanteile, Konflikte, Lücken, max. 3 Rückfragen) | `tests/test_engine.py::TestExtraction` (9 Tests), `eval/run_eval.py` 129/129 |
+| Deutsche Zahlwörter als Gästezahl ("achtzig bis hundert Personen", "zwei Dutzend Leute", "fünfundsechzig") | `TestNumberWords` (4 Tests), SYN-016, SYN-018 |
+| Postleitzahl → Ort und grobe Entfernung ab Bremen (Status ANNAHME); unbekannte PLZ wird als Hinweis markiert | `TestGeo` (4 Tests), SYN-017 |
+| PDF-Anfragen einlesen (zlib-Fallback ohne Fremdpaket, `pypdf` optional) | `TestPdfIngest` (4 Tests) |
+| Pseudonymisierung von E-Mail, Telefon, Namen und Straßenadresse vor Verarbeitung | `test_pii_pseudonymized`, `TestGeo::test_street_is_pseudonymized`, SYN-011, SYN-017 |
 | Prompt-Injection-Erkennung, keine Übernahme in Angebotstext | `test_prompt_injection_flagged`, SYN-010 |
 | Mehrsprachige Anfragen (DE/EN/IT) | `test_multilingual`, SYN-006/007 |
 | Deterministische Mengenplanung (Pizzen, Teig, Mehl, Wasser, Salz, Sauce, Käse, Beläge, gf-Teiglinge, Antipasti, Dessert) | `test_plan_formulas` |
@@ -27,13 +30,14 @@ Stand 2026-09-09. Jeder Punkt mit Beleg (Pfad, Test oder Log).
 
 ## Demo (synthetisch, klar gekennzeichnet)
 
-- 15 synthetische Events in `data/synthetic_events.json` (Namen, Kontakte, Orte erfunden)
+- 18 synthetische Events in `data/synthetic_events.json` (Namen, Kontakte, Orte erfunden)
 - Sprachmemo-Eingang als Transkript-Text simuliert (SYN-001), weil ASR-Gewichte hier nicht ladbar waren
 - Kostenwerte: Rechner-Standardwerte aus `kalkulation.html`, keine Ist-Kosten
 
 ## TBD (reale Daten fehlen)
 
 - Ofenkapazität (Pizzen/h), Aufbau-/Vorheiz-/Abbauzeiten
+- Entfernungen je Ort: grobe Schätzwerte in `forno_twin/geo.py`, nicht gegen echte Routen geprüft
 - Wareneinsatz pro Pizza, Personalkosten, Energie/Holz, Fahrtkostenpauschale
 - Mindestberechnung unter 50 Gästen
 - Historische Plan/Ist-Mengen
