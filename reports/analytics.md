@@ -1,7 +1,7 @@
 # Cloudflare Web Analytics – Bericht
 
-> Automatisch generiert am 2026-09-07 12:02 UTC.
-> Zeitraum: **2026-08-09 bis 2026-09-07** (letzte 30 Tage). Quelle: Cloudflare Web Analytics (RUM), cookieless.
+> Automatisch generiert am 2026-09-14 12:18 UTC.
+> Zeitraum: **2026-08-16 bis 2026-09-14** (letzte 30 Tage). Quelle: Cloudflare Web Analytics (RUM), cookieless.
 
 ## Überblick
 
@@ -9,6 +9,16 @@
 |---|---|---|
 | Seitenaufrufe | 0 | 0 |
 | Besuche | 0 | 0 |
+
+## Automatische Auswertung
+
+- **Seitenaufrufe (7 Tage):** 0 — Trend ggü. Vorwoche: ±0 %
+- **Besuche (7 Tage):** 0
+- **Stärkste Quelle:** überwiegend direkt/unbekannt
+- **Beliebteste Seite:** –
+
+**Hinweise:**
+- Noch keine Daten im Zeitraum. Der Beacon ist live — Werte erscheinen, sobald die Seite besucht wird. Prüfen: Cloudflare-Beacon im Quelltext vorhanden und Seite über die korrekte Domain aufgerufen.
 
 ## Verlauf pro Tag
 
