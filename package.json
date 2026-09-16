@@ -4,7 +4,7 @@
   "private": true,
   "description": "Statische Website für Jonis Catering – neapolitanisches Pizza-Catering in Bremen",
   "scripts": {
-    "lint": "htmlhint index.html",
+    "lint": "htmlhint index.html hochzeit-pizza-catering-bremen/index.html firmenfeier-pizza-catering-bremen/index.html private-feier-pizza-catering-bremen/index.html",
     "serve": "python3 -m http.server 8000"
   },
   "devDependencies": {
