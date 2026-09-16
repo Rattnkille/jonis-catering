@@ -3,16 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JONIS CATERING – Neapolitanische Pizza Catering in Bremen</title>
-    <meta name="description" content="Live gebackene neapolitanische Pizza direkt auf deinem Event. Catering für Hochzeiten, Firmenevents und private Feiern in Bremen & Umgebung. Ab 50 Personen.">
+    <title>JONIS Pizza Catering Bremen | Mobiler Steinofen</title>
+    <meta name="description" content="Neapolitanisches Pizza Catering in Bremen: live gebacken im mobilen Steinofen für Hochzeiten, Firmenevents und private Feiern. Ab 50 Personen.">
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
     <meta name="keywords" content="Pizza Catering Bremen, Neapolitanische Pizza, Event Catering, Hochzeit Catering, Firmen Catering, Pizza Pop-Up Bremen">
     <meta name="author" content="Jonis Catering">
     <meta property="og:title" content="JONIS CATERING – Neapolitanische Pizza für dein Event">
     <meta property="og:description" content="Live gebackene Pizza aus dem Steinofen. Catering für Hochzeiten, Firmenevents und Feiern in Bremen.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://jonis-catering.de">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:url" content="https://jonis-catering.de/">
     <meta property="og:image" content="https://jonis-catering.de/img/hero.jpg">
-    <link rel="canonical" href="https://jonis-catering.de">
+    <meta property="og:image:alt" content="Mobiler Pizza-Trailer von JONIS Catering bei einer Veranstaltung">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JONIS Pizza Catering Bremen | Mobiler Steinofen">
+    <meta name="twitter:description" content="Neapolitanische Pizza live auf Hochzeiten, Firmenevents und privaten Feiern in Bremen und Umgebung.">
+    <meta name="twitter:image" content="https://jonis-catering.de/img/hero.jpg">
+    <link rel="canonical" href="https://jonis-catering.de/">
+    <link rel="alternate" hreflang="de-DE" href="https://jonis-catering.de/">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
     <!-- Google Search Console: Verifizierung. -->
     <meta name="google-site-verification" content="hFQKc1sUOvG5C8BqekHsEt0VaX09e7tRdnb4f1gNszM">
@@ -1755,7 +1764,7 @@
                         Pizza Catering,<br>das dein Event<br><em>unvergesslich</em> macht
                     </h1>
                     <p class="hero-desc">
-                        Live gebackene Pizza direkt vor Ort – für Hochzeiten, Firmenevents und private Feiern in Bremen und Umgebung. Authentisch, unkompliziert, garantiert der Highlight deines Events.
+                        Live gebackene Pizza direkt vor Ort – für Hochzeiten, Firmenevents und private Feiern in Bremen und Umgebung. Authentisch, unkompliziert und ein Highlight für deine Gäste.
                     </p>
                     <div class="hero-buttons">
                         <a href="#kontakt" class="btn btn-primary btn-lg">Jetzt anfragen</a>
@@ -1852,7 +1861,7 @@
                         <li>Dessert-Auswahl inklusive</li>
                         <li>Stilvolles Setup passend zur Location</li>
                     </ul>
-                    <span class="service-card-hint">Mehr erfahren →</span>
+                    <a href="/hochzeit-pizza-catering-bremen/" class="service-card-hint" onclick="event.stopPropagation()">Mehr über Hochzeitscatering erfahren →</a>
                 </div>
 
                 <div class="service-card animate-in" data-modal="firmenevent" role="button" tabindex="0" aria-haspopup="dialog">
@@ -1860,12 +1869,12 @@
                     <h3>Firmenevents</h3>
                     <p>Teambuilding, Sommerfest oder Kundenveranstaltung? Pizza verbindet und kommt garantiert gut an.</p>
                     <ul class="service-features">
-                        <li>Ideal für 50–150 Personen</li>
+                        <li>Ideal für größere Teams</li>
                         <li>Schneller Service, kurze Wartezeiten</li>
                         <li>Professionelle Abwicklung</li>
                         <li>Rechnungsstellung für Unternehmen</li>
                     </ul>
-                    <span class="service-card-hint">Mehr erfahren →</span>
+                    <a href="/firmenfeier-pizza-catering-bremen/" class="service-card-hint" onclick="event.stopPropagation()">Mehr über Firmencatering erfahren →</a>
                 </div>
 
                 <div class="service-card animate-in" data-modal="privatfeier" role="button" tabindex="0" aria-haspopup="dialog">
@@ -1878,7 +1887,7 @@
                         <li>Ab 50 Personen buchbar</li>
                         <li>Alles inklusive – du genießt einfach</li>
                     </ul>
-                    <span class="service-card-hint">Mehr erfahren →</span>
+                    <a href="/private-feier-pizza-catering-bremen/" class="service-card-hint" onclick="event.stopPropagation()">Mehr über Catering für private Feiern erfahren →</a>
                 </div>
 
             </div>
@@ -2360,8 +2369,8 @@
             <div class="footer-bottom">
                 <span>© 2026 Jonis Catering. Alle Rechte vorbehalten.</span>
                 <div class="footer-legal">
-                    <a href="#" onclick="openModal('impressum'); return false;">Impressum</a>
-                    <a href="#" onclick="openModal('datenschutz'); return false;">Datenschutz</a>
+                    <a href="/#impressum" onclick="openModal('impressum');">Impressum</a>
+                    <a href="/#datenschutz" onclick="openModal('datenschutz');">Datenschutz</a>
                 </div>
             </div>
         </div>
@@ -2512,6 +2521,10 @@
             document.body.style.overflow = '';
         }
 
+        if (window.location.hash === '#impressum' || window.location.hash === '#datenschutz') {
+            openModal(window.location.hash.slice(1));
+        }
+
         document.querySelectorAll('.modal-overlay').forEach(overlay => {
             overlay.addEventListener('click', (e) => {
                 if (e.target === overlay) {
@@ -2595,7 +2608,7 @@
                 showImage: true,
                 pizzas: null,
                 features: [
-                    'Ideal für 50–150 Personen',
+                    'Ideal für größere Teams',
                     'Schneller Service, kurze Wartezeiten',
                     'Professionelle Abwicklung',
                     'Rechnungsstellung für Unternehmen'
@@ -2693,11 +2706,11 @@
         "@context": "https://schema.org",
         "@graph": [
             {
-                "@type": ["CateringService", "LocalBusiness"],
+                "@type": "FoodEstablishment",
                 "@id": "https://jonis-catering.de/#business",
                 "name": "Jonis Catering",
                 "description": "Neapolitanische Pizza Catering für Hochzeiten, Firmenevents und private Feiern in Bremen und Umgebung. Live im Steinofen gebacken, ab 50 Personen.",
-                "url": "https://jonis-catering.de",
+                "url": "https://jonis-catering.de/",
                 "telephone": "+4942168431162",
                 "email": "info@jonis-catering.de",
                 "image": "https://jonis-catering.de/img/hero.jpg",
@@ -2747,33 +2760,6 @@
                 "sameAs": [
                     "https://share.google/FRjTIIzTegjiOZa4u"
                 ],
-                "aggregateRating": {
-                    "@type": "AggregateRating",
-                    "ratingValue": "5.0",
-                    "reviewCount": "47",
-                    "bestRating": "5",
-                    "worstRating": "1"
-                },
-                "review": [
-                    {
-                        "@type": "Review",
-                        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-                        "author": { "@type": "Person", "name": "Lisa & Markus" },
-                        "reviewBody": "Die Pizza war der absolute Hit auf unserer Hochzeit. Alle Gäste waren begeistert, und der Service war super professionell. Können wir nur weiterempfehlen!"
-                    },
-                    {
-                        "@type": "Review",
-                        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-                        "author": { "@type": "Person", "name": "Thomas K." },
-                        "reviewBody": "Unser Firmensommerfest war dank Jonis Catering ein voller Erfolg. Pünktlich, unkompliziert und die Qualität der Pizza war erstklassig. Gerne wieder!"
-                    },
-                    {
-                        "@type": "Review",
-                        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-                        "author": { "@type": "Person", "name": "Sarah M." },
-                        "reviewBody": "Authentisch neapolitanisch, direkt aus dem Steinofen. Die Gäste auf meinem Geburtstag haben noch Wochen danach davon geschwärmt. Top!"
-                    }
-                ],
                 "hasOfferCatalog": {
                     "@type": "OfferCatalog",
                     "name": "Catering-Pakete",
@@ -2822,15 +2808,7 @@
                         }
                     ]
                 },
-                "hasMenu": { "@id": "https://jonis-catering.de/#menu" },
-                "openingHoursSpecification": [
-                    {
-                        "@type": "OpeningHoursSpecification",
-                        "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
-                        "opens": "11:00",
-                        "closes": "15:00"
-                    }
-                ]
+                "hasMenu": { "@id": "https://jonis-catering.de/#menu" }
             },
             {
                 "@type": "Menu",

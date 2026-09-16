@@ -2,8 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://jonis-catering.de/</loc>
-        <lastmod>2026-06-01</lastmod>
+        <lastmod>2026-09-16</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://jonis-catering.de/hochzeit-pizza-catering-bremen/</loc>
+        <lastmod>2026-09-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://jonis-catering.de/firmenfeier-pizza-catering-bremen/</loc>
+        <lastmod>2026-09-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://jonis-catering.de/private-feier-pizza-catering-bremen/</loc>
+        <lastmod>2026-09-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
     </url>
 </urlset>
