@@ -145,20 +145,73 @@ function has_smtp_config($config) {
         && (string) $config['password'] !== '';
 }
 
+function load_sheets_webhook_config() {
+    $config = [];
+    $configFile = __DIR__ . '/.mail_config.php';
+
+    if (is_readable($configFile)) {
+        $loadedConfig = require $configFile;
+        if (is_array($loadedConfig)) {
+            $config = $loadedConfig;
+        }
+    }
+
+    return array_merge([
+        'url' => getenv('SHEETS_WEBHOOK_URL') ?: '',
+        'secret' => getenv('SHEETS_WEBHOOK_SECRET') ?: '',
+    ], array_filter([
+        'url' => $config['sheets_webhook_url'] ?? null,
+        'secret' => $config['sheets_webhook_secret'] ?? null,
+    ], static function ($value) {
+        return $value !== null && $value !== '';
+    }));
+}
+
+// Meldet eine neue Anfrage an die Google-Sheets-Pipeline (Anfragen & Angebote).
+// Rein informativ: schlägt das fehl, darf das die Bestätigungsmail an den Kunden
+// nicht verhindern, daher niemals eine Exception nach außen durchreichen.
+function notify_sheets_webhook($data, $config) {
+    $url = (string) $config['url'];
+    if ($url === '' || !function_exists('curl_init')) {
+        return;
+    }
+
+    $payload = json_encode(array_merge($data, ['secret' => (string) $config['secret']]));
+
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => $payload,
+        CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CONNECTTIMEOUT => 3,
+        CURLOPT_TIMEOUT => 5,
+    ]);
+    curl_exec($ch);
+    if (curl_errno($ch)) {
+        error_log('Kontaktformular Sheets-Webhook-Fehler: ' . curl_error($ch));
+    }
+    curl_close($ch);
+}
+
 function redirect_success($redirect) {
     header('Location: ' . $redirect . '?success=1#kontakt');
     exit;
 }
 
-$name     = clean_field($_POST['name']     ?? '');
-$email    = clean_field($_POST['email']    ?? '');
-$phone    = clean_field($_POST['phone']    ?? '');
-$occasion = clean_field($_POST['occasion'] ?? '');
-$date     = clean_field($_POST['date']     ?? '');
-$guests   = clean_field($_POST['guests']   ?? '');
-$website  = clean_field($_POST['website']  ?? '');
-$started  = (int) ($_POST['form_started_at'] ?? 0);
-$message  = trim($_POST['message'] ?? '');
+$name      = clean_field($_POST['name']      ?? '');
+$email     = clean_field($_POST['email']     ?? '');
+$phone     = clean_field($_POST['phone']     ?? '');
+$occasion  = clean_field($_POST['occasion']  ?? '');
+$date      = clean_field($_POST['date']      ?? '');
+$guests    = clean_field($_POST['guests']    ?? '');
+$location  = clean_field($_POST['location']  ?? '');
+$timeframe = clean_field($_POST['timeframe'] ?? '');
+$budget    = clean_field($_POST['budget']    ?? '');
+$dietary   = clean_field($_POST['dietary']   ?? '');
+$website   = clean_field($_POST['website']   ?? '');
+$started   = (int) ($_POST['form_started_at'] ?? 0);
+$message   = trim($_POST['message'] ?? '');
 
 // Einfacher Bot-Schutz: gefuelltes Honeypot-Feld oder unrealistisch schneller Submit.
 if ($website !== '') {
@@ -183,12 +236,16 @@ $to      = 'info@jonis-catering.de';
 $subject = 'Neue Catering-Anfrage von ' . $name;
 
 $body  = "Neue Anfrage über das Kontaktformular auf jonis-catering.de:\n\n";
-$body .= 'Name:         ' . $name . "\n";
-$body .= 'E-Mail:       ' . $email . "\n";
-$body .= 'Telefon:      ' . ($phone    !== '' ? $phone    : '-') . "\n";
-$body .= 'Anlass:       ' . ($occasion !== '' ? $occasion : '-') . "\n";
-$body .= 'Wunschdatum:  ' . ($date     !== '' ? $date     : '-') . "\n";
-$body .= 'Anzahl Gäste: ' . ($guests   !== '' ? $guests   : '-') . "\n\n";
+$body .= 'Name:              ' . $name . "\n";
+$body .= 'E-Mail:            ' . $email . "\n";
+$body .= 'Telefon:           ' . ($phone     !== '' ? $phone     : '-') . "\n";
+$body .= 'Anlass:            ' . ($occasion  !== '' ? $occasion  : '-') . "\n";
+$body .= 'Wunschdatum:       ' . ($date      !== '' ? $date      : '-') . "\n";
+$body .= 'Anzahl Gäste:      ' . ($guests    !== '' ? $guests    : '-') . "\n";
+$body .= 'Veranstaltungsort: ' . ($location  !== '' ? $location  : '-') . "\n";
+$body .= 'Zeitfenster:       ' . ($timeframe !== '' ? $timeframe : '-') . "\n";
+$body .= 'Budget (ca.):      ' . ($budget    !== '' ? $budget    : '-') . "\n";
+$body .= 'Ernährung/Allergien: ' . ($dietary  !== '' ? $dietary   : '-') . "\n\n";
 $body .= "Nachricht:\n" . ($message !== '' ? $message : '-') . "\n";
 
 // Absender auf eigener Domain (SPF/DMARC-konform), Antwort an Anfragenden.
@@ -211,6 +268,26 @@ try {
 
 if (!$sent && !$smtpConfigured) {
     $sent = @mail($to, $encodedSubject, $body, $headers);
+}
+
+// Anfrage zusätzlich an die Google-Sheets-Pipeline melden (Status "Neu").
+// Best effort: ohne konfigurierte Webhook-URL passiert einfach nichts.
+try {
+    notify_sheets_webhook([
+        'name' => $name,
+        'email' => $email,
+        'phone' => $phone,
+        'occasion' => $occasion,
+        'date' => $date,
+        'guests' => $guests,
+        'location' => $location,
+        'timeframe' => $timeframe,
+        'budget' => $budget,
+        'dietary' => $dietary,
+        'message' => $message,
+    ], load_sheets_webhook_config());
+} catch (Throwable $exception) {
+    error_log('Kontaktformular Sheets-Webhook-Fehler: ' . $exception->getMessage());
 }
 
 if ($sent) {

@@ -1,0 +1,7 @@
+# Kern: keine Abhängigkeiten (Python-Standardbibliothek).
+# UI:
+gradio>=5
+# Exporte (optional):
+openpyxl
+# Tests:
+pytest
