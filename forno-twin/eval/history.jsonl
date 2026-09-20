@@ -4,3 +4,4 @@
 {"ts": "2026-09-09T13:09:20+00:00", "cases": 15, "cases_ok": 15, "checks_passed": 104, "checks_total": 104, "accuracy": 1.0, "avg_completeness": 0.84, "allergen_critical_errors": 0, "avg_runtime_s": 0.0028, "failed": []}
 {"ts": "2026-09-10T05:54:35+00:00", "cases": 18, "cases_ok": 18, "checks_passed": 129, "checks_total": 129, "accuracy": 1.0, "avg_completeness": 0.867, "allergen_critical_errors": 0, "avg_runtime_s": 0.0033, "failed": []}
 {"ts": "2026-09-10T05:55:45+00:00", "cases": 18, "cases_ok": 18, "checks_passed": 129, "checks_total": 129, "accuracy": 1.0, "avg_completeness": 0.867, "allergen_critical_errors": 0, "avg_runtime_s": 0.0032, "failed": []}
+{"ts": "2026-09-20T09:16:53+00:00", "cases": 18, "cases_ok": 18, "checks_passed": 129, "checks_total": 129, "accuracy": 1.0, "avg_completeness": 0.867, "allergen_critical_errors": 0, "avg_runtime_s": 0.0016, "failed": []}

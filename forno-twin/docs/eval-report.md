@@ -1,6 +1,6 @@
 # FORNO TWIN – Evaluationsbericht
 
-Stand: 2026-09-10T05:55:45+00:00 | Testfälle: synthetisch (data/synthetic_events.json)
+Stand: 2026-09-20T09:16:53+00:00 | Testfälle: synthetisch (data/synthetic_events.json)
 
 ## Kennzahlen
 
@@ -10,7 +10,7 @@ Stand: 2026-09-10T05:55:45+00:00 | Testfälle: synthetisch (data/synthetic_event
 | Einzelprüfungen bestanden | 129/129 (100.0%) | 1.0 |
 | Ø Vollständigkeit Eventakte (5 Kernfelder) | 87% | 0.867 |
 | Kritische Allergenfehler | 0 | 0 |
-| Ø Laufzeit pro Fall | 0.0032 s | 0.0033 |
+| Ø Laufzeit pro Fall | 0.0016 s | 0.0032 |
 
 Kritische Allergenfehler müssen 0 sein. Ein einziger ungeprüfter Allergen-Fakt blockiert die Freigabe.
 
