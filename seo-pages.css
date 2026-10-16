@@ -126,3 +126,11 @@ h3 { font-size: 1.25rem; }
   html { scroll-behavior: auto; }
   .button { transition: none; }
 }
+
+/* Produktkarten (pizzaofen-kaufen-bremen) */
+.product { display: flex; flex-direction: column; }
+.product .tag { margin: 0 0 8px; color: var(--brand-dark); font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.product .price { margin-top: auto; padding-top: 12px; color: var(--ink); font-size: 1.35rem; font-weight: 800; }
+.product .price span { color: var(--muted); font-size: .85rem; font-weight: 600; }
+.product.featured { border-color: var(--brand); }
+#oefen .fine { margin-top: 20px; }
