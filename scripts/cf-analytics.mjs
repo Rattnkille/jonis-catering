@@ -83,6 +83,51 @@ if (!account) {
 const sumCount = (rows) => rows.reduce((a, r) => a + (r.count || 0), 0);
 const sumVisits = (rows) => rows.reduce((a, r) => a + (r.sum?.visits || 0), 0);
 
+// --- Selbstdiagnose: Welche Site-Tags liefern in diesem Account überhaupt Daten? ---
+// Hintergrund: Der Beacon-Token im Quelltext und der "Site-Tag" aus dem Cloudflare-Dashboard
+// sind zwei verschiedene Werte. Ein falscher siteTag-Filter liefert still 0 Zeilen, keinen Fehler.
+// Diese Abfrage läuft getrennt und darf fehlschlagen, ohne den Bericht zu verhindern.
+let siteTagDiagnosis = '';
+try {
+    const diagQuery = `
+query {
+  viewer {
+    accounts(filter: { accountTag: "${ACCOUNT_ID}" }) {
+      sites: rumPageloadEventsAdaptiveGroups(
+        filter: { date_geq: "${START}", date_leq: "${END}" }
+        limit: 20
+        orderBy: [count_DESC]
+      ) {
+        count
+        dimensions { siteTag }
+      }
+    }
+  }
+}`;
+    const diagRes = await fetch('https://api.cloudflare.com/client/v4/graphql', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${API_TOKEN}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: diagQuery }),
+    });
+    const diag = diagRes.ok ? await diagRes.json() : null;
+    const sites = diag?.data?.viewer?.accounts?.[0]?.sites || [];
+    if (diag?.errors?.length) {
+        siteTagDiagnosis = `Site-Tag-Prüfung nicht möglich (GraphQL: ${diag.errors[0]?.message || 'Fehler'}).`;
+    } else if (!sites.length) {
+        siteTagDiagnosis = 'Im gesamten Account gibt es im Zeitraum keine Web-Analytics-Daten, unabhängig vom Site-Tag.';
+    } else {
+        const known = sites.map((s) => `${s.dimensions?.siteTag} (${s.count} Aufrufe)`).join(', ');
+        const configuredHasData = sites.some((s) => s.dimensions?.siteTag === SITE_TAG);
+        siteTagDiagnosis = configuredHasData
+            ? `Konfigurierter Site-Tag liefert Daten. Vorhandene Site-Tags: ${known}.`
+            : `Der konfigurierte Site-Tag "${SITE_TAG}" liefert keine Daten, andere schon: ${known}. `
+              + 'Vermutlich ist der Beacon-Token als Site-Tag eingetragen. Den Site-Tag aus dem Cloudflare-Dashboard '
+              + '(Analytics & Logs → Web Analytics → Site → Manage site) als Secret CLOUDFLARE_SITE_TAG setzen.';
+    }
+} catch (err) {
+    siteTagDiagnosis = `Site-Tag-Prüfung übersprungen (${err?.message || err}).`;
+}
+
 const byDate = account.byDate || [];
 const last7 = byDate.slice(-7);
 const prev7 = byDate.slice(-14, -7);
@@ -122,7 +167,7 @@ insights.push(`- **Beliebteste Seite:** ${topPage ? `${topPage.label} (${topPage
 // Einfache, regelbasierte Hinweise/Empfehlungen.
 const tips = [];
 if (views30 === 0) {
-    tips.push('Noch keine Daten im Zeitraum. Der Beacon ist live — Werte erscheinen, sobald die Seite besucht wird. Prüfen: Cloudflare-Beacon im Quelltext vorhanden und Seite über die korrekte Domain aufgerufen.');
+    tips.push('Keine Daten im Zeitraum. Erst die Messung prüfen, bevor "kein Traffic" angenommen wird: Beacon im Quelltext, korrekte Domain, und ob der Site-Tag-Filter stimmt (siehe Messprüfung unten).');
 } else if (views7 === 0) {
     tips.push('In den letzten 7 Tagen kein Traffic, im 30-Tage-Fenster aber schon. Saisonaler Einbruch oder fehlende Sichtbarkeit — ggf. Google-Business-Profil und Social-Posts ankurbeln.');
 } else {
@@ -138,7 +183,19 @@ if (views30 === 0) {
 }
 if (!tips.length) tips.push('Keine Auffälligkeiten — Werte im erwartbaren Rahmen.');
 
-const autoEval = `${insights.join('\n')}\n\n**Hinweise:**\n${tips.map((t) => `- ${t}`).join('\n')}\n`;
+// Zwei Zeilen, die Claude direkt übernehmen kann: Was heißt das, was ist der nächste Schritt.
+const meaning = views30 === 0
+    ? 'Die Zahlen sind nicht belastbar, solange die Messung nicht geprüft ist.'
+    : views7 === 0
+        ? 'Diese Woche kam niemand über die Website, im Monat davor schon.'
+        : `Diese Woche ${views7} Seitenaufrufe bei ${visits7} Besuchen, Trend ${trend(views7, viewsPrev7)} zur Vorwoche.`;
+const nextStep = views30 === 0
+    ? 'Messprüfung unten lesen und den Site-Tag korrigieren, dann eine Woche warten.'
+    : !topRef
+        ? 'Google-Unternehmensprofil und Verlinkungen stärken, fast alle Besuche kommen direkt.'
+        : `Quelle "${topRef.label}" weiter ausbauen und die Anfragen pro Woche danebenlegen.`;
+
+const autoEval = `${insights.join('\n')}\n- **Was heißt das:** ${meaning}\n- **Nächster Schritt:** ${nextStep}\n\n**Hinweise:**\n${tips.map((t) => `- ${t}`).join('\n')}\n\n**Messprüfung:** ${siteTagDiagnosis || 'nicht ausgeführt'}\n`;
 
 const table = (rows, key, label) => {
     if (!rows || !rows.length) return `_Noch keine Daten._\n`;

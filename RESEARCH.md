@@ -53,7 +53,7 @@ Quelle: Gmail, nur gelesen. Vollständige anonymisierte Auswertung liegt nicht i
 | Honeypot `website` und Zeitstempel werden in PHP geprüft, fehlten aber im HTML; Spam-Schutz war aus | `send_email.php`, `index.html` Formular | im Konfigurator ergänzt |
 | Client-Zeitstempel gegen Server-`time()` verwirft echte Anfragen bei vorgehender Uhr | `send_email.php` | ersetzt durch `form_elapsed` |
 | `extras[]` als Array würde von `clean_field` zu "Array" | `send_email.php` | eigene Helfer |
-| Cloudflare-Bericht zeigt 0 Seitenaufrufe in 30 Tagen trotz Beacon | `reports/analytics.md`, Beacon in allen 4 Seiten | offen, noch nicht geprüft |
+| Cloudflare-Bericht zeigt 0 Seitenaufrufe in 30 Tagen trotz Beacon | `reports/analytics.md`, Beacon in allen 4 Seiten | Live-Seite liefert den Beacon mit demselben Token (geprüft per curl, Server LiteSpeed, kein Cloudflare-Proxy). Wahrscheinliche Ursache: `scripts/cf-analytics.mjs` filtert nach `siteTag` und nimmt dafür standardmäßig den Beacon-Token; bei Cloudflare sind Token und Site-Tag verschiedene Werte, ein falscher Site-Tag liefert still 0 Zeilen. Skript hat jetzt eine Selbstdiagnose ("Messprüfung"), die beim nächsten Lauf alle Site-Tags mit Daten auflistet. Fix: Secret `CLOUDFLARE_SITE_TAG` auf den Site-Tag aus dem Dashboard setzen. |
 | `kalkulation.html` öffentlich | `.htaccess`, `deploy.yml` | Frage 16 |
 
 ## Preismodell: Entscheidungsvorlage
