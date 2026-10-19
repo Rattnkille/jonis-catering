@@ -33,5 +33,6 @@ jobs:
             **/package*.json
             **/CLAUDE.md
             **/README.md
+            **/PROMPT.md
             **/forno-twin/**
             **/sheets-integration/**
