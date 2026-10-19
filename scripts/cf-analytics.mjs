@@ -14,7 +14,7 @@ import { writeFile, mkdir } from 'node:fs/promises';
 const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
 const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
 // Der Beacon-Token ist ohnehin öffentlich im Seitenquelltext – als Default ok.
-const SITE_TAG = process.env.CLOUDFLARE_SITE_TAG || '558d48c00c6d4458ac8390fbc7f5b566';
+const CONFIGURED_SITE_TAG = process.env.CLOUDFLARE_SITE_TAG || '558d48c00c6d4458ac8390fbc7f5b566';
 
 if (!API_TOKEN || !ACCOUNT_ID) {
     console.error('Fehlende Secrets: CLOUDFLARE_API_TOKEN und/oder CLOUDFLARE_ACCOUNT_ID sind nicht gesetzt.');
@@ -28,6 +28,60 @@ const start = new Date(today);
 start.setUTCDate(start.getUTCDate() - (DAYS - 1));
 const START = fmt(start);
 const END = fmt(today);
+
+// --- Selbstdiagnose: Welche Site-Tags liefern in diesem Account überhaupt Daten? ---
+// Hintergrund: Der Beacon-Token im Quelltext und der "Site-Tag" aus dem Cloudflare-Dashboard
+// sind zwei verschiedene Werte. Ein falscher siteTag-Filter liefert still 0 Zeilen, keinen Fehler.
+// Diese Abfrage läuft getrennt und darf fehlschlagen, ohne den Bericht zu verhindern.
+let siteTagDiagnosis = '';
+let SITE_TAG = CONFIGURED_SITE_TAG;
+try {
+    const diagQuery = `
+query {
+  viewer {
+    accounts(filter: { accountTag: "${ACCOUNT_ID}" }) {
+      sites: rumPageloadEventsAdaptiveGroups(
+        filter: { date_geq: "${START}", date_leq: "${END}" }
+        limit: 20
+        orderBy: [count_DESC]
+      ) {
+        count
+        dimensions { siteTag }
+      }
+    }
+  }
+}`;
+    const diagRes = await fetch('https://api.cloudflare.com/client/v4/graphql', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${API_TOKEN}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: diagQuery }),
+    });
+    const diag = diagRes.ok ? await diagRes.json() : null;
+    const sites = diag?.data?.viewer?.accounts?.[0]?.sites || [];
+    if (diag?.errors?.length) {
+        siteTagDiagnosis = `Site-Tag-Prüfung nicht möglich (GraphQL: ${diag.errors[0]?.message || 'Fehler'}).`;
+    } else if (!sites.length) {
+        siteTagDiagnosis = 'Im gesamten Account gibt es im Zeitraum keine Web-Analytics-Daten, unabhängig vom Site-Tag.';
+    } else {
+        const known = sites.map((s) => `${s.dimensions?.siteTag} (${s.count} Aufrufe)`).join(', ');
+        const configuredHasData = sites.some((s) => s.dimensions?.siteTag === CONFIGURED_SITE_TAG);
+        if (configuredHasData) {
+            siteTagDiagnosis = `Konfigurierter Site-Tag liefert Daten. Vorhandene Site-Tags: ${known}.`;
+        } else if (sites.length === 1 && sites[0].dimensions?.siteTag) {
+            // Genau ein Site-Tag mit Daten: den nehmen, statt still 0 zu melden.
+            SITE_TAG = sites[0].dimensions.siteTag;
+            siteTagDiagnosis = `Der konfigurierte Site-Tag "${CONFIGURED_SITE_TAG}" liefert keine Daten. `
+              + `Automatisch auf den einzigen Site-Tag mit Daten umgestellt: ${known}. `
+              + 'Dauerhaft fixen: diesen Wert als Secret CLOUDFLARE_SITE_TAG eintragen.';
+        } else {
+            siteTagDiagnosis = `Der konfigurierte Site-Tag "${CONFIGURED_SITE_TAG}" liefert keine Daten, andere schon: ${known}. `
+              + 'Den passenden Site-Tag aus dem Cloudflare-Dashboard (Analytics & Logs → Web Analytics → Site → Manage site) '
+              + 'als Secret CLOUDFLARE_SITE_TAG setzen.';
+        }
+    }
+} catch (err) {
+    siteTagDiagnosis = `Site-Tag-Prüfung übersprungen (${err?.message || err}).`;
+}
 
 const group = (alias, extraFilter, dims, orderBy, limit) => `
   ${alias}: rumPageloadEventsAdaptiveGroups(
@@ -83,50 +137,6 @@ if (!account) {
 const sumCount = (rows) => rows.reduce((a, r) => a + (r.count || 0), 0);
 const sumVisits = (rows) => rows.reduce((a, r) => a + (r.sum?.visits || 0), 0);
 
-// --- Selbstdiagnose: Welche Site-Tags liefern in diesem Account überhaupt Daten? ---
-// Hintergrund: Der Beacon-Token im Quelltext und der "Site-Tag" aus dem Cloudflare-Dashboard
-// sind zwei verschiedene Werte. Ein falscher siteTag-Filter liefert still 0 Zeilen, keinen Fehler.
-// Diese Abfrage läuft getrennt und darf fehlschlagen, ohne den Bericht zu verhindern.
-let siteTagDiagnosis = '';
-try {
-    const diagQuery = `
-query {
-  viewer {
-    accounts(filter: { accountTag: "${ACCOUNT_ID}" }) {
-      sites: rumPageloadEventsAdaptiveGroups(
-        filter: { date_geq: "${START}", date_leq: "${END}" }
-        limit: 20
-        orderBy: [count_DESC]
-      ) {
-        count
-        dimensions { siteTag }
-      }
-    }
-  }
-}`;
-    const diagRes = await fetch('https://api.cloudflare.com/client/v4/graphql', {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${API_TOKEN}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: diagQuery }),
-    });
-    const diag = diagRes.ok ? await diagRes.json() : null;
-    const sites = diag?.data?.viewer?.accounts?.[0]?.sites || [];
-    if (diag?.errors?.length) {
-        siteTagDiagnosis = `Site-Tag-Prüfung nicht möglich (GraphQL: ${diag.errors[0]?.message || 'Fehler'}).`;
-    } else if (!sites.length) {
-        siteTagDiagnosis = 'Im gesamten Account gibt es im Zeitraum keine Web-Analytics-Daten, unabhängig vom Site-Tag.';
-    } else {
-        const known = sites.map((s) => `${s.dimensions?.siteTag} (${s.count} Aufrufe)`).join(', ');
-        const configuredHasData = sites.some((s) => s.dimensions?.siteTag === SITE_TAG);
-        siteTagDiagnosis = configuredHasData
-            ? `Konfigurierter Site-Tag liefert Daten. Vorhandene Site-Tags: ${known}.`
-            : `Der konfigurierte Site-Tag "${SITE_TAG}" liefert keine Daten, andere schon: ${known}. `
-              + 'Vermutlich ist der Beacon-Token als Site-Tag eingetragen. Den Site-Tag aus dem Cloudflare-Dashboard '
-              + '(Analytics & Logs → Web Analytics → Site → Manage site) als Secret CLOUDFLARE_SITE_TAG setzen.';
-    }
-} catch (err) {
-    siteTagDiagnosis = `Site-Tag-Prüfung übersprungen (${err?.message || err}).`;
-}
 
 const byDate = account.byDate || [];
 const last7 = byDate.slice(-7);
