@@ -22,7 +22,8 @@ in Bremen & Umgebung (Hochzeiten, Firmenevents, private Feiern). Sprache: Deutsc
 | `hochzeit-pizza-catering-bremen/index.html` | SEO-Landingpage Hochzeiten. |
 | `firmenfeier-pizza-catering-bremen/index.html` | SEO-Landingpage Firmenfeiern. |
 | `private-feier-pizza-catering-bremen/index.html` | SEO-Landingpage private Feiern. |
-| `seo-pages.css` | Gemeinsames Stylesheet **nur** für die drei Landingpages oben (nicht für `index.html`). |
+| `pizzaofen-kaufen-bremen/index.html` | Verkaufsseite Alfa Forni Pizzaöfen (Händlertätigkeit, abgestimmt Oktober 2026). |
+| `seo-pages.css` | Gemeinsames Stylesheet **nur** für die Landingpages oben (nicht für `index.html`). |
 | `favicon.svg` | Favicon für alle Seiten. |
 | `llms.txt`, `robots.txt`, `sitemap.xml` | GEO/SEO-Crawler-Dateien. |
 | `.htaccess` | Repo-Schutz (blockt `.md/.json/.yml/.mjs` etc. + versteckte Dateien), www→Hauptdomain-Redirect, Caching/Kompression. |
