@@ -453,6 +453,13 @@
             font-size: 1.5rem;
             font-weight: 800;
             color: var(--dark);
+            white-space: nowrap;
+        }
+
+        @media (max-width: 600px) {
+            .hero-stats {
+                gap: 1.25rem;
+            }
         }
 
         .hero-stat span {
@@ -733,7 +740,7 @@
             transition: background var(--transition);
             flex-shrink: 0;
         }
-        .modal-close:hover { background: var(--background); }
+        .modal-close:hover { background: var(--bg-warm); }
         .modal-body { padding: 1.5rem; }
         .modal-img {
             width: 100%;
@@ -772,7 +779,7 @@
             align-items: flex-start;
             gap: 0.7rem;
             padding: 0.7rem 0.9rem;
-            background: var(--background);
+            background: var(--bg-warm);
             border-radius: var(--radius-sm);
         }
         .modal-pizza-num {
@@ -1607,6 +1614,96 @@
         }
 
         /* ============================================
+           STICKY-CTA-LEISTE (nur mobil, unter 1024px)
+           ============================================ */
+        .sticky-cta {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: stretch;
+            gap: 0.5rem;
+            padding: 0.625rem 1rem calc(0.625rem + env(safe-area-inset-bottom, 0px));
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .sticky-cta .btn {
+            justify-content: center;
+            min-height: 48px;
+            min-width: 48px;
+            padding: 0.5rem 0.875rem;
+            font-size: 0.9rem;
+            gap: 0.375rem;
+        }
+
+        .sticky-cta .btn-primary {
+            flex: 1 1 auto;
+            min-width: 0;
+            padding: 0.5rem 0.75rem;
+            white-space: normal;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .sticky-cta .btn-outline,
+        .sticky-cta .btn-whatsapp {
+            flex: 0 0 auto;
+            flex-direction: column;
+            gap: 0.125rem;
+            min-width: 4.25rem;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.72rem;
+            line-height: 1.1;
+        }
+
+        .sticky-cta .btn-primary:hover,
+        .sticky-cta .btn-whatsapp:hover {
+            transform: none;
+        }
+
+        .sticky-cta-icon {
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        .sticky-cta.is-ready {
+            transition: transform var(--transition), visibility 0s linear 0s;
+        }
+
+        .sticky-cta.is-hidden {
+            transform: translateY(100%);
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .sticky-cta.is-ready.is-hidden {
+            transition: transform var(--transition), visibility 0s linear 0.3s;
+        }
+
+        @media (max-width: 1023.98px) {
+            body {
+                padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .sticky-cta {
+                display: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .sticky-cta.is-ready,
+            .sticky-cta.is-ready.is-hidden {
+                transition: none;
+            }
+        }
+
+        /* ============================================
            RESPONSIVE — TABLET (768px+)
            ============================================ */
         @media (min-width: 768px) {
@@ -1784,12 +1881,12 @@
                     </div>
                     <div class="hero-stats">
                         <div class="hero-stat">
-                            <strong>100%</strong>
-                            <span>Leidenschaft</span>
+                            <strong>ab 27 €</strong>
+                            <span>pro Person</span>
                         </div>
                         <div class="hero-stat">
-                            <strong>5.0 ★</strong>
-                            <span>Google Bewertung</span>
+                            <strong>4,9 ★</strong>
+                            <span>47 Google-Bewertungen</span>
                         </div>
                         <div class="hero-stat">
                             <strong>ab 50</strong>
@@ -1806,7 +1903,7 @@
                             <div class="star-rating">★★★★★</div>
                             <div class="rating-text">Google Reviews</div>
                         </div>
-                        <strong>5.0</strong>
+                        <strong>4,9</strong>
                     </a>
                 </div>
             </div>
@@ -1836,8 +1933,8 @@
                 <div class="trust-item">
                     <div class="trust-icon">📋</div>
                     <div>
-                        <p>Klare Festpreise</p>
-                        <span>Keine versteckten Kosten</span>
+                        <p>Klare Preise</p>
+                        <span>Alle Kosten vorab im Angebot</span>
                     </div>
                 </div>
                 <div class="trust-item">
@@ -1870,7 +1967,7 @@
                     <ul class="service-features">
                         <li>Individuelle Menü-Zusammenstellung</li>
                         <li>Antipasti-Platten als Vorspeise</li>
-                        <li>Dessert-Auswahl inklusive</li>
+                        <li>Antipasti &amp; Dessert dazubuchbar</li>
                         <li>Stilvolles Setup passend zur Location</li>
                     </ul>
                     <a href="/hochzeit-pizza-catering-bremen/" class="service-card-hint" onclick="event.stopPropagation()">Mehr über Hochzeitscatering erfahren →</a>
@@ -2408,6 +2505,13 @@
         </div>
     </footer>
 
+    <!-- Sticky-CTA-Leiste (mobil) -->
+    <nav class="sticky-cta" aria-label="Schnellkontakt">
+        <a href="#kontakt" class="btn btn-primary">Angebot zusammenstellen</a>
+        <a href="tel:+4917632370375" class="btn btn-outline"><span class="sticky-cta-icon" aria-hidden="true">📞</span> Anrufen</a>
+        <a href="https://wa.me/4942168431162" target="_blank" rel="noopener" class="btn btn-whatsapp"><span class="sticky-cta-icon" aria-hidden="true">💬</span> WhatsApp</a>
+    </nav>
+
     <!-- ============================================
          IMPRESSUM MODAL
          ============================================ -->
@@ -2611,6 +2715,29 @@
                 a.classList.toggle('active', a.getAttribute('href') === '#' + current);
             });
         });
+
+        // ── Sticky-CTA-Leiste: ausblenden, solange Hero oder Kontakt sichtbar sind ──
+        (function () {
+            const bar = document.querySelector('.sticky-cta');
+            const watched = ['hero', 'kontakt']
+                .map(id => document.getElementById(id))
+                .filter(Boolean);
+            if (!bar || !('IntersectionObserver' in window) || !watched.length) return;
+
+            const visible = new Set();
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) visible.add(entry.target);
+                    else visible.delete(entry.target);
+                });
+                bar.classList.toggle('is-hidden', visible.size > 0);
+                if (!bar.classList.contains('is-ready')) {
+                    // Transition erst nach dem ersten Zustand aktivieren (kein Einblenden beim Laden)
+                    requestAnimationFrame(() => bar.classList.add('is-ready'));
+                }
+            }, { rootMargin: '0px 0px -80px 0px' });
+            watched.forEach(el => observer.observe(el));
+        })();
     </script>
 
     <!-- ============================================
@@ -2638,7 +2765,7 @@
                 features: [
                     'Individuelle Menü-Zusammenstellung',
                     'Antipasti-Platten als Vorspeise',
-                    'Dessert-Auswahl inklusive',
+                    'Antipasti & Dessert dazubuchbar',
                     'Stilvolles Setup passend zur Location'
                 ],
                 cta: 'Hochzeit'
