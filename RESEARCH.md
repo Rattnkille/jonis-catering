@@ -5,17 +5,12 @@ Stand: 2026-10-19. Branch `claude/brave-knuth-jtg3ka`.
 
 ## Fragen an Jonathan (offen, blockieren Inhalte auf der Seite)
 
-Alles, was hier steht, ist auf der Seite entweder weggelassen oder mit "im Angebot" / "auf Anfrage" formuliert, bis eine Antwort da ist.
+Alles, was hier steht, ist auf der Seite entweder weggelassen oder mit "im Angebot" / "auf Anfrage" formuliert, bis eine Antwort da ist. Die Nummern bleiben stabil (bestätigte Fragen stehen unten unter "Bestätigt").
 
-1. **Extras-Preise.** Vorschlag (hergeleitet aus den Paketdifferenzen und `kalkulation.html`): Antipasti-Empfang zu Classic 7 € p. P., Dessert 5 € p. P., erweiterte Antipasti zu Event 3 € p. P., Zusatz-Servierstunde 150 € pauschal. Solange nicht bestätigt, steht im Code `price: null` und auf der Seite "Preis im Angebot" (`index.html`, Objekt `PRICING`).
-2. **Pizza-Menge pro Person.** Seite sagt "Pizza-Flatrate" (`index.html` Pakete), `llms.txt` sagt "2 Pizzen p. P." (Classic) und "2–3" (Event). In Mails stand beides, einmal gab es deshalb Streit nach dem Event (06/2026). Eine Formulierung festlegen.
-3. **Strom und Platz.** In Mails stehen acht verschiedene Strom-Angaben (von "nicht nötig" bis "16A CEE, max. 20 m") und sechs Flächenmaße (3×4 m am häufigsten, auch 2,5×6 m, 4×4 m). Für die Seite verwendet: "Öfen laufen mit Gas, normaler 230-V-Anschluss hilfreich, kein Muss; Stellfläche ca. 3 × 4 m, ebene Zufahrt; ohne Anhänger kompakter Aufbau unter Pavillon 3 × 3 m möglich." Bitte bestätigen oder korrigieren.
-4. **Kinderpreis.** Belegt nur einmal: Kinder bis 12 Jahre zum halben Event-Preis (18,50 €, 09/2026). Auf der Seite: "Kinder bis 12 Jahre: reduzierter Preis, Details im Angebot". Regel festlegen und ob Kinder zur Mindestzahl zählen.
-5. **Mindestgröße.** Seite und `llms.txt`: ab 50 Personen. Gebucht wurden auch 33 und 40 Personen. Formular lässt jetzt ab 20 zu, mit Hinweis "Pakete ab 50 Personen, kleinere Feiern auf Anfrage". Ok so? Alternativ Vorschlag C aus dem Plan: Mindestumsatz 1.850 € statt Mindestpersonen.
+1. **Extras-Preise.** Vorschlag (hergeleitet aus den Paketdifferenzen und `kalkulation.html`): Antipasti-Empfang zu Classic 7 € p. P., Dessert 5 € p. P., erweiterte Antipasti zu Event 3 € p. P., Zusatz-Servierstunde 150 € pauschal. Solange nicht bestätigt, steht im Code `price: null` und auf der Seite "Preis im Angebot" (`index.html`, Objekt `PRICING`). **Status: offen, Wettbewerbsvergleich läuft.**
 6. **Anzahlung / Zahlungsplan.** Seite: 10 % nach Angebotsbestätigung. In Mails bis 05/2026 auch 30 % und 50 %, seit 09/2026 durchgehend 10 %. Seite bleibt bei 10 %. Restzahlung wann? Barzahlung möglich?
 7. **Stornierung.** Einzige Aussage in Mails (03/2026): Anzahlung wird bei kompletter Absage erstattet. Soll das als Regel auf die Seite?
 8. **Finale Gästezahl.** Mails: "bis 14 Tage vor dem Event anpassbar", "Abrechnung nach tatsächlicher Gästezahl". Auf der Seite als FAQ übernommen. Bestätigen.
-9. **Fahrtkosten über 10 km.** Belegte Pauschalen in Angeboten: 35 €, 120 €, 180 € (85 km). Vorschlag: Zonen 10–25 km 50 €, 25–50 km 90 €. Bis zur Antwort: "Pauschale im Angebot".
 10. **Premium-Paket.** Servierzeit und Pizza-Umfang fehlen auf der Seite. Werte?
 11. **Sorten.** "5 Favoriten" (Ablauf) oder "6 Sorten zur Wahl" (Pakete)?
 12. **Hochzeits-Pizzen "La Sposa" und "Tartufo Bianco"** im Modal (`index.html`, Service-Daten im JS) stehen nicht auf der Karte. Behalten oder streichen?
@@ -25,6 +20,16 @@ Alles, was hier steht, ist auf der Seite entweder weggelassen oder mit "im Angeb
 16. **`kalkulation.html` ist öffentlich** erreichbar (nicht in `.htaccess` und nicht im Deploy-Exclude in `.github/workflows/deploy.yml`). Interne Kostenannahmen sind damit online. Sperren?
 17. **JSON-LD `telephone`** ist die WhatsApp-Festnetznummer, der `tel:`-Link auf der Seite die Mobilnummer. Welche soll wo stehen?
 18. **Inhaber-Foto und ein Ich-Satz** für den Kontaktbereich: lieferst du beides?
+
+## Bestätigt
+
+Vom Inhaber bestätigt am 2026-10-19 und eingebaut. Die Nummern entsprechen den früheren offenen Fragen.
+
+2. **Pizza-Menge pro Person: Flatrate (bestätigt 2026-10-19).** Pizza-Flatrate, so viel die Gäste möchten. `index.html` sagte das schon; `llms.txt` ("2 Pizzen p. P." / "2–3 Pizzen p. P.") ist angeglichen. Der Streit nach dem Event (06/2026) lag an den widersprüchlichen Formulierungen in Mails.
+3. **Strom und Platz (bestätigt 2026-10-19).** Öfen laufen mit Gas, normaler 230-V-Anschluss hilfreich, kein Muss; Stellfläche ca. 3 × 4 m, ebene Zufahrt; ohne Anhänger kompakter Aufbau unter Pavillon 3 × 3 m möglich. So steht es in Schritt 5 und in der FAQ ("Was braucht ihr vor Ort?").
+4. **Kinderpreis (bestätigt 2026-10-19).** Kinder bis 12 Jahre zahlen den halben Paketpreis. Umsetzung: `PRICING.kids = { maxAge: 12, factor: 0.5 }`. Richtwert = (Gäste − Kinder) × Paketpreis + Kinder × Paketpreis × 0,5; Beispiel 80 Gäste, davon 20 Kinder, Event: 60 × 37 + 20 × 18,5 = 2.590 €. Kinder dürfen nicht mehr sein als Gäste (Formular: `max` = Gästezahl per JS, ohne JS verwirft `send_email.php` die Angabe und vermerkt es in der Mail). Die Mindestberechnung "für 50 Personen" bezieht sich auf die Gesamtgästezahl; bei weniger als 50 Gästen füllen Erwachsene auf. Der Faktor gilt nur für den Paketpreis, nicht für Extras pro Person (Extras sind noch ohne Preis). Pro-Person-Anzeige bleibt der Erwachsenenpreis. FAQ "Zahlen Kinder den vollen Preis?" ergänzt.
+5. **Mindestgröße (entschieden, bestätigt 2026-10-19).** Pakete ab 50 Personen, kleinere Feiern auf Anfrage. Das Formular lässt ab 20 Gästen zu und rechnet den Richtwert für 50 Personen. Vorschlag C (Mindestumsatz 1.850 €) ist damit nicht gewählt. `llms.txt`: "ab 50 Personen, kleinere Feiern auf Anfrage".
+9. **Fahrtkosten (bestätigt 2026-10-19).** 10 km um Bremen inklusive, 10 bis 25 km 50 € pauschal, 25 bis 50 km 90 € pauschal. Umsetzung: `PRICING.travel = { includedKm: 10, zones: [{ maxKm: 25, price: 50 }, { maxKm: 50, price: 90 }] }`. Die Entfernung ist im Formular unbekannt, daher steht die Staffel nur als Hinweis in der Zusammenfassung ("ggf. Fahrtkosten: 50 € bis 25 km, 90 € bis 50 km") und fließt nicht in den Richtwert. Offen bleibt, was über 50 km gilt (FAQ: "Für weiter entfernte Events finden wir gerne eine Lösung").
 
 ## Erkenntnisse aus 35 Kundenanfragen per Mail (01/2026 bis 10/2026)
 
@@ -63,13 +68,14 @@ Belegt: Classic 27 €, Event 37 €, Premium 47 € p. P., ab 50 Personen, inkl
 - **Classic trägt sich bei 50 Gästen kaum** (ca. 40 € Gewinn laut eigener Kalkulation, Prime Cost 79 %). Erst ab ca. 69 Gästen 300 € Gewinn.
 - **Vorschlag A (ein Basispaket + Extras):** flexibel, aber Premium-Hochzeiten würden sich auf ca. 3.270 € statt 3.760 € herunterbauen, ca. 250 € weniger Gewinn je Hochzeit. Nicht empfohlen.
 - **Vorschlag B (drei Pakete + Extras), empfohlen:** Preise bleiben, Extras so gestaffelt, dass Event und Premium die ehrlich günstigeren Bündel bleiben (Classic + Antipasti 7 € + Stunde < Event; Event + Dessert 5 € + Antipasti-Plus 3 € < Premium). So umgesetzt, Extras-Preise noch `null`.
-- **Vorschlag C (Mindestumsatz 1.850 € statt Mindestpersonen):** löst das Classic-Problem und öffnet Feiern unter 50 Gästen. Eigene Entscheidung, ändert "ab 50 Personen" überall.
+- **Vorschlag C (Mindestumsatz 1.850 € statt Mindestpersonen):** löst das Classic-Problem und öffnet Feiern unter 50 Gästen. Nicht gewählt: Inhaber hat "ab 50 Personen, kleinere Feiern auf Anfrage" bestätigt (2026-10-19).
 
 ## Was gebaut wurde (siehe Commits auf dem Branch)
 
 - Fakten-Korrekturen und Sticky-CTA-Leiste (mobil).
 - Buchungs-Baukasten in `#kontakt`: 6 Schritte, Live-Richtwert, Progressive Enhancement, `PRICING`-Objekt.
 - `send_email.php`: neue Felder, Whitelists, Konfigurationsblock in der Mail, Spam-Schutz aktiv.
+- Stand 2026-10-19 (nach Bestätigung): Kinder zum halben Paketpreis im Richtwert, Fahrtkosten-Staffel als Hinweis, Flatrate in `llms.txt` angeglichen, FAQ auf 11 Fragen.
 - FAQ erweitert um belegte Antworten, JSON-LD FAQPage synchron.
 
 ## Baseline (Characterization)

@@ -304,6 +304,13 @@ $package      = clean_choice($_POST['package'] ?? '', array_keys($packageLabels)
 $extras       = clean_choices($_POST['extras'] ?? [], array_keys($extraLabels));
 $extraHours   = clean_int($_POST['extra_hours'] ?? '', 0, 3);
 $kids         = clean_int($_POST['kids'] ?? '', 0, 9999);
+// Kinder dürfen nicht mehr sein als Gäste (das Formular begrenzt das per JS; ohne JS gilt diese Prüfung).
+// Ungültige Angabe wird nicht übernommen, sondern in der Mail vermerkt.
+$kidsInvalid = null;
+if ($kids !== null && ctype_digit($guests) && $kids > (int) $guests) {
+    $kidsInvalid = $kids;
+    $kids = null;
+}
 $setting      = clean_choice($_POST['setting'] ?? '', array_keys($settingLabels));
 $power        = clean_choice($_POST['power'] ?? '', array_keys($powerLabels));
 $access       = clean_field($_POST['access'] ?? '');
@@ -366,7 +373,10 @@ if ($extraHours) {
     $configLines[] = 'Zusatzstunden:      ' . $extraHours;
 }
 if ($kids !== null && $kids > 0) {
-    $configLines[] = 'Kinder bis 12 J.:   ' . $kids;
+    $configLines[] = 'Kinder bis 12 J. (halber Preis): ' . $kids;
+}
+if ($kidsInvalid !== null) {
+    $configLines[] = 'Kinder (ungültig):   ' . $kidsInvalid . ' bei ' . $guests . ' Gästen, nicht übernommen, bitte nachfragen';
 }
 if ($setting !== '') {
     $configLines[] = 'Aufstellort:        ' . $settingLabels[$setting];

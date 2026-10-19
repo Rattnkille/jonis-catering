@@ -3205,14 +3205,21 @@
                 <div class="faq-item">
                     <button type="button" class="faq-question" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2">In welchem Umkreis liefert ihr?</button>
                     <div class="faq-answer" id="faq-a-2">
-                        <div class="faq-answer-inner">Wir sind in Bremen und im Umkreis von rund 50 km unterwegs – zum Beispiel in Delmenhorst, Stuhr, Weyhe, Achim, Oyten, Lilienthal, Verden, Oldenburg, Osterholz-Scharmbeck und Ganderkesee. Die An- und Abfahrt ist im Umkreis von 10 km um Bremen inklusive; darüber hinaus berechnen wir eine Fahrtkostenpauschale. Für weiter entfernte Events finden wir gerne eine Lösung – sprich uns einfach an.</div>
+                        <div class="faq-answer-inner">Wir sind in Bremen und im Umkreis von rund 50 km unterwegs – zum Beispiel in Delmenhorst, Stuhr, Weyhe, Achim, Oyten, Lilienthal, Verden, Oldenburg, Osterholz-Scharmbeck und Ganderkesee. Die An- und Abfahrt ist im Umkreis von 10 km um Bremen inklusive; darüber hinaus berechnen wir eine Fahrtkostenpauschale: bis 25 km 50 €, bis 50 km 90 €. Für weiter entfernte Events finden wir gerne eine Lösung – sprich uns einfach an.</div>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button type="button" class="faq-question" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3">Was ist alles im Catering-Preis enthalten?</button>
                     <div class="faq-answer" id="faq-a-3">
-                        <div class="faq-answer-inner">Alle Pakete beinhalten Steinofen, frische Zutaten, An- und Abfahrt im Umkreis von 10 km um Bremen (darüber hinaus gegen Fahrtkostenpauschale), Auf- und Abbau sowie Servicepersonal. Im Classic-Paket ist eine Pizza-Flatrate enthalten (ab 27 € p.P.), im Event-Paket kommen Antipasti dazu (ab 37 € p.P.), im Premium-Paket zusätzlich individuell abgestimmte Menüoptionen und Dessert (ab 47 € p.P.). Es gibt keine versteckten Kosten.</div>
+                        <div class="faq-answer-inner">Alle Pakete beinhalten Steinofen, frische Zutaten, An- und Abfahrt im Umkreis von 10 km um Bremen (darüber hinaus 50 € bis 25 km, 90 € bis 50 km), Auf- und Abbau sowie Servicepersonal. Im Classic-Paket ist eine Pizza-Flatrate enthalten (ab 27 € p.P.), im Event-Paket kommen Antipasti dazu (ab 37 € p.P.), im Premium-Paket zusätzlich individuell abgestimmte Menüoptionen und Dessert (ab 47 € p.P.). Es gibt keine versteckten Kosten.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-question" id="faq-q-11" aria-expanded="false" aria-controls="faq-a-11">Zahlen Kinder den vollen Preis?</button>
+                    <div class="faq-answer" id="faq-a-11">
+                        <div class="faq-answer-inner">Nein. Kinder bis 12 Jahre zahlen den halben Paketpreis. Gib im Formular einfach an, wie viele Kinder dabei sind.</div>
                     </div>
                 </div>
 
@@ -3343,7 +3350,7 @@
                                 <div class="form-group">
                                     <label for="kids">davon Kinder bis 12 Jahre</label>
                                     <input type="number" id="kids" name="kids" min="0" max="2000" inputmode="numeric" placeholder="optional" aria-describedby="kids-hint">
-                                    <p class="field-hint" id="kids-hint">Kinder bis 12 Jahre: reduzierter Preis, Details im Angebot</p>
+                                    <p class="field-hint" id="kids-hint">Kinder bis 12 Jahre zahlen den halben Preis.</p>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -3466,7 +3473,7 @@
                         <!-- Schritt 5: Ort & Logistik -->
                         <fieldset class="wizard-step" data-title="Ort">
                             <legend tabindex="-1"><span class="step-kicker">Schritt 5 von 6</span>Wo findet die Feier statt?</legend>
-                            <div class="info-box" role="note">Unsere Steinöfen laufen mit Gas. Ein normaler Stromanschluss in der Nähe ist hilfreich, aber kein Muss. Für den Pizzawagen brauchen wir eine ebene Stellfläche von etwa 3 × 4 m und eine Zufahrt. Passt der Wagen nicht hin, bauen wir den Ofen kompakt unter einem Pavillon auf. An- und Abfahrt im Umkreis von 10 km um Bremen sind inklusive, darüber hinaus kommt eine Fahrtkostenpauschale ins Angebot.</div>
+                            <div class="info-box" role="note">Unsere Steinöfen laufen mit Gas. Ein normaler Stromanschluss in der Nähe ist hilfreich, aber kein Muss. Für den Pizzawagen brauchen wir eine ebene Stellfläche von etwa 3 × 4 m und eine Zufahrt. Passt der Wagen nicht hin, bauen wir den Ofen kompakt unter einem Pavillon auf. An- und Abfahrt im Umkreis von 10 km um Bremen sind inklusive. Darüber hinaus: bis 25 km 50 €, bis 50 km 90 € pauschal.</div>
                             <div class="form-group">
                                 <label for="location">Ort oder PLZ der Feier *</label>
                                 <input type="text" id="location" name="location" required autocomplete="postal-code" placeholder="z. B. 28199 Bremen">
@@ -4046,7 +4053,10 @@
                 lateNight: { label: 'Später Pizza-Snack', unit: 'flat', price: null, packages: ['classic', 'event', 'premium'] }
             },
             extraHour: { price: null, max: 3 },
-            travel: { includedKm: 10, price: null }
+            // Kinder bis maxAge zahlen factor x Paketpreis (bestätigt vom Inhaber).
+            kids: { maxAge: 12, factor: 0.5 },
+            // Bis includedKm um Bremen inklusive, danach Pauschale je Zone (Entfernung unbekannt, daher nie im Richtwert).
+            travel: { includedKm: 10, zones: [{ maxKm: 25, price: 50 }, { maxKm: 50, price: 90 }] }
         };
 
         const OCCASIONS = {
@@ -4143,11 +4153,23 @@
             return !!pkg && pkg.includes.indexOf(key) !== -1;
         }
 
+        // Paketpreis für `billed` abgerechnete Gäste, davon `kids` Kinder zum Kinderfaktor.
+        // Die Mindestberechnung füllt mit Erwachsenen auf: billed - kids zahlen voll.
+        function packageSum(ppPrice, billed, kids) {
+            const k = Math.min(kids || 0, billed);
+            return (billed - k) * ppPrice + k * ppPrice * PRICING.kids.factor;
+        }
+
+        function travelText() {
+            return PRICING.travel.zones.map(z => money(z.price) + ' bis ' + z.maxKm + ' km').join(', ');
+        }
+
         function calcEstimate(st) {
             const pkg = PRICING.packages[st.package];
             const guests = parseInt(st.guests, 10);
             if (!pkg || !(guests > 0)) return null;
             const billed = Math.max(guests, PRICING.minGuests);
+            const kids = Math.min(Math.max(parseInt(st.kids, 10) || 0, 0), guests);
             const open = [];
             let pp = pkg.pp;
             let flat = 0;
@@ -4162,8 +4184,7 @@
                 if (PRICING.extraHour.price === null) open.push(hours + (hours === 1 ? ' Zusatzstunde' : ' Zusatzstunden'));
                 else flat += hours * PRICING.extraHour.price;
             }
-            if ((parseInt(st.kids, 10) || 0) > 0) open.push('reduzierter Kinderpreis');
-            if (PRICING.travel.price === null) open.push('ggf. Fahrtkosten über ' + PRICING.travel.includedKm + ' km');
+            open.push('ggf. Fahrtkosten: ' + travelText());
             const priced = pkg.pp !== null;
             return {
                 pkg: pkg,
@@ -4172,7 +4193,9 @@
                 small: guests < PRICING.minGuests,
                 priced: priced,
                 pp: priced ? Math.round(pp) : null,
-                total: priced ? round10(pp * billed + flat) : null,
+                kids: kids,
+                // Kinder zahlen nur beim Paketpreis die Hälfte; Extras pro Person gelten für alle Gäste.
+                total: priced ? round10(packageSum(pkg.pp, billed, kids) + (pp - pkg.pp) * billed + flat) : null,
                 open: open
             };
         }
@@ -4197,7 +4220,7 @@
             const guests = parseInt(st.guests, 10);
             if (guests > 0) {
                 const kids = parseInt(st.kids, 10) || 0;
-                lines.push(['Gäste', guests + (kids > 0 ? ' (davon ' + kids + ' Kinder)' : '')]);
+                lines.push(['Gäste', guests + (kids > 0 ? ', davon ' + Math.min(kids, guests) + ' Kinder (halber Preis)' : '')]);
             }
             if (PRICING.packages[st.package]) lines.push(['Paket', PRICING.packages[st.package].label]);
             const ex = extrasText(st);
@@ -4288,7 +4311,8 @@
                 if (!totalEl) return;
                 if (guests > 0 && pkg.pp !== null) {
                     const billed = Math.max(guests, PRICING.minGuests);
-                    totalEl.textContent = (guests < PRICING.minGuests ? 'für ' + billed + ' Personen' : 'bei ' + billed + ' Gästen') + ' ab ca. ' + money(round10(pkg.pp * billed));
+                    const kids = Math.min(Math.max(parseInt(st.kids, 10) || 0, 0), guests);
+                    totalEl.textContent = (guests < PRICING.minGuests ? 'für ' + billed + ' Personen' : 'bei ' + billed + ' Gästen') + ' ab ca. ' + money(round10(packageSum(pkg.pp, billed, kids)));
                 } else {
                     totalEl.textContent = '';
                 }
@@ -4348,6 +4372,8 @@
         function checkKids() {
             const guests = parseInt(guestsInput.value, 10);
             const kids = parseInt(kidsInput.value, 10);
+            // Kinder dürfen nicht mehr sein als Gäste: max folgt der Gästezahl.
+            kidsInput.max = guests > 0 ? String(guests) : '2000';
             kidsInput.setCustomValidity(kids > guests ? 'Die Zahl der Kinder kann nicht größer sein als die Gästezahl.' : '');
         }
 
@@ -4721,7 +4747,7 @@
                         "name": "In welchem Umkreis liefert ihr?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Wir sind in Bremen und im Umkreis von rund 50 km unterwegs – zum Beispiel in Delmenhorst, Stuhr, Weyhe, Achim, Oyten, Lilienthal, Verden, Oldenburg, Osterholz-Scharmbeck und Ganderkesee. Die An- und Abfahrt ist im Umkreis von 10 km um Bremen inklusive; darüber hinaus berechnen wir eine Fahrtkostenpauschale. Für weiter entfernte Events finden wir gerne eine Lösung – sprich uns einfach an."
+                            "text": "Wir sind in Bremen und im Umkreis von rund 50 km unterwegs – zum Beispiel in Delmenhorst, Stuhr, Weyhe, Achim, Oyten, Lilienthal, Verden, Oldenburg, Osterholz-Scharmbeck und Ganderkesee. Die An- und Abfahrt ist im Umkreis von 10 km um Bremen inklusive; darüber hinaus berechnen wir eine Fahrtkostenpauschale: bis 25 km 50 €, bis 50 km 90 €. Für weiter entfernte Events finden wir gerne eine Lösung – sprich uns einfach an."
                         }
                     },
                     {
@@ -4729,7 +4755,15 @@
                         "name": "Was ist alles im Catering-Preis enthalten?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Alle Pakete beinhalten Steinofen, frische Zutaten, An- und Abfahrt im Umkreis von 10 km um Bremen (darüber hinaus gegen Fahrtkostenpauschale), Auf- und Abbau sowie Servicepersonal. Im Classic-Paket ist eine Pizza-Flatrate enthalten (ab 27 € p.P.), im Event-Paket kommen Antipasti dazu (ab 37 € p.P.), im Premium-Paket zusätzlich individuell abgestimmte Menüoptionen und Dessert (ab 47 € p.P.). Es gibt keine versteckten Kosten."
+                            "text": "Alle Pakete beinhalten Steinofen, frische Zutaten, An- und Abfahrt im Umkreis von 10 km um Bremen (darüber hinaus 50 € bis 25 km, 90 € bis 50 km), Auf- und Abbau sowie Servicepersonal. Im Classic-Paket ist eine Pizza-Flatrate enthalten (ab 27 € p.P.), im Event-Paket kommen Antipasti dazu (ab 37 € p.P.), im Premium-Paket zusätzlich individuell abgestimmte Menüoptionen und Dessert (ab 47 € p.P.). Es gibt keine versteckten Kosten."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Zahlen Kinder den vollen Preis?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Nein. Kinder bis 12 Jahre zahlen den halben Paketpreis. Gib im Formular einfach an, wie viele Kinder dabei sind."
                         }
                     },
                     {
