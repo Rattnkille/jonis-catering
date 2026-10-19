@@ -58,6 +58,9 @@
             --bg-card: #ffffff;
             --border: #e8e0d8;
             --border-light: #f0ebe5;
+            --error: #b3261e;
+            --error-bg: #fdecea;
+            --whatsapp: #25d366;
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
             --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
             --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
@@ -440,7 +443,49 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-chips {
             margin-bottom: 2.5rem;
+        }
+
+        .hero-chips-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-chips-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .hero-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            background: var(--bg-card);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark);
+            transition: border-color var(--transition), color var(--transition);
+        }
+
+        .hero-chip:hover {
+            border-color: var(--primary);
+            color: var(--primary-dark);
+        }
+
+        .hero-chip:focus-visible {
+            outline: 3px solid var(--dark);
+            outline-offset: 2px;
         }
 
         .hero-stats {
@@ -958,6 +1003,25 @@
         .package-card .btn {
             width: 100%;
             justify-content: center;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            white-space: normal;
+            text-align: center;
+        }
+
+        .packages-grid > * {
+            min-width: 0;
+        }
+
+        .packages-addons {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .packages-addons strong {
+            color: var(--dark);
         }
 
         /* ============================================
@@ -1308,6 +1372,11 @@
             cursor: pointer;
         }
 
+        .faq-question:focus-visible {
+            outline: 3px solid var(--dark);
+            outline-offset: 2px;
+        }
+
         .faq-question::after {
             content: '+';
             font-size: 1.5rem;
@@ -1345,6 +1414,10 @@
         .contact-header {
             text-align: center;
             margin-bottom: 3rem;
+        }
+
+        .contact-header .subheading {
+            margin: 0.75rem auto 0;
         }
 
         .contact-grid {
@@ -1455,6 +1528,821 @@
         .contact-card a {
             color: var(--primary);
             font-weight: 500;
+        }
+
+        /* ============================================
+           KONFIGURATOR (Buchungs-Baukasten)
+           Ohne JS stehen alle Schritte untereinander; mit JS
+           bekommt das Formular die Klasse .is-wizard.
+           ============================================ */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .whatsapp-cta-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem 1.25rem;
+            border-radius: var(--radius-md);
+            background: var(--whatsapp);
+            color: var(--dark);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .whatsapp-cta-bar-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .whatsapp-cta-bar a {
+            color: var(--dark);
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .form-alert {
+            margin-bottom: 1.25rem;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--error);
+            border-radius: var(--radius-md);
+            background: var(--error-bg);
+            color: var(--error);
+            font-size: 0.9rem;
+            font-weight: 600;
+            line-height: 1.5;
+            scroll-margin-top: 6rem;
+        }
+
+        .form-alert[hidden] {
+            display: none;
+        }
+
+        .form-alert a {
+            color: var(--error);
+            text-decoration: underline;
+        }
+
+        /* Fortschritt (nur im Wizard-Modus) */
+        .wizard-progress {
+            display: none;
+            margin-bottom: 1.5rem;
+            scroll-margin-top: 6rem;
+        }
+
+        .is-wizard .wizard-progress {
+            display: block;
+        }
+
+        .wizard-progress-text {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .wizard-progress-bar {
+            display: flex;
+            gap: 0.375rem;
+            list-style: none;
+        }
+
+        .wizard-progress-bar li {
+            flex: 1;
+            height: 0.4rem;
+            border-radius: 50px;
+            background: var(--border);
+        }
+
+        .wizard-progress-bar li.is-done {
+            background: var(--primary-light);
+        }
+
+        .wizard-progress-bar li[aria-current="step"] {
+            background: var(--primary-dark);
+        }
+
+        /* Schritte */
+        .booking-form fieldset {
+            min-width: 0;
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        .booking-form .wizard-step + .wizard-step {
+            margin-top: 1.75rem;
+            padding-top: 1.75rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .is-wizard .wizard-step {
+            display: none;
+        }
+
+        .is-wizard .wizard-step.is-active {
+            display: block;
+        }
+
+        .is-wizard .wizard-step + .wizard-step {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: 0;
+        }
+
+        .wizard-step > legend {
+            float: left;
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--dark);
+        }
+
+        .wizard-step > legend + * {
+            clear: both;
+        }
+
+        .wizard-step > legend:focus {
+            outline: none;
+        }
+
+        .step-kicker {
+            display: block;
+            margin-bottom: 0.2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--primary-dark);
+        }
+
+        .is-wizard .step-kicker {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+        }
+
+        .step-help {
+            margin-bottom: 1.25rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .is-wizard .extras-static-note {
+            display: none;
+        }
+
+        .field-hint {
+            margin-top: 0.35rem;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: var(--text-light);
+        }
+
+        .field-note {
+            margin-top: 0.35rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            line-height: 1.5;
+            color: var(--primary-dark);
+        }
+
+        .field-note[hidden] {
+            display: none;
+        }
+
+        .booking-form .form-row {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+        .booking-form .form-group input:not([type="radio"]):not([type="checkbox"]),
+        .booking-form .form-group select {
+            min-height: 48px;
+            font-size: 1rem;
+        }
+
+        .booking-form .form-group textarea {
+            font-size: 1rem;
+        }
+
+        .booking-form .form-group input:focus-visible,
+        .booking-form .form-group select:focus-visible,
+        .booking-form .form-group textarea:focus-visible {
+            outline: 3px solid var(--dark);
+            outline-offset: 2px;
+        }
+
+        .booking-form .form-group.company-group[hidden] {
+            display: none;
+        }
+
+        .hp-field {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        /* Auswahlkarten (Radio / Checkbox) */
+        .choice-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .choice-group > legend {
+            margin-bottom: 0.5rem;
+            padding: 0;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .choice-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+
+        .choice-grid--occasion,
+        .choice-grid--pair {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .choice-grid--occasion .choice-card:last-child {
+            grid-column: 1 / -1;
+        }
+
+        .choice-grid--triple {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .choice-card {
+            position: relative;
+            display: flex;
+            min-width: 0;
+            cursor: pointer;
+        }
+
+        .choice-card input {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .choice-body {
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            min-height: 3.25rem;
+            padding: 0.875rem 3rem 0.875rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--bg-card);
+            transition: border-color var(--transition), background var(--transition);
+        }
+
+        .choice-body::after {
+            content: '✓';
+            position: absolute;
+            top: 0.875rem;
+            right: 0.875rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.4rem;
+            height: 1.4rem;
+            border: 2px solid var(--text-light);
+            border-radius: 50%;
+            background: var(--bg-card);
+            font-size: 0.8rem;
+            font-weight: 800;
+            line-height: 1;
+            color: transparent;
+        }
+
+        .choice-card--check .choice-body::after {
+            border-radius: 0.35rem;
+        }
+
+        .choice-card:hover .choice-body {
+            border-color: var(--primary-light);
+        }
+
+        .choice-card input:checked + .choice-body {
+            border-color: var(--primary-dark);
+            background: var(--bg-warm);
+        }
+
+        .choice-card input:checked + .choice-body::after {
+            border-color: var(--primary-dark);
+            background: var(--primary-dark);
+            color: var(--bg-card);
+        }
+
+        .choice-card input:focus-visible + .choice-body {
+            outline: 3px solid var(--dark);
+            outline-offset: 2px;
+        }
+
+        .choice-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+
+        .choice-meta {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .choice-price {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        .choice-price strong {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .choice-total {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .choice-total:empty {
+            display: none;
+        }
+
+        .choice-badge {
+            align-self: flex-start;
+            padding: 0.15rem 0.65rem;
+            border-radius: 50px;
+            background: var(--primary-dark);
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--bg-card);
+        }
+
+        .choice-grid--occasion .choice-body {
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.875rem 0.5rem;
+            text-align: center;
+        }
+
+        .choice-grid--occasion .choice-body::after {
+            top: 0.5rem;
+            right: 0.5rem;
+            width: 1.15rem;
+            height: 1.15rem;
+            font-size: 0.7rem;
+        }
+
+        .choice-icon {
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+
+        /* kompakte Karten (kurze Antworten) ohne Indikator-Kreis */
+        .choice-card--compact .choice-body {
+            align-items: center;
+            justify-content: center;
+            min-height: 3rem;
+            padding: 0.5rem 0.5rem;
+            text-align: center;
+        }
+
+        .choice-card--compact .choice-body::after {
+            display: none;
+        }
+
+        .choice-card--compact .choice-title {
+            font-size: 0.9rem;
+        }
+
+        .choice-card--compact input:checked + .choice-body .choice-title::before {
+            content: '✓ ';
+        }
+
+        /* Extras */
+        .extra-option[hidden] {
+            display: none;
+        }
+
+        .extra-option[data-state="included"] {
+            cursor: default;
+        }
+
+        .extra-option[data-state="included"] .choice-body {
+            border-style: dashed;
+            background: var(--bg);
+        }
+
+        .extra-option[data-state="included"] .choice-body::after {
+            display: none;
+        }
+
+        .extra-price {
+            font-weight: 600;
+        }
+
+        .extra-option[data-state="included"] .extra-price {
+            color: var(--primary-dark);
+        }
+
+        .extra-hours {
+            margin-top: 1.25rem;
+        }
+
+        /* Info-Box (Schritt 5) */
+        .info-box {
+            margin-bottom: 1.5rem;
+            padding: 0.875rem 1rem;
+            border-left: 4px solid var(--accent);
+            border-radius: var(--radius-sm);
+            background: var(--bg-warm);
+            font-size: 0.9rem;
+            line-height: 1.65;
+            color: var(--text);
+        }
+
+        /* Navigation und Absenden */
+        .wizard-nav {
+            display: none;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .is-wizard .wizard-nav {
+            display: flex;
+        }
+
+        .wizard-nav .btn {
+            justify-content: center;
+            min-height: 48px;
+        }
+
+        .wizard-nav .btn-primary {
+            margin-left: auto;
+        }
+
+        .wizard-nav [hidden] {
+            display: none;
+        }
+
+        .wizard-submit {
+            margin-top: 1.5rem;
+        }
+
+        .is-wizard .wizard-submit {
+            display: none;
+        }
+
+        .is-wizard.is-last .wizard-submit {
+            display: block;
+        }
+
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+            min-height: 52px;
+        }
+
+        .btn:focus-visible {
+            outline: 3px solid var(--dark);
+            outline-offset: 2px;
+        }
+
+        .form-reassure {
+            margin-top: 0.875rem;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--text-light);
+        }
+
+        .form-proof {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0 1rem;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+
+        .form-proof a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .form-proof a:focus-visible {
+            outline: 3px solid var(--dark);
+            outline-offset: 2px;
+        }
+
+        /* Live-Zusammenfassung */
+        .contact .contact-grid > *,
+        .contact-side > * {
+            min-width: 0;
+        }
+
+        .wizard-summary {
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--primary-dark);
+            border-radius: var(--radius-lg);
+            background: var(--bg-card);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .wizard-summary[hidden] {
+            display: none;
+        }
+
+        .wizard-summary-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+
+        .wizard-summary-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--primary-dark);
+        }
+
+        .wizard-summary-values {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0 0.75rem;
+        }
+
+        .wizard-summary-total {
+            font-size: 1.4rem;
+            font-weight: 800;
+            line-height: 1.25;
+            color: var(--dark);
+        }
+
+        .wizard-summary-pp {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .wizard-summary-note {
+            margin-top: 0.2rem;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: var(--text-light);
+        }
+
+        .wizard-summary-note:empty {
+            display: none;
+        }
+
+        .nowrap {
+            white-space: nowrap;
+        }
+
+        .wizard-summary-toggle {
+            flex-shrink: 0;
+            min-width: 44px;
+            min-height: 44px;
+            padding: 0.5rem 0.875rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--bg-card);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .wizard-summary-toggle:focus-visible {
+            outline: 3px solid var(--dark);
+            outline-offset: 2px;
+        }
+
+        .wizard-summary-details {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-light);
+            font-size: 0.85rem;
+            line-height: 1.55;
+            color: var(--text);
+        }
+
+        .wizard-summary-list {
+            margin-bottom: 0.5rem;
+            list-style: none;
+        }
+
+        .wizard-summary-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .wizard-summary-open {
+            margin-top: 0.2rem;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: var(--text);
+        }
+
+        .wizard-summary-open[hidden] {
+            display: none;
+        }
+
+        .wizard-summary-disclaimer {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        @media (max-width: 1023.98px) {
+            /* Fokus und scrollIntoView sollen nicht unter der Leiste unten landen */
+            html {
+                scroll-padding-bottom: 8rem;
+            }
+
+            .wizard-summary {
+                position: sticky;
+                bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+                z-index: 900;
+            }
+
+            .wizard-summary-label {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+            }
+
+            /* eingeklappt: Hinweise einzeilig, ausgeklappt: voller Text */
+            .wizard-summary:not(.is-open) .wizard-summary-note,
+            .wizard-summary:not(.is-open) .wizard-summary-open {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .wizard-summary-details {
+                display: none;
+                max-height: 45vh;
+                overflow-y: auto;
+            }
+
+            .wizard-summary.is-open .wizard-summary-details {
+                display: block;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .booking-form .form-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .choice-grid--package {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023.98px) {
+            /* Unter 1024 px steht die Zusammenfassung als Leiste unten, dafür eine Spalte */
+            .contact .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Seitenspalte: unter 1024 px lösen sich die Kinder in das Grid auf (Leiste unten sticky),
+           ab 1024 px bleibt die Spalte beim Scrollen im Blick. */
+        .contact-side {
+            display: contents;
+        }
+
+        .contact-form-wrapper {
+            scroll-margin-top: 6rem;
+        }
+
+        @media (min-width: 1024px) {
+            .wizard-summary-toggle {
+                display: none;
+            }
+
+            .contact-side {
+                display: flex;
+                flex-direction: column;
+                gap: 2.5rem;
+                align-self: start;
+                position: sticky;
+                top: 6rem;
+            }
+        }
+
+        /* Erfolgsblock */
+        .success-steps {
+            max-width: 30rem;
+            margin: 1.25rem auto 0;
+            padding-left: 1.25rem;
+            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        .success-steps li + li {
+            margin-top: 0.5rem;
+        }
+
+        .success-summary {
+            max-width: 30rem;
+            margin: 1.75rem auto 0;
+            padding: 1rem 1.25rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--bg-warm);
+            text-align: left;
+        }
+
+        .success-summary[hidden] {
+            display: none;
+        }
+
+        .success-summary h4 {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .success-summary dl {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.25rem 0.75rem;
+            font-size: 0.88rem;
+            color: var(--text);
+        }
+
+        .success-summary dt {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .success-summary-note {
+            margin-top: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .form-success h3:focus {
+            outline: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .choice-body {
+                transition: none;
+            }
         }
 
         /* ============================================
@@ -1876,8 +2764,17 @@
                         Live gebackene Pizza direkt vor Ort – für Hochzeiten, Firmenevents und private Feiern in Bremen und Umgebung. Authentisch, unkompliziert und ein Highlight für deine Gäste.
                     </p>
                     <div class="hero-buttons">
-                        <a href="#kontakt" class="btn btn-primary btn-lg">Jetzt anfragen</a>
+                        <a href="#kontakt" class="btn btn-primary btn-lg">Angebot zusammenstellen</a>
                         <a href="#pakete" class="btn btn-outline btn-lg">Pakete ansehen</a>
+                    </div>
+                    <div class="hero-chips">
+                        <p class="hero-chips-label" id="heroChipsLabel">Was feierst du?</p>
+                        <ul class="hero-chips-list" aria-labelledby="heroChipsLabel">
+                            <li><a href="#kontakt" class="hero-chip" data-occasion="hochzeit">Hochzeit</a></li>
+                            <li><a href="#kontakt" class="hero-chip" data-occasion="firmenevent">Firmenfeier</a></li>
+                            <li><a href="#kontakt" class="hero-chip" data-occasion="geburtstag">Geburtstag</a></li>
+                            <li><a href="#kontakt" class="hero-chip" data-occasion="private-feier">Private Feier</a></li>
+                        </ul>
                     </div>
                     <div class="hero-stats">
                         <div class="hero-stat">
@@ -2032,7 +2929,7 @@
                         <li>Vegane Optionen möglich</li>
                         <li>Glutenfrei möglich</li>
                     </ul>
-                    <a href="#kontakt" class="btn btn-outline">Anfragen</a>
+                    <a href="#kontakt" class="btn btn-outline" data-package="classic">Classic wählen</a>
                 </div>
 
                 <!-- Paket Event (Featured) -->
@@ -2052,7 +2949,7 @@
                         <li>Vegane Optionen möglich</li>
                         <li>Glutenfrei möglich</li>
                     </ul>
-                    <a href="#kontakt" class="btn btn-primary">Anfragen</a>
+                    <a href="#kontakt" class="btn btn-primary" data-package="event">Event wählen</a>
                 </div>
 
                 <!-- Paket Premium -->
@@ -2071,10 +2968,11 @@
                         <li>Glutenfrei möglich</li>
                         <li>Priorität bei Terminkonflikten</li>
                     </ul>
-                    <a href="#kontakt" class="btn btn-outline">Anfragen</a>
+                    <a href="#kontakt" class="btn btn-outline" data-package="premium">Premium wählen</a>
                 </div>
 
             </div>
+            <p class="packages-addons"><strong>Dazubuchbar:</strong> Antipasti, Dessert, Mietporzellan, Getränke-Bar, Zusatzstunden. Preise im Angebot.</p>
         </div>
     </section>
 
@@ -2298,43 +3196,71 @@
             <div class="faq-list">
 
                 <div class="faq-item">
-                    <button class="faq-question">Ab wie vielen Personen kann ich Catering buchen?</button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">Unser Catering ist ab 50 Personen buchbar. Für kleinere Gruppen empfehlen wir, direkt bei unserem Pop-Up vorbeizukommen oder Pizzen vorzubestellen.</div>
+                    <button type="button" class="faq-question" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1">Ab wie vielen Personen kann ich Catering buchen?</button>
+                    <div class="faq-answer" id="faq-a-1">
+                        <div class="faq-answer-inner">Unser Catering ist ab 50 Personen buchbar. Für kleinere Gruppen empfehlen wir, direkt bei unserem Pop-Up vorbeizukommen oder Pizzen vorzubestellen. Kleinere Feiern sind auf Anfrage möglich.</div>
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">In welchem Umkreis liefert ihr?</button>
-                    <div class="faq-answer">
+                    <button type="button" class="faq-question" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2">In welchem Umkreis liefert ihr?</button>
+                    <div class="faq-answer" id="faq-a-2">
                         <div class="faq-answer-inner">Wir sind in Bremen und im Umkreis von rund 50 km unterwegs – zum Beispiel in Delmenhorst, Stuhr, Weyhe, Achim, Oyten, Lilienthal, Verden, Oldenburg, Osterholz-Scharmbeck und Ganderkesee. Die An- und Abfahrt ist im Umkreis von 10 km um Bremen inklusive; darüber hinaus berechnen wir eine Fahrtkostenpauschale. Für weiter entfernte Events finden wir gerne eine Lösung – sprich uns einfach an.</div>
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">Was ist alles im Catering-Preis enthalten?</button>
-                    <div class="faq-answer">
+                    <button type="button" class="faq-question" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3">Was ist alles im Catering-Preis enthalten?</button>
+                    <div class="faq-answer" id="faq-a-3">
                         <div class="faq-answer-inner">Alle Pakete beinhalten Steinofen, frische Zutaten, An- und Abfahrt im Umkreis von 10 km um Bremen (darüber hinaus gegen Fahrtkostenpauschale), Auf- und Abbau sowie Servicepersonal. Im Classic-Paket ist eine Pizza-Flatrate enthalten (ab 27 € p.P.), im Event-Paket kommen Antipasti dazu (ab 37 € p.P.), im Premium-Paket zusätzlich individuell abgestimmte Menüoptionen und Dessert (ab 47 € p.P.). Es gibt keine versteckten Kosten.</div>
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">Bietet ihr auch vegane oder glutenfreie Optionen an?</button>
-                    <div class="faq-answer">
+                    <button type="button" class="faq-question" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4">Was braucht ihr vor Ort?</button>
+                    <div class="faq-answer" id="faq-a-4">
+                        <div class="faq-answer-inner">Unsere Steinöfen laufen mit Gas. Ein normaler Stromanschluss in der Nähe ist hilfreich, aber kein Muss. Für den Pizzawagen brauchen wir eine ebene Stellfläche von etwa 3 × 4 m und eine Zufahrt. Passt der Wagen nicht hin, bauen wir den Ofen kompakt unter einem Pavillon auf.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-question" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5">Wie läuft der Tag ab?</button>
+                    <div class="faq-answer" id="faq-a-5">
+                        <div class="faq-answer-inner">Wir kommen etwa 2 bis 3 Stunden vor dem Essen zum Aufbau. Dann backen wir live im Steinofen, je nach Setup 25 bis 35 Pizzen pro Stunde, mit Servicepersonal am Wagen. Nach der Servierzeit bauen wir wieder ab.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-question" id="faq-q-6" aria-expanded="false" aria-controls="faq-a-6">Bietet ihr auch vegane oder glutenfreie Optionen an?</button>
+                    <div class="faq-answer" id="faq-a-6">
                         <div class="faq-answer-inner">Ja, wir können vegane Pizzen und auf Anfrage auch glutenfreie Varianten anbieten. Teile uns deine Wünsche einfach bei der Anfrage mit, und wir passen das Menü entsprechend an.</div>
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">Wie reserviere ich meinen Wunschtermin verbindlich?</button>
-                    <div class="faq-answer">
+                    <button type="button" class="faq-question" id="faq-q-7" aria-expanded="false" aria-controls="faq-a-7">Wie reserviere ich meinen Wunschtermin verbindlich?</button>
+                    <div class="faq-answer" id="faq-a-7">
                         <div class="faq-answer-inner">Nach deiner Angebotsbestätigung wird eine Anzahlung von 10% fällig. Sobald diese eingegangen ist, ist dein Termin fest in unserem Kalender reserviert.</div>
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">Wie weit im Voraus sollte ich für ein Event buchen?</button>
-                    <div class="faq-answer">
+                    <button type="button" class="faq-question" id="faq-q-8" aria-expanded="false" aria-controls="faq-a-8">Was ist, wenn sich die Gästezahl noch ändert?</button>
+                    <div class="faq-answer" id="faq-a-8">
+                        <div class="faq-answer-inner">Kein Problem. Die finale Gästezahl kannst du bis 14 Tage vor dem Event anpassen. Abgerechnet wird nach der tatsächlichen Gästezahl.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-question" id="faq-q-9" aria-expanded="false" aria-controls="faq-a-9">Bekommen Firmen eine Rechnung?</button>
+                    <div class="faq-answer" id="faq-a-9">
+                        <div class="faq-answer-inner">Ja. Firmen erhalten eine ordentliche Rechnung mit allen Pflichtangaben, Zahlung per Überweisung.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-question" id="faq-q-10" aria-expanded="false" aria-controls="faq-a-10">Wie weit im Voraus sollte ich für ein Event buchen?</button>
+                    <div class="faq-answer" id="faq-a-10">
                         <div class="faq-answer-inner">Wir empfehlen eine Anfrage mindestens 4–6 Wochen vor dem Event. Beliebte Termine (besonders im Sommer) sind schnell vergeben. Aber frag gerne auch kurzfristiger an – wenn wir können, machen wir es möglich.</div>
                     </div>
                 </div>
@@ -2350,89 +3276,329 @@
         <div class="container">
             <div class="contact-header">
                 <span class="section-label">Kontakt</span>
-                <h2 class="heading-section">Erzähl uns von deinem Event</h2>
-                <p class="subheading">Schreib uns eine Nachricht und wir melden uns innerhalb von 24 Stunden bei dir.</p>
+                <h2 class="heading-section">Stell dir dein Angebot zusammen</h2>
+                <p class="subheading">In sechs kurzen Schritten zu deinem Richtwert. Kostenlos und unverbindlich, Antwort innerhalb von 24 Stunden.</p>
             </div>
             <div class="contact-grid">
 
                 <div class="contact-form-wrapper">
-                    <div class="whatsapp-cta-bar" style="background: #25D366; color: white; border-radius: 12px; padding: 1rem 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-                        <span style="font-size: 1.8rem;">💬</span>
+                    <div class="whatsapp-cta-bar">
+                        <span class="whatsapp-cta-bar-icon" aria-hidden="true">💬</span>
                         <div>
                             <strong>Lieber direkt per WhatsApp?</strong><br>
-                            <span>Schreib uns auf <a href="https://wa.me/4942168431162" target="_blank" rel="noopener" style="color:white; font-weight:700;">+49 421 68431162</a> – wir antworten schnell!</span>
+                            <span>Schreib uns auf <a href="https://wa.me/4942168431162" target="_blank" rel="noopener">+49 421 68431162</a> – wir antworten schnell!</span>
                         </div>
                     </div>
-                    <form id="contactForm" action="send_email.php" method="POST">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">Name *</label>
-                                <input type="text" id="name" name="name" required placeholder="Dein Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">E-Mail *</label>
-                                <input type="email" id="email" name="email" required placeholder="deine@email.de">
-                            </div>
+                    <form id="contactForm" class="booking-form" action="send_email.php" method="POST">
+                        <div class="form-alert" id="formAlert" role="alert" hidden></div>
+
+                        <div class="wizard-progress" id="wizardProgress">
+                            <p class="wizard-progress-text" id="wizardProgressText">Schritt 1 von 6 · Anlass</p>
+                            <ol class="wizard-progress-bar" id="wizardProgressBar">
+                                <li><span class="sr-only">Anlass</span></li>
+                                <li><span class="sr-only">Gäste und Datum</span></li>
+                                <li><span class="sr-only">Paket</span></li>
+                                <li><span class="sr-only">Extras</span></li>
+                                <li><span class="sr-only">Ort und Logistik</span></li>
+                                <li><span class="sr-only">Kontakt</span></li>
+                            </ol>
                         </div>
-                        <div class="form-row">
+
+                        <!-- Schritt 1: Anlass -->
+                        <fieldset class="wizard-step" data-title="Anlass">
+                            <legend tabindex="-1"><span class="step-kicker">Schritt 1 von 6</span>Was feierst du?</legend>
+                            <div class="choice-grid choice-grid--occasion">
+                                <label class="choice-card">
+                                    <input type="radio" name="occasion" value="hochzeit" required>
+                                    <span class="choice-body"><span class="choice-icon" aria-hidden="true">💒</span><span class="choice-title">Hochzeit</span></span>
+                                </label>
+                                <label class="choice-card">
+                                    <input type="radio" name="occasion" value="firmenevent" required>
+                                    <span class="choice-body"><span class="choice-icon" aria-hidden="true">🏢</span><span class="choice-title">Firmenfeier</span></span>
+                                </label>
+                                <label class="choice-card">
+                                    <input type="radio" name="occasion" value="geburtstag" required>
+                                    <span class="choice-body"><span class="choice-icon" aria-hidden="true">🎂</span><span class="choice-title">Geburtstag</span></span>
+                                </label>
+                                <label class="choice-card">
+                                    <input type="radio" name="occasion" value="private-feier" required>
+                                    <span class="choice-body"><span class="choice-icon" aria-hidden="true">🎉</span><span class="choice-title">Private Feier</span></span>
+                                </label>
+                                <label class="choice-card">
+                                    <input type="radio" name="occasion" value="sonstiges" required>
+                                    <span class="choice-body"><span class="choice-icon" aria-hidden="true">✨</span><span class="choice-title">Sonstiges</span></span>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <!-- Schritt 2: Gäste & Datum -->
+                        <fieldset class="wizard-step" data-title="Gäste &amp; Datum">
+                            <legend tabindex="-1"><span class="step-kicker">Schritt 2 von 6</span>Wie groß wird die Feier?</legend>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="guests">Anzahl Gäste *</label>
+                                    <input type="number" id="guests" name="guests" min="20" max="2000" inputmode="numeric" required placeholder="z. B. 80" aria-describedby="guests-hint">
+                                    <p class="field-hint" id="guests-hint">Unsere Pakete starten bei 50 Personen. Kleinere Feiern auf Anfrage.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="kids">davon Kinder bis 12 Jahre</label>
+                                    <input type="number" id="kids" name="kids" min="0" max="2000" inputmode="numeric" placeholder="optional" aria-describedby="kids-hint">
+                                    <p class="field-hint" id="kids-hint">Kinder bis 12 Jahre: reduzierter Preis, Details im Angebot</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Wunschdatum *</label>
+                                <input type="date" id="date" name="date" required aria-describedby="date-hint date-short">
+                                <p class="field-hint" id="date-hint">Ideal sind 4–6 Wochen Vorlauf.</p>
+                                <p class="field-note" id="date-short" hidden>Kurzfristig? Frag trotzdem an, wenn der Tag frei ist, machen wir es möglich.</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="timeframe">Wann soll das Essen starten? (z. B. 18:00 Uhr) *</label>
+                                <input type="text" id="timeframe" name="timeframe" required autocomplete="off" placeholder="z. B. 18:00 Uhr">
+                            </div>
+                        </fieldset>
+
+                        <!-- Schritt 3: Paket -->
+                        <fieldset class="wizard-step" data-title="Paket">
+                            <legend tabindex="-1"><span class="step-kicker">Schritt 3 von 6</span>Welches Paket passt zu dir?</legend>
+                            <div class="choice-grid choice-grid--package">
+                                <label class="choice-card">
+                                    <input type="radio" name="package" value="classic">
+                                    <span class="choice-body">
+                                        <span class="choice-title">Classic</span>
+                                        <span class="choice-price"><strong data-pkg-pp="classic">27 €</strong> p. P.</span>
+                                        <span class="choice-meta">Live gebackene Pizza, 2 Stunden Servierzeit, Pappteller und Servietten</span>
+                                        <span class="choice-total" data-pkg-total="classic"></span>
+                                    </span>
+                                </label>
+                                <label class="choice-card">
+                                    <input type="radio" name="package" value="event" checked>
+                                    <span class="choice-body">
+                                        <span class="choice-badge">Beliebteste Wahl</span>
+                                        <span class="choice-title">Event</span>
+                                        <span class="choice-price"><strong data-pkg-pp="event">37 €</strong> p. P.</span>
+                                        <span class="choice-meta">Pizza und Antipasti-Platten als Empfang, 3 Stunden Servierzeit, Echtholz-Servierbretter</span>
+                                        <span class="choice-total" data-pkg-total="event"></span>
+                                    </span>
+                                </label>
+                                <label class="choice-card">
+                                    <input type="radio" name="package" value="premium">
+                                    <span class="choice-body">
+                                        <span class="choice-title">Premium</span>
+                                        <span class="choice-price"><strong data-pkg-pp="premium">47 €</strong> p. P.</span>
+                                        <span class="choice-meta">Erweiterte Antipasti-Auswahl, Tiramisu oder Panna Cotta, individuelle Menü-Abstimmung</span>
+                                        <span class="choice-total" data-pkg-total="premium"></span>
+                                    </span>
+                                </label>
+                                <label class="choice-card">
+                                    <input type="radio" name="package" value="beratung">
+                                    <span class="choice-body">
+                                        <span class="choice-title">Noch unsicher?</span>
+                                        <span class="choice-meta">Jonathan berät dich und empfiehlt das passende Paket.</span>
+                                    </span>
+                                </label>
+                            </div>
+                            <p class="field-hint">Bei allen Paketen inklusive: Auf- und Abbau, Servicepersonal, Anfahrt im Umkreis von 10 km um Bremen. Preise inkl. MwSt.</p>
+                        </fieldset>
+
+                        <!-- Schritt 4: Extras -->
+                        <fieldset class="wizard-step" data-title="Extras">
+                            <legend tabindex="-1"><span class="step-kicker">Schritt 4 von 6</span>Möchtest du etwas dazubuchen?</legend>
+                            <p class="step-help">Alles optional, nichts ist vorausgewählt.</p>
+                            <p class="step-help extras-static-note">Im Event-Paket sind Antipasti schon enthalten, im Premium-Paket Antipasti, erweiterte Antipasti und Dessert.</p>
+                            <div class="choice-grid" id="extrasList">
+                                <label class="choice-card choice-card--check extra-option" data-extra="antipasti">
+                                    <input type="checkbox" name="extras[]" value="antipasti">
+                                    <span class="choice-body">
+                                        <span class="choice-title">Antipasti-Empfang</span>
+                                        <span class="choice-meta extra-price" data-extra-price>Preis im Angebot</span>
+                                    </span>
+                                </label>
+                                <label class="choice-card choice-card--check extra-option" data-extra="antipastiPlus">
+                                    <input type="checkbox" name="extras[]" value="antipastiPlus">
+                                    <span class="choice-body">
+                                        <span class="choice-title">Erweiterte Antipasti-Auswahl</span>
+                                        <span class="choice-meta extra-price" data-extra-price>Preis im Angebot</span>
+                                    </span>
+                                </label>
+                                <label class="choice-card choice-card--check extra-option" data-extra="dessert">
+                                    <input type="checkbox" name="extras[]" value="dessert">
+                                    <span class="choice-body">
+                                        <span class="choice-title">Dessert: Tiramisu, Panna Cotta oder süße Dessert-Pizza</span>
+                                        <span class="choice-meta extra-price" data-extra-price>Preis im Angebot</span>
+                                    </span>
+                                </label>
+                                <label class="choice-card choice-card--check extra-option" data-extra="tableware">
+                                    <input type="checkbox" name="extras[]" value="tableware">
+                                    <span class="choice-body">
+                                        <span class="choice-title">Mietporzellan statt Pappteller/Holzbretter</span>
+                                        <span class="choice-meta extra-price" data-extra-price>Preis im Angebot</span>
+                                    </span>
+                                </label>
+                                <label class="choice-card choice-card--check extra-option" data-extra="drinks">
+                                    <input type="checkbox" name="extras[]" value="drinks">
+                                    <span class="choice-body">
+                                        <span class="choice-title">Getränke oder Aperol-Bar</span>
+                                        <span class="choice-meta extra-price" data-extra-price>Preis im Angebot</span>
+                                        <span class="choice-meta">auf Anfrage, z. B. für Firmenfeiern</span>
+                                    </span>
+                                </label>
+                                <label class="choice-card choice-card--check extra-option" data-extra="lateNight">
+                                    <input type="checkbox" name="extras[]" value="lateNight">
+                                    <span class="choice-body">
+                                        <span class="choice-title">Später Pizza-Snack (z. B. Mitternacht)</span>
+                                        <span class="choice-meta extra-price" data-extra-price>Preis im Angebot</span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="form-group extra-hours">
+                                <label for="extra_hours">Zusätzliche Servierstunden</label>
+                                <select id="extra_hours" name="extra_hours" aria-describedby="extra-hours-hint">
+                                    <option value="0" selected>Keine</option>
+                                    <option value="1">1 Stunde</option>
+                                    <option value="2">2 Stunden</option>
+                                    <option value="3">3 Stunden</option>
+                                </select>
+                                <p class="field-hint" id="extra-hours-hint" data-extra-hours-price>Preis im Angebot</p>
+                            </div>
+                        </fieldset>
+
+                        <!-- Schritt 5: Ort & Logistik -->
+                        <fieldset class="wizard-step" data-title="Ort">
+                            <legend tabindex="-1"><span class="step-kicker">Schritt 5 von 6</span>Wo findet die Feier statt?</legend>
+                            <div class="info-box" role="note">Unsere Steinöfen laufen mit Gas. Ein normaler Stromanschluss in der Nähe ist hilfreich, aber kein Muss. Für den Pizzawagen brauchen wir eine ebene Stellfläche von etwa 3 × 4 m und eine Zufahrt. Passt der Wagen nicht hin, bauen wir den Ofen kompakt unter einem Pavillon auf. An- und Abfahrt im Umkreis von 10 km um Bremen sind inklusive, darüber hinaus kommt eine Fahrtkostenpauschale ins Angebot.</div>
+                            <div class="form-group">
+                                <label for="location">Ort oder PLZ der Feier *</label>
+                                <input type="text" id="location" name="location" required autocomplete="postal-code" placeholder="z. B. 28199 Bremen">
+                            </div>
+                            <fieldset class="choice-group">
+                                <legend>Wo wird gebacken und gegessen?</legend>
+                                <div class="choice-grid choice-grid--pair">
+                                    <label class="choice-card choice-card--compact"><input type="radio" name="setting" value="draussen"><span class="choice-body"><span class="choice-title">Draußen</span></span></label>
+                                    <label class="choice-card choice-card--compact"><input type="radio" name="setting" value="drinnen"><span class="choice-body"><span class="choice-title">Drinnen</span></span></label>
+                                    <label class="choice-card choice-card--compact"><input type="radio" name="setting" value="ueberdacht"><span class="choice-body"><span class="choice-title">Überdacht</span></span></label>
+                                    <label class="choice-card choice-card--compact"><input type="radio" name="setting" value="unbekannt"><span class="choice-body"><span class="choice-title">Weiß noch nicht</span></span></label>
+                                </div>
+                            </fieldset>
+                            <fieldset class="choice-group">
+                                <legend>Stromanschluss vorhanden?</legend>
+                                <div class="choice-grid choice-grid--triple">
+                                    <label class="choice-card choice-card--compact"><input type="radio" name="power" value="ja"><span class="choice-body"><span class="choice-title">Ja</span></span></label>
+                                    <label class="choice-card choice-card--compact"><input type="radio" name="power" value="nein"><span class="choice-body"><span class="choice-title">Nein</span></span></label>
+                                    <label class="choice-card choice-card--compact"><input type="radio" name="power" value="unbekannt"><span class="choice-body"><span class="choice-title">Weiß nicht</span></span></label>
+                                </div>
+                            </fieldset>
+                            <div class="form-group">
+                                <label for="access">Zufahrt / Besonderheiten</label>
+                                <input type="text" id="access" name="access" autocomplete="off" placeholder="z. B. enge Einfahrt, Parkhaus, Hinterhof">
+                            </div>
+                        </fieldset>
+
+                        <!-- Schritt 6: Kontakt -->
+                        <fieldset class="wizard-step" data-title="Kontakt">
+                            <legend tabindex="-1"><span class="step-kicker">Schritt 6 von 6</span>Wie erreichen wir dich?</legend>
+                            <p class="step-help">Pflicht sind nur Name und E-Mail.</p>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Name *</label>
+                                    <input type="text" id="name" name="name" required autocomplete="name" placeholder="Dein Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">E-Mail *</label>
+                                    <input type="email" id="email" name="email" required autocomplete="email" placeholder="deine@email.de">
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="phone">Telefon</label>
-                                <input type="tel" id="phone" name="phone" placeholder="+49 ...">
+                                <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+49 ...">
+                            </div>
+                            <fieldset class="choice-group">
+                                <legend>Wie sollen wir dich am liebsten erreichen?</legend>
+                                <div class="choice-grid choice-grid--triple">
+                                    <label class="choice-card choice-card--compact"><input type="radio" name="contact_pref" value="email"><span class="choice-body"><span class="choice-title">E-Mail</span></span></label>
+                                    <label class="choice-card choice-card--compact"><input type="radio" name="contact_pref" value="telefon"><span class="choice-body"><span class="choice-title">Telefon</span></span></label>
+                                    <label class="choice-card choice-card--compact"><input type="radio" name="contact_pref" value="whatsapp"><span class="choice-body"><span class="choice-title">WhatsApp</span></span></label>
+                                </div>
+                                <p class="field-hint">Bei Telefon oder WhatsApp bitte oben deine Nummer angeben.</p>
+                            </fieldset>
+                            <div class="form-group company-group" id="companyGroup">
+                                <label for="company">Firma</label>
+                                <input type="text" id="company" name="company" autocomplete="organization" placeholder="Name deiner Firma">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="dietary">Ernährung / Allergien</label>
+                                    <input type="text" id="dietary" name="dietary" placeholder="z. B. vegetarisch, Nussallergie...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="budget">Budget (ca.)</label>
+                                    <input type="number" id="budget" name="budget" min="0" step="50" inputmode="numeric" placeholder="z. B. 3000 €">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="occasion">Anlass</label>
-                                <select id="occasion" name="occasion">
-                                    <option value="">Bitte wählen</option>
-                                    <option value="hochzeit">Hochzeit</option>
-                                    <option value="firmenevent">Firmenevent</option>
-                                    <option value="geburtstag">Geburtstag</option>
-                                    <option value="private-feier">Private Feier</option>
-                                    <option value="sonstiges">Sonstiges</option>
-                                </select>
+                                <label for="message">Nachricht</label>
+                                <textarea id="message" name="message" placeholder="Erzähl uns von deinem Event – Location, besondere Wünsche, Fragen..."></textarea>
                             </div>
+                        </fieldset>
+
+                        <div class="hp-field" aria-hidden="true">
+                            <label for="website">Website</label>
+                            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
                         </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="date">Wunschdatum</label>
-                                <input type="date" id="date" name="date">
-                            </div>
-                            <div class="form-group">
-                                <label for="guests">Anzahl Gäste</label>
-                                <input type="number" id="guests" name="guests" min="50" placeholder="ab 50">
-                            </div>
+                        <input type="hidden" id="formElapsed" name="form_elapsed" value="">
+                        <input type="hidden" id="estimatePp" name="estimate_pp" value="">
+                        <input type="hidden" id="estimateTotal" name="estimate_total" value="">
+
+                        <div class="wizard-submit">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" id="submitBtn">Anfrage senden</button>
+                            <p class="form-reassure">Kostenlos &amp; unverbindlich. Du bekommst innerhalb von 24 Stunden Bescheid, ob dein Termin frei ist, und ein Angebot mit allen Kosten. Verbindlich wird es erst mit deiner Bestätigung und der 10 % Anzahlung.</p>
+                            <p class="form-proof">
+                                <a href="https://share.google/FRjTIIzTegjiOZa4u" target="_blank" rel="noopener">4,9 ★ · 47 Google-Bewertungen</a>
+                                <span>Deine Anfrage landet direkt bei Jonathan, dem Inhaber.</span>
+                            </p>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="location">Veranstaltungsort</label>
-                                <input type="text" id="location" name="location" placeholder="Adresse oder Location">
-                            </div>
-                            <div class="form-group">
-                                <label for="timeframe">Zeitfenster</label>
-                                <input type="text" id="timeframe" name="timeframe" placeholder="z. B. 18:00 – 23:00 Uhr">
-                            </div>
+
+                        <div class="wizard-nav">
+                            <button type="button" class="btn btn-outline" id="wizardBack" hidden>Zurück</button>
+                            <button type="button" class="btn btn-primary" id="wizardNext">Weiter</button>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="budget">Budget (ca.)</label>
-                                <input type="number" id="budget" name="budget" min="0" step="50" placeholder="z. B. 3000 €">
-                            </div>
-                            <div class="form-group">
-                                <label for="dietary">Ernährung / Allergien</label>
-                                <input type="text" id="dietary" name="dietary" placeholder="z. B. vegetarisch, Nussallergie...">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Nachricht</label>
-                            <textarea id="message" name="message" placeholder="Erzähl uns von deinem Event – Location, besondere Wünsche, Fragen..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-lg" style="width:100%; justify-content:center;">Anfrage senden</button>
                     </form>
                     <div class="form-success" id="formSuccess">
-                        <div class="form-success-icon">✅</div>
-                        <h3>Anfrage gesendet!</h3>
-                        <p>Vielen Dank! Wir melden uns innerhalb von 24 Stunden bei dir.</p>
+                        <div class="form-success-icon" aria-hidden="true">✅</div>
+                        <h3 tabindex="-1" id="formSuccessTitle">Anfrage ist bei Jonathan</h3>
+                        <p>Danke für deine Anfrage. So geht es jetzt weiter:</p>
+                        <ol class="success-steps">
+                            <li>Innerhalb von 24 Stunden bekommst du Bescheid, ob dein Termin frei ist.</li>
+                            <li>Du erhältst ein Angebot mit allen Kosten.</li>
+                            <li>Mit deiner Bestätigung und 10 % Anzahlung ist der Termin fest reserviert.</li>
+                        </ol>
+                        <div class="success-summary" id="successSummary" hidden>
+                            <h4>Deine Auswahl</h4>
+                            <dl id="successSummaryList"></dl>
+                            <p class="success-summary-note">Richtwert, kein Festpreis. Das verbindliche Angebot kommt von Jonathan.</p>
+                        </div>
                     </div>
                 </div>
+
+                <div class="contact-side">
+                <aside class="wizard-summary" id="wizardSummary" aria-live="polite" aria-atomic="true" aria-label="Dein Richtwert" hidden>
+                    <div class="wizard-summary-bar">
+                        <div class="wizard-summary-main">
+                            <p class="wizard-summary-label">Dein Richtwert</p>
+                            <div class="wizard-summary-values">
+                                <p class="wizard-summary-total" id="sumTotal"></p>
+                                <p class="wizard-summary-pp" id="sumPp"></p>
+                            </div>
+                            <p class="wizard-summary-note" id="sumNote"></p>
+                            <p class="wizard-summary-open" id="sumOpen"></p>
+                        </div>
+                        <button type="button" class="wizard-summary-toggle" id="sumToggle" aria-expanded="false" aria-controls="sumDetails">Details</button>
+                    </div>
+                    <div class="wizard-summary-details" id="sumDetails">
+                        <ul class="wizard-summary-list" id="sumList"></ul>
+                        <p class="wizard-summary-disclaimer">Richtwert, kein Festpreis. Das verbindliche Angebot kommt von Jonathan.</p>
+                    </div>
+                </aside>
 
                 <div class="contact-info-cards">
                     <a href="https://wa.me/4942168431162" target="_blank" rel="noopener" class="contact-card">
@@ -2464,6 +3630,7 @@
                             <p>Konsul-Smidt-Straße 35<br>28217 Bremen</p>
                         </div>
                     </div>
+                </div>
                 </div>
 
             </div>
@@ -2608,23 +3775,6 @@
             });
         });
 
-        // ── Contact Form ──
-        // Check for success/error messages from server-side processing
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('success') === '1') {
-            document.getElementById('contactForm').style.display = 'none';
-            document.getElementById('formSuccess').classList.add('visible');
-        } else if (urlParams.get('error')) {
-            const errorType = urlParams.get('error');
-            let errorMessage = 'Es ist ein Fehler aufgetreten. Bitte versuche es erneut.';
-            if (errorType === 'required') {
-                errorMessage = 'Bitte fülle alle erforderlichen Felder aus.';
-            } else if (errorType === 'email') {
-                errorMessage = 'Bitte gib eine gültige E-Mail-Adresse ein.';
-            }
-            alert(errorMessage);
-        }
-
         // ── FAQ Accordion ──
         document.querySelectorAll('.faq-question').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -2636,12 +3786,14 @@
                 document.querySelectorAll('.faq-item').forEach(faq => {
                     faq.classList.remove('open');
                     faq.querySelector('.faq-answer').style.maxHeight = null;
+                    faq.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
                 });
 
                 // Open clicked
                 if (!isOpen) {
                     item.classList.add('open');
                     answer.style.maxHeight = answer.scrollHeight + 'px';
+                    btn.setAttribute('aria-expanded', 'true');
                 }
             });
         });
@@ -2768,7 +3920,8 @@
                     'Antipasti & Dessert dazubuchbar',
                     'Stilvolles Setup passend zur Location'
                 ],
-                cta: 'Hochzeit'
+                cta: 'Hochzeit',
+                occasion: 'hochzeit'
             },
             firmenevent: {
                 icon: '🏢', title: 'Firmenevents',
@@ -2780,7 +3933,8 @@
                     'Professionelle Abwicklung',
                     'Rechnungsstellung für Unternehmen'
                 ],
-                cta: 'Firmenevent'
+                cta: 'Firmenevent',
+                occasion: 'firmenevent'
             },
             privatfeier: {
                 icon: '🎉', title: 'Private Feiern',
@@ -2792,7 +3946,8 @@
                     'Ab 50 Personen buchbar',
                     'Alles inklusive – du genießt einfach'
                 ],
-                cta: 'Private Feier'
+                cta: 'Private Feier',
+                occasion: 'private-feier'
             }
         };
 
@@ -2835,7 +3990,7 @@
                 html += `<li>${f}</li>`;
             });
             html += `</ul>
-            <a href="#kontakt" class="modal-cta" id="modalCta">Jetzt Termin für ${d.cta} prüfen</a>`;
+            <a href="#kontakt" class="modal-cta" id="modalCta" data-occasion="${d.occasion}">Jetzt Termin für ${d.cta} prüfen</a>`;
 
             body.innerHTML = html;
 
@@ -2862,6 +4017,556 @@
                 if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(card.dataset.modal); }
             });
         });
+    })();
+    </script>
+
+    <!-- ============================================
+         BUCHUNGS-BAUKASTEN (Wizard, Richtwert, sessionStorage)
+         ============================================ -->
+    <script>
+    (function () {
+        'use strict';
+
+        // Einzige Quelle für den Richtwert. price: null heißt "Preis im Angebot".
+        // Preise für Extras erst eintragen, wenn Jonathan sie freigegeben hat.
+        const PRICING = {
+            minGuests: 50,
+            packages: {
+                classic: { label: 'Classic', pp: 27, includes: [] },
+                event: { label: 'Event', pp: 37, includes: ['antipasti'] },
+                premium: { label: 'Premium', pp: 47, includes: ['antipasti', 'antipastiPlus', 'dessert'] },
+                beratung: { label: 'Beratung gewünscht', pp: null, includes: [] }
+            },
+            extras: {
+                antipasti: { label: 'Antipasti-Empfang', unit: 'pp', price: null, packages: ['classic'] },
+                antipastiPlus: { label: 'Erweiterte Antipasti-Auswahl', unit: 'pp', price: null, packages: ['event'] },
+                dessert: { label: 'Dessert', includedLabel: 'Dessert: Tiramisu oder Panna Cotta', unit: 'pp', price: null, packages: ['classic', 'event'] },
+                tableware: { label: 'Mietporzellan', unit: 'pp', price: null, packages: ['classic', 'event', 'premium'] },
+                drinks: { label: 'Getränke oder Aperol-Bar', unit: 'pp', price: null, packages: ['classic', 'event', 'premium'] },
+                lateNight: { label: 'Später Pizza-Snack', unit: 'flat', price: null, packages: ['classic', 'event', 'premium'] }
+            },
+            extraHour: { price: null, max: 3 },
+            travel: { includedKm: 10, price: null }
+        };
+
+        const OCCASIONS = {
+            'hochzeit': 'Hochzeit',
+            'firmenevent': 'Firmenfeier',
+            'geburtstag': 'Geburtstag',
+            'private-feier': 'Private Feier',
+            'sonstiges': 'Sonstiges'
+        };
+
+        const form = document.getElementById('contactForm');
+        if (!form) return;
+
+        const STORE_KEY = 'jonisAnfrage';
+        const MESSAGES = {
+            required: 'Bitte fülle alle erforderlichen Felder aus.',
+            email: 'Bitte gib eine gültige E-Mail-Adresse ein.',
+            other: 'Das Senden hat leider nicht geklappt. Deine Angaben sind noch da, bitte versuche es noch einmal. Oder schreib uns direkt an info@jonis-catering.de.'
+        };
+
+        const $ = (sel, root) => (root || document).querySelector(sel);
+        const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
+        const nf = new Intl.NumberFormat('de-DE', { maximumFractionDigits: 0 });
+        const money = n => nf.format(n) + ' €';
+        const round10 = n => Math.round(n / 10) * 10;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        const steps = $$('.wizard-step', form);
+        const last = steps.length - 1;
+        const progress = document.getElementById('wizardProgress');
+        const progressText = document.getElementById('wizardProgressText');
+        const progressItems = $$('#wizardProgressBar li');
+        const backBtn = document.getElementById('wizardBack');
+        const nextBtn = document.getElementById('wizardNext');
+        const submitBtn = document.getElementById('submitBtn');
+        const alertBox = document.getElementById('formAlert');
+        const summary = document.getElementById('wizardSummary');
+        const successBox = document.getElementById('formSuccess');
+        const guestsInput = document.getElementById('guests');
+        const kidsInput = document.getElementById('kids');
+        const dateInput = document.getElementById('date');
+        const companyGroup = document.getElementById('companyGroup');
+        const companyInput = document.getElementById('company');
+
+        const loadedAt = Date.now();
+        let elapsedBonus = 0;
+        let step = 0;
+        let locked = false;
+
+        // ── sessionStorage (alles in try/catch: kann in privaten Fenstern fehlen) ──
+        function storeRead() {
+            try {
+                const raw = sessionStorage.getItem(STORE_KEY);
+                return raw ? JSON.parse(raw) : null;
+            } catch (e) { return null; }
+        }
+        function storeWrite(value) {
+            try { sessionStorage.setItem(STORE_KEY, JSON.stringify(value)); } catch (e) { /* ignorieren */ }
+        }
+        function storeClear() {
+            try { sessionStorage.removeItem(STORE_KEY); } catch (e) { /* ignorieren */ }
+        }
+
+        // ── Zustand lesen und wiederherstellen ──
+        function readState() {
+            const st = { extras: [] };
+            new FormData(form).forEach((value, key) => {
+                if (typeof value !== 'string') return;
+                if (key === 'extras[]') { st.extras.push(value); return; }
+                if (key === 'website' || key === 'form_elapsed' || key === 'estimate_pp' || key === 'estimate_total') return;
+                st[key] = value;
+            });
+            return st;
+        }
+
+        function restoreState(st) {
+            Object.keys(st).forEach(key => {
+                if (key === 'extras') return;
+                const field = form.elements.namedItem(key);
+                if (!field || typeof st[key] !== 'string') return;
+                if (field.type === 'hidden' || field.type === 'file') return;
+                field.value = st[key];
+            });
+            const wanted = Array.isArray(st.extras) ? st.extras : [];
+            $$('input[name="extras[]"]', form).forEach(cb => { cb.checked = wanted.indexOf(cb.value) !== -1; });
+        }
+
+        function save() {
+            storeWrite({ v: 1, state: readState() });
+        }
+
+        // ── Richtwert ──
+        function includedIn(pkg, key) {
+            return !!pkg && pkg.includes.indexOf(key) !== -1;
+        }
+
+        function calcEstimate(st) {
+            const pkg = PRICING.packages[st.package];
+            const guests = parseInt(st.guests, 10);
+            if (!pkg || !(guests > 0)) return null;
+            const billed = Math.max(guests, PRICING.minGuests);
+            const open = [];
+            let pp = pkg.pp;
+            let flat = 0;
+            (st.extras || []).forEach(key => {
+                const ex = PRICING.extras[key];
+                if (!ex || includedIn(pkg, key)) return;
+                if (ex.price === null) { open.push(ex.label); return; }
+                if (ex.unit === 'pp') pp += ex.price; else flat += ex.price;
+            });
+            const hours = parseInt(st.extra_hours, 10) || 0;
+            if (hours > 0) {
+                if (PRICING.extraHour.price === null) open.push(hours + (hours === 1 ? ' Zusatzstunde' : ' Zusatzstunden'));
+                else flat += hours * PRICING.extraHour.price;
+            }
+            if ((parseInt(st.kids, 10) || 0) > 0) open.push('reduzierter Kinderpreis');
+            if (PRICING.travel.price === null) open.push('ggf. Fahrtkosten über ' + PRICING.travel.includedKm + ' km');
+            const priced = pkg.pp !== null;
+            return {
+                pkg: pkg,
+                guests: guests,
+                billed: billed,
+                small: guests < PRICING.minGuests,
+                priced: priced,
+                pp: priced ? Math.round(pp) : null,
+                total: priced ? round10(pp * billed + flat) : null,
+                open: open
+            };
+        }
+
+        function fmtDate(value) {
+            const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value || '');
+            return m ? m[3] + '.' + m[2] + '.' + m[1] : (value || '');
+        }
+
+        function extrasText(st) {
+            const pkg = PRICING.packages[st.package];
+            return (st.extras || [])
+                .filter(key => PRICING.extras[key] && !includedIn(pkg, key))
+                .map(key => PRICING.extras[key].label)
+                .join(', ');
+        }
+
+        function selectionLines(st) {
+            const lines = [];
+            if (OCCASIONS[st.occasion]) lines.push(['Anlass', OCCASIONS[st.occasion]]);
+            if (st.date) lines.push(['Datum', fmtDate(st.date)]);
+            const guests = parseInt(st.guests, 10);
+            if (guests > 0) {
+                const kids = parseInt(st.kids, 10) || 0;
+                lines.push(['Gäste', guests + (kids > 0 ? ' (davon ' + kids + ' Kinder)' : '')]);
+            }
+            if (PRICING.packages[st.package]) lines.push(['Paket', PRICING.packages[st.package].label]);
+            const ex = extrasText(st);
+            if (ex) lines.push(['Extras', ex]);
+            const hours = parseInt(st.extra_hours, 10) || 0;
+            if (hours > 0) lines.push(['Servierzeit', '+' + hours + (hours === 1 ? ' Stunde' : ' Stunden')]);
+            if (st.location) lines.push(['Ort', st.location]);
+            return lines;
+        }
+
+        function setText(id, text) {
+            const el = document.getElementById(id);
+            if (el) el.textContent = text;
+        }
+
+        let lastSignature = '';
+
+        function renderSummary(st) {
+            const est = calcEstimate(st);
+            const hiddenPp = document.getElementById('estimatePp');
+            const hiddenTotal = document.getElementById('estimateTotal');
+            hiddenPp.value = est && est.priced ? String(est.pp) : '';
+            hiddenTotal.value = est && est.priced ? String(est.total) : '';
+
+            if (locked || !est) {
+                summary.hidden = true;
+                lastSignature = '';
+                return est;
+            }
+
+            const lines = selectionLines(st);
+            const signature = JSON.stringify([est.total, est.pp, est.small, est.open, lines, est.priced]);
+            summary.hidden = false;
+            if (signature === lastSignature) return est;
+            lastSignature = signature;
+
+            const totalEl = document.getElementById('sumTotal');
+            const ppEl = document.getElementById('sumPp');
+            totalEl.textContent = '';
+            ppEl.textContent = '';
+            if (est.priced) {
+                totalEl.appendChild(document.createTextNode('ab ca. '));
+                const t = document.createElement('span');
+                t.className = 'nowrap';
+                t.textContent = money(est.total);
+                totalEl.appendChild(t);
+                const p = document.createElement('span');
+                p.className = 'nowrap';
+                p.textContent = money(est.pp);
+                ppEl.appendChild(p);
+                ppEl.appendChild(document.createTextNode(' p. P.'));
+            } else {
+                totalEl.textContent = 'Paket noch offen';
+                ppEl.textContent = 'Jonathan berät dich';
+            }
+            setText('sumNote', est.priced && est.small ? 'berechnet für ' + PRICING.minGuests + ' Personen, kleinere Feiern auf Anfrage' : '');
+
+            const list = document.getElementById('sumList');
+            list.textContent = '';
+            lines.forEach(pair => {
+                const li = document.createElement('li');
+                const strong = document.createElement('strong');
+                strong.textContent = pair[0] + ': ';
+                li.appendChild(strong);
+                li.appendChild(document.createTextNode(pair[1]));
+                list.appendChild(li);
+            });
+
+            const openEl = document.getElementById('sumOpen');
+            openEl.textContent = '';
+            openEl.hidden = !est.open.length;
+            if (est.open.length) {
+                const strong = document.createElement('strong');
+                strong.textContent = 'im Angebot:';
+                openEl.appendChild(strong);
+                openEl.appendChild(document.createTextNode(' ' + est.open.join(', ')));
+            }
+            return est;
+        }
+
+        function renderPackageTotals(st) {
+            const guests = parseInt(st.guests, 10);
+            Object.keys(PRICING.packages).forEach(key => {
+                const pkg = PRICING.packages[key];
+                const ppEl = $('[data-pkg-pp="' + key + '"]');
+                if (ppEl && pkg.pp !== null) ppEl.textContent = money(pkg.pp);
+                const totalEl = $('[data-pkg-total="' + key + '"]');
+                if (!totalEl) return;
+                if (guests > 0 && pkg.pp !== null) {
+                    const billed = Math.max(guests, PRICING.minGuests);
+                    totalEl.textContent = (guests < PRICING.minGuests ? 'für ' + billed + ' Personen' : 'bei ' + billed + ' Gästen') + ' ab ca. ' + money(round10(pkg.pp * billed));
+                } else {
+                    totalEl.textContent = '';
+                }
+            });
+        }
+
+        // ── Extras abhängig vom Paket ──
+        function applyExtras() {
+            const pkgKey = form.elements.namedItem('package').value;
+            const pkg = PRICING.packages[pkgKey];
+            $$('.extra-option', form).forEach(label => {
+                const key = label.dataset.extra;
+                const ex = PRICING.extras[key];
+                const input = $('input', label);
+                const title = $('.choice-title', label);
+                const priceEl = $('[data-extra-price]', label);
+                if (!ex || !input) return;
+                if (!label.dataset.title) label.dataset.title = title.textContent;
+
+                let state = 'option';
+                if (includedIn(pkg, key)) state = 'included';
+                else if (pkg && pkgKey === 'beratung' && ex.packages.length < 3) state = 'hidden';
+                else if (pkg && pkgKey !== 'beratung' && ex.packages.indexOf(pkgKey) === -1) state = 'hidden';
+
+                label.dataset.state = state;
+                label.hidden = state === 'hidden';
+                input.hidden = state === 'included';
+                input.disabled = state !== 'option';
+                if (state !== 'option') input.checked = false;
+
+                title.textContent = state === 'included' && ex.includedLabel ? ex.includedLabel : label.dataset.title;
+                priceEl.textContent = '';
+                if (state === 'included') {
+                    const mark = document.createElement('span');
+                    mark.setAttribute('aria-hidden', 'true');
+                    mark.textContent = '✓ ';
+                    priceEl.appendChild(mark);
+                    priceEl.appendChild(document.createTextNode('inklusive'));
+                } else if (ex.price === null) {
+                    priceEl.textContent = 'Preis im Angebot';
+                } else {
+                    priceEl.textContent = '+' + money(ex.price) + (ex.unit === 'pp' ? ' p. P.' : '');
+                }
+            });
+            const hoursHint = $('[data-extra-hours-price]');
+            if (hoursHint) {
+                hoursHint.textContent = PRICING.extraHour.price === null ? 'Preis im Angebot' : '+' + money(PRICING.extraHour.price) + ' pro Stunde';
+            }
+        }
+
+        function applyCompany() {
+            const on = form.elements.namedItem('occasion').value === 'firmenevent';
+            companyGroup.hidden = !on;
+            companyInput.disabled = !on;
+        }
+
+        function checkKids() {
+            const guests = parseInt(guestsInput.value, 10);
+            const kids = parseInt(kidsInput.value, 10);
+            kidsInput.setCustomValidity(kids > guests ? 'Die Zahl der Kinder kann nicht größer sein als die Gästezahl.' : '');
+        }
+
+        function checkDate() {
+            const note = document.getElementById('date-short');
+            const value = dateInput.value;
+            let near = false;
+            if (value) {
+                const days = (new Date(value + 'T00:00:00') - new Date(new Date().toDateString())) / 86400000;
+                near = days >= 0 && days < 42;
+            }
+            note.hidden = !near;
+        }
+
+        function update() {
+            checkKids();
+            checkDate();
+            const st = readState();
+            renderSummary(st);
+            renderPackageTotals(st);
+        }
+
+        // ── Wizard ──
+        function controlsOf(stepEl) {
+            return $$('input, select, textarea', stepEl).filter(c => !c.disabled && c.type !== 'hidden');
+        }
+        function firstInvalidIn(stepEl) {
+            return controlsOf(stepEl).find(c => !c.checkValidity());
+        }
+        function firstInvalidStepIndex() {
+            for (let i = 0; i <= last; i++) {
+                if (firstInvalidIn(steps[i])) return i;
+            }
+            return -1;
+        }
+
+        function showStep(index, opts) {
+            opts = opts || {};
+            step = Math.max(0, Math.min(last, index));
+            steps.forEach((el, i) => el.classList.toggle('is-active', i === step));
+            form.classList.toggle('is-last', step === last);
+            backBtn.hidden = step === 0;
+            nextBtn.hidden = step === last;
+            progressText.textContent = 'Schritt ' + (step + 1) + ' von ' + steps.length + ' · ' + steps[step].dataset.title;
+            progressItems.forEach((li, i) => {
+                li.classList.toggle('is-done', i < step);
+                if (i === step) li.setAttribute('aria-current', 'step'); else li.removeAttribute('aria-current');
+            });
+            if (opts.focus === false) return;
+            // Mobil: Fortschrittsleiste in den Blick (die WhatsApp-Leiste darüber ist hoch).
+            // Desktop: ganze Formularkarte, damit die Zusammenfassung daneben sichtbar bleibt.
+            const target = window.innerWidth >= 1024 ? form.parentElement : progress;
+            const top = target.getBoundingClientRect().top;
+            if (top < 80 || top > window.innerHeight * 0.5) {
+                target.scrollIntoView({ block: 'start', behavior: reduceMotion.matches ? 'instant' : 'smooth' });
+            }
+            const legend = $('legend', steps[step]);
+            if (legend) legend.focus({ preventScroll: true });
+        }
+
+        function goNext() {
+            const bad = firstInvalidIn(steps[step]);
+            if (bad) { bad.reportValidity(); return; }
+            showStep(step + 1);
+        }
+
+        function showAlert(text) {
+            alertBox.textContent = text;
+            alertBox.hidden = false;
+        }
+
+        // ── Erfolgs-Zusammenfassung ──
+        function renderSuccess(saved) {
+            if (!saved || !saved.state) return;
+            const st = saved.state;
+            const rows = selectionLines(st);
+            const est = calcEstimate(st);
+            if (est && est.priced) {
+                rows.push(['Richtwert', 'ab ca. ' + money(est.total) + (est.small ? ' (berechnet für ' + PRICING.minGuests + ' Personen)' : '')]);
+            }
+            if (est && est.open.length) rows.push(['Im Angebot', est.open.join(', ')]);
+            if (!rows.length) return;
+            const dl = document.getElementById('successSummaryList');
+            dl.textContent = '';
+            rows.forEach(pair => {
+                const dt = document.createElement('dt');
+                dt.textContent = pair[0];
+                const dd = document.createElement('dd');
+                dd.textContent = pair[1];
+                dl.appendChild(dt);
+                dl.appendChild(dd);
+            });
+            document.getElementById('successSummary').hidden = false;
+        }
+
+        // ── Start ──
+        const params = new URLSearchParams(window.location.search);
+
+        if (params.get('success') === '1') {
+            locked = true;
+            form.hidden = true;
+            summary.hidden = true;
+            successBox.classList.add('visible');
+            renderSuccess(storeRead());
+            storeClear();
+            const title = document.getElementById('formSuccessTitle');
+            if (title) title.focus({ preventScroll: true });
+            return;
+        }
+
+        form.classList.add('is-wizard');
+
+        const now = new Date();
+        const pad = n => (n < 10 ? '0' : '') + n;
+        dateInput.min = now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate());
+
+        let startStep = 0;
+        const errorType = params.get('error');
+        if (errorType) {
+            const saved = storeRead();
+            if (saved && saved.state) restoreState(saved.state);
+            elapsedBonus = 10;
+            showAlert(MESSAGES[errorType] || MESSAGES.other);
+        }
+
+        applyCompany();
+        applyExtras();
+        update();
+
+        if (errorType) {
+            const bad = firstInvalidStepIndex();
+            startStep = errorType === 'required' && bad !== -1 ? bad : last;
+        }
+        showStep(startStep, { focus: false });
+
+        // Eingaben: Text entprellt, Auswahl sofort
+        let timer = null;
+        form.addEventListener('input', () => {
+            checkKids();
+            clearTimeout(timer);
+            timer = setTimeout(() => { update(); save(); }, 250);
+        });
+        form.addEventListener('change', () => {
+            clearTimeout(timer);
+            applyCompany();
+            applyExtras();
+            update();
+            save();
+        });
+
+        nextBtn.addEventListener('click', goNext);
+        backBtn.addEventListener('click', () => showStep(step - 1));
+
+        // Enter in einem Eingabefeld = Weiter (außer im letzten Schritt und in Textareas)
+        form.addEventListener('keydown', e => {
+            if (e.key !== 'Enter' || e.isComposing || e.target.tagName !== 'INPUT') return;
+            if (step < last) {
+                e.preventDefault();
+                goNext();
+            }
+        });
+
+        form.addEventListener('submit', e => {
+            const badStep = firstInvalidStepIndex();
+            if (badStep !== -1) {
+                e.preventDefault();
+                showStep(badStep, { focus: false });
+                const control = firstInvalidIn(steps[badStep]);
+                if (control) control.reportValidity();
+                return;
+            }
+            if (step < last) {
+                e.preventDefault();
+                showStep(step + 1);
+                return;
+            }
+            clearTimeout(timer);
+            update();
+            document.getElementById('formElapsed').value = String(Math.floor((Date.now() - loadedAt) / 1000) + elapsedBonus);
+            save();
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Wird gesendet …';
+        });
+
+        window.addEventListener('pageshow', e => {
+            if (e.persisted) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Anfrage senden';
+            }
+        });
+
+        // Details der Zusammenfassung (mobil)
+        const sumToggle = document.getElementById('sumToggle');
+        sumToggle.addEventListener('click', () => {
+            const open = !summary.classList.contains('is-open');
+            summary.classList.toggle('is-open', open);
+            sumToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            sumToggle.textContent = open ? 'Weniger' : 'Details';
+        });
+
+        // Hero-Chips, Paketkarten und Modal-CTA: Wert vorwählen, zum ersten offenen Schritt springen
+        document.addEventListener('click', e => {
+            const link = e.target.closest ? e.target.closest('a[data-occasion], a[data-package]') : null;
+            if (!link || form.hidden) return;
+            e.preventDefault();
+            [['occasion', link.dataset.occasion], ['package', link.dataset.package]].forEach(pair => {
+                if (!pair[1]) return;
+                const radio = $('input[name="' + pair[0] + '"][value="' + pair[1] + '"]', form);
+                if (radio) radio.checked = true;
+            });
+            applyCompany();
+            applyExtras();
+            update();
+            save();
+            const bad = firstInvalidStepIndex();
+            showStep(bad === -1 ? last : bad);
+        });
+
+        window.addEventListener('load', update);
     })();
     </script>
 
@@ -3008,7 +4713,7 @@
                         "name": "Ab wie vielen Personen kann ich Catering buchen?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Unser Catering ist ab 50 Personen buchbar. Für kleinere Gruppen empfehlen wir, direkt bei unserem Pop-Up vorbeizukommen oder Pizzen vorzubestellen."
+                            "text": "Unser Catering ist ab 50 Personen buchbar. Für kleinere Gruppen empfehlen wir, direkt bei unserem Pop-Up vorbeizukommen oder Pizzen vorzubestellen. Kleinere Feiern sind auf Anfrage möglich."
                         }
                     },
                     {
@@ -3029,6 +4734,22 @@
                     },
                     {
                         "@type": "Question",
+                        "name": "Was braucht ihr vor Ort?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Unsere Steinöfen laufen mit Gas. Ein normaler Stromanschluss in der Nähe ist hilfreich, aber kein Muss. Für den Pizzawagen brauchen wir eine ebene Stellfläche von etwa 3 × 4 m und eine Zufahrt. Passt der Wagen nicht hin, bauen wir den Ofen kompakt unter einem Pavillon auf."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Wie läuft der Tag ab?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Wir kommen etwa 2 bis 3 Stunden vor dem Essen zum Aufbau. Dann backen wir live im Steinofen, je nach Setup 25 bis 35 Pizzen pro Stunde, mit Servicepersonal am Wagen. Nach der Servierzeit bauen wir wieder ab."
+                        }
+                    },
+                    {
+                        "@type": "Question",
                         "name": "Bietet ihr auch vegane oder glutenfreie Optionen an?",
                         "acceptedAnswer": {
                             "@type": "Answer",
@@ -3041,6 +4762,22 @@
                         "acceptedAnswer": {
                             "@type": "Answer",
                             "text": "Nach deiner Angebotsbestätigung wird eine Anzahlung von 10% fällig. Sobald diese eingegangen ist, ist dein Termin fest in unserem Kalender reserviert."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Was ist, wenn sich die Gästezahl noch ändert?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Kein Problem. Die finale Gästezahl kannst du bis 14 Tage vor dem Event anpassen. Abgerechnet wird nach der tatsächlichen Gästezahl."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Bekommen Firmen eine Rechnung?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Ja. Firmen erhalten eine ordentliche Rechnung mit allen Pflichtangaben, Zahlung per Überweisung."
                         }
                     },
                     {
