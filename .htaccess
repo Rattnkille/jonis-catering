@@ -21,6 +21,11 @@ RewriteRule (^|/)\.(?!well-known/)([^/]+) - [F,L]
     Require all denied
 </FilesMatch>
 
+# Interne Kalkulation nicht öffentlich ausliefern (lokal aus dem Repo im Browser öffnen)
+<Files "kalkulation.html">
+    Require all denied
+</Files>
+
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresByType image/jpeg "access plus 6 months"
