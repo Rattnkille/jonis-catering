@@ -82,3 +82,9 @@ Belegt: Classic 27 €, Event 37 €, Premium 47 € p. P., ab 50 Personen, inkl
 ## Baseline (Characterization)
 
 Playwright-Skript und Screenshots (390/768/1440 px) aller vier Seiten plus `report.json` (Titel, Meta, Links, Formularfelder, JSON-LD-Typen) liegen im Session-Scratchpad `lock/before/`. Für die nächste Session: Skript nach `scripts/` übernehmen, wenn Jonathan Tests im Repo will.
+
+## Deploy und Live-Test (2026-10-20)
+
+- **Live-Weg ist Hostinger Git-Deployment, nicht der FTP-Workflow.** `deploy.yml` (FTP) schlägt seit 2026-09-17 mit "530 Login incorrect" fehl, die Live-Seite bekam die Merges trotzdem sofort (geprüft per curl nach dem Merge von #23: neuer Kontaktbereich, llms.txt mit Extras, kalkulation.html 403, RESEARCH.md 403). Entscheidung für Jonathan: FTP-Secrets erneuern oder den FTP-Workflow abschalten.
+- **Test-Anfrage live:** Baukasten auf https://jonis-catering.de durchgeklickt (Hochzeit, 80 Gäste, Event, Dessert), Absenden führte zu `?success=1` und sichtbarem Erfolgsblock. Zweiter Test per curl ebenfalls `success=1`. **Im Gmail-Postfach ist innerhalb von ca. 15 Minuten keine der beiden Test-Mails aufgetaucht**, zwei echte Anfragen vom selben Vormittag (alter Betreff "Neue Catering-Anfrage von …") schon. Zu prüfen: Spam-Ordner, Hostinger-Postfach info@, ob `.mail_config.php` auf dem Server noch existiert (liegt nicht im Repo; fehlt sie, nutzt PHP `mail()` und meldet trotzdem Erfolg).
+- Kleinanzeigen-Bestellbestätigung "Pizza-Catering Bremen" vom 2026-10-20 im Postfach: Anzeige läuft, Preise dort ebenfalls abgleichen.
