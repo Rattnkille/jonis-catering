@@ -16,7 +16,55 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
 
 // Header-Injection verhindern: Zeilenumbrüche aus einzeiligen Feldern entfernen.
 function clean_field($value) {
+    if (!is_scalar($value)) {
+        return '';
+    }
     return trim(str_replace(["\r", "\n", "%0a", "%0d", "%0A", "%0D"], '', (string) $value));
+}
+
+// Einzelwert gegen eine Whitelist prüfen. Unbekannte Werte werden zu ''.
+function clean_choice($value, array $allowed) {
+    $value = clean_field($value);
+    return in_array($value, $allowed, true) ? $value : '';
+}
+
+// Mehrfachauswahl (z. B. extras[]) gegen eine Whitelist prüfen.
+// Unbekannte Werte und Duplikate werden verworfen; Reihenfolge der Whitelist bleibt erhalten.
+function clean_choices($value, array $allowed) {
+    if (!is_array($value)) {
+        return [];
+    }
+    $picked = [];
+    foreach ($value as $item) {
+        $item = clean_field($item);
+        if ($item !== '' && in_array($item, $allowed, true)) {
+            $picked[$item] = true;
+        }
+    }
+    return array_values(array_filter($allowed, static function ($key) use ($picked) {
+        return isset($picked[$key]);
+    }));
+}
+
+// Ganzzahl im Bereich [$min, $max]; nur Ziffern erlaubt. Ungültig oder leer: null.
+function clean_int($value, $min, $max) {
+    $value = clean_field($value);
+    if ($value === '' || !preg_match('/^\d{1,9}$/', $value)) {
+        return null;
+    }
+    $number = (int) $value;
+    return ($number >= $min && $number <= $max) ? $number : null;
+}
+
+function format_euro($amount) {
+    return number_format((int) $amount, 0, ',', '.') . ' €';
+}
+
+function format_date_de($value) {
+    if (preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $value, $m) && checkdate((int) $m[2], (int) $m[3], (int) $m[1])) {
+        return $m[3] . '.' . $m[2] . '.' . $m[1];
+    }
+    return $value;
 }
 
 function encoded_header($value) {
@@ -199,6 +247,45 @@ function redirect_success($redirect) {
     exit;
 }
 
+// Whitelists für die Felder des Konfigurators (Werte = Schlüssel aus index.html).
+$occasionLabels = [
+    'hochzeit'      => 'Hochzeit',
+    'firmenevent'   => 'Firmenfeier',
+    'geburtstag'    => 'Geburtstag',
+    'private-feier' => 'Private Feier',
+    'sonstiges'     => 'Sonstiges',
+];
+$packageLabels = [
+    'classic'  => 'Classic',
+    'event'    => 'Event',
+    'premium'  => 'Premium',
+    'beratung' => 'Noch offen, Beratung gewünscht',
+];
+$extraLabels = [
+    'antipasti'     => 'Antipasti-Empfang',
+    'antipastiPlus' => 'Erweiterte Antipasti-Auswahl',
+    'dessert'       => 'Dessert: Tiramisu, Panna Cotta oder süße Dessert-Pizza',
+    'tableware'     => 'Mietporzellan statt Pappteller/Holzbretter',
+    'drinks'        => 'Getränke oder Aperol-Bar',
+    'lateNight'     => 'Später Pizza-Snack (z. B. Mitternacht)',
+];
+$settingLabels = [
+    'draussen'   => 'Draußen',
+    'drinnen'    => 'Drinnen',
+    'ueberdacht' => 'Überdacht',
+    'unbekannt'  => 'Weiß noch nicht',
+];
+$powerLabels = [
+    'ja'        => 'Ja, Stromanschluss vorhanden',
+    'nein'      => 'Nein, kein Stromanschluss',
+    'unbekannt' => 'Weiß nicht',
+];
+$contactPrefLabels = [
+    'email'    => 'E-Mail',
+    'telefon'  => 'Telefon',
+    'whatsapp' => 'WhatsApp',
+];
+
 $name      = clean_field($_POST['name']      ?? '');
 $email     = clean_field($_POST['email']     ?? '');
 $phone     = clean_field($_POST['phone']     ?? '');
@@ -210,15 +297,36 @@ $timeframe = clean_field($_POST['timeframe'] ?? '');
 $budget    = clean_field($_POST['budget']    ?? '');
 $dietary   = clean_field($_POST['dietary']   ?? '');
 $website   = clean_field($_POST['website']   ?? '');
-$started   = (int) ($_POST['form_started_at'] ?? 0);
-$message   = trim($_POST['message'] ?? '');
+$message   = is_string($_POST['message'] ?? null) ? trim($_POST['message']) : '';
+
+// Neue Felder des Konfigurators (alle optional; alte Requests ohne diese Felder funktionieren unverändert).
+$package      = clean_choice($_POST['package'] ?? '', array_keys($packageLabels));
+$extras       = clean_choices($_POST['extras'] ?? [], array_keys($extraLabels));
+$extraHours   = clean_int($_POST['extra_hours'] ?? '', 0, 3);
+$kids         = clean_int($_POST['kids'] ?? '', 0, 9999);
+// Kinder dürfen nicht mehr sein als Gäste (das Formular begrenzt das per JS; ohne JS gilt diese Prüfung).
+// Ungültige Angabe wird nicht übernommen, sondern in der Mail vermerkt.
+$kidsInvalid = null;
+if ($kids !== null && ctype_digit($guests) && $kids > (int) $guests) {
+    $kidsInvalid = $kids;
+    $kids = null;
+}
+$setting      = clean_choice($_POST['setting'] ?? '', array_keys($settingLabels));
+$power        = clean_choice($_POST['power'] ?? '', array_keys($powerLabels));
+$access       = clean_field($_POST['access'] ?? '');
+$contactPref  = clean_choice($_POST['contact_pref'] ?? '', array_keys($contactPrefLabels));
+$company      = clean_field($_POST['company'] ?? '');
+$estimatePp    = clean_int($_POST['estimate_pp'] ?? '', 0, 999999);
+$estimateTotal = clean_int($_POST['estimate_total'] ?? '', 0, 999999);
+// Sekunden seit dem Laden der Seite, vom Browser gemessen. Leer (z. B. ohne JS): durchlassen.
+$formElapsed  = clean_int($_POST['form_elapsed'] ?? '', 0, 604800);
 
 // Einfacher Bot-Schutz: gefuelltes Honeypot-Feld oder unrealistisch schneller Submit.
 if ($website !== '') {
     redirect_success($redirect);
 }
 
-if ($started > 0 && time() - $started < 3) {
+if ($formElapsed !== null && $formElapsed < 3) {
     redirect_success($redirect);
 }
 
@@ -232,20 +340,88 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-$to      = 'info@jonis-catering.de';
-$subject = 'Neue Catering-Anfrage von ' . $name;
+$to = 'info@jonis-catering.de';
+
+// Betreff: "Anfrage {Anlass} · {Gäste} Gäste · {Datum} – {Name}". Fehlen alle drei Angaben, bleibt der alte Betreff.
+$occasionText = $occasionLabels[$occasion] ?? $occasion;
+$subjectParts = [];
+if ($occasionText !== '') {
+    $subjectParts[] = $occasionText;
+}
+if ($guests !== '') {
+    $subjectParts[] = $guests . ' Gäste';
+}
+if ($date !== '') {
+    $subjectParts[] = format_date_de($date);
+}
+$subject = $subjectParts
+    ? 'Anfrage ' . implode(' · ', $subjectParts) . ' – ' . $name
+    : 'Neue Catering-Anfrage von ' . $name;
+
+// Konfiguration aus dem Baukasten (nur Zeilen mit Inhalt). Labels kommen aus den Whitelists oben,
+// nicht aus dem Client-Text.
+$configLines = [];
+if ($package !== '') {
+    $configLines[] = 'Paket:              ' . $packageLabels[$package];
+}
+if ($extras) {
+    $configLines[] = 'Extras:             ' . implode(', ', array_map(static function ($key) use ($extraLabels) {
+        return $extraLabels[$key];
+    }, $extras));
+}
+if ($extraHours) {
+    $configLines[] = 'Zusatzstunden:      ' . $extraHours;
+}
+if ($kids !== null && $kids > 0) {
+    $configLines[] = 'Kinder bis 12 J. (halber Preis): ' . $kids;
+}
+if ($kidsInvalid !== null) {
+    $configLines[] = 'Kinder (ungültig):   ' . $kidsInvalid . ' bei ' . $guests . ' Gästen, nicht übernommen, bitte nachfragen';
+}
+if ($setting !== '') {
+    $configLines[] = 'Aufstellort:        ' . $settingLabels[$setting];
+}
+if ($power !== '') {
+    $configLines[] = 'Strom:              ' . $powerLabels[$power];
+}
+if ($access !== '') {
+    $configLines[] = 'Zufahrt/Besonderes: ' . $access;
+}
+if ($contactPref !== '') {
+    $configLines[] = 'Kontakt bevorzugt:  ' . $contactPrefLabels[$contactPref];
+}
+if ($company !== '') {
+    $configLines[] = 'Firma:              ' . $company;
+}
+if ($estimateTotal !== null && $package !== '' && $package !== 'beratung') {
+    $estimateText = 'Richtwert laut Website: ab ca. ' . format_euro($estimateTotal);
+    if ($estimatePp !== null) {
+        $estimateText .= ' (' . format_euro($estimatePp) . ' p. P.)';
+    }
+    if (ctype_digit($guests) && (int) $guests < 50) {
+        $estimateText .= ', berechnet für 50 Personen';
+    }
+    if ($configLines) {
+        $configLines[] = '';
+    }
+    $configLines[] = $estimateText . ' (clientseitig, unverbindlich)';
+}
+$configText = $configLines ? implode("\n", $configLines) : '';
 
 $body  = "Neue Anfrage über das Kontaktformular auf jonis-catering.de:\n\n";
 $body .= 'Name:              ' . $name . "\n";
 $body .= 'E-Mail:            ' . $email . "\n";
 $body .= 'Telefon:           ' . ($phone     !== '' ? $phone     : '-') . "\n";
-$body .= 'Anlass:            ' . ($occasion  !== '' ? $occasion  : '-') . "\n";
-$body .= 'Wunschdatum:       ' . ($date      !== '' ? $date      : '-') . "\n";
+$body .= 'Anlass:            ' . ($occasion  !== '' ? $occasionText : '-') . "\n";
+$body .= 'Wunschdatum:       ' . ($date      !== '' ? format_date_de($date) : '-') . "\n";
 $body .= 'Anzahl Gäste:      ' . ($guests    !== '' ? $guests    : '-') . "\n";
 $body .= 'Veranstaltungsort: ' . ($location  !== '' ? $location  : '-') . "\n";
-$body .= 'Zeitfenster:       ' . ($timeframe !== '' ? $timeframe : '-') . "\n";
+$body .= 'Startzeit/Zeitfenster: ' . ($timeframe !== '' ? $timeframe : '-') . "\n";
 $body .= 'Budget (ca.):      ' . ($budget    !== '' ? $budget    : '-') . "\n";
 $body .= 'Ernährung/Allergien: ' . ($dietary  !== '' ? $dietary   : '-') . "\n\n";
+if ($configText !== '') {
+    $body .= "Konfiguration (Website):\n" . $configText . "\n\n";
+}
 $body .= "Nachricht:\n" . ($message !== '' ? $message : '-') . "\n";
 
 // Absender auf eigener Domain (SPF/DMARC-konform), Antwort an Anfragenden.
@@ -284,7 +460,21 @@ try {
         'timeframe' => $timeframe,
         'budget' => $budget,
         'dietary' => $dietary,
-        'message' => $message,
+        // Neue Keys des Konfigurators (das Sheet ignoriert unbekannte Keys).
+        'package' => $package,
+        'extras' => $extras,
+        'extra_hours' => $extraHours,
+        'kids' => $kids,
+        'setting' => $setting,
+        'power' => $power,
+        'access' => $access,
+        'contact_pref' => $contactPref,
+        'company' => $company,
+        'estimate_pp' => $estimatePp,
+        'estimate_total' => $estimateTotal,
+        // Konfiguration zusätzlich als Text vor der Nachricht, damit sie ohne Änderung
+        // an Code.gs in der Spalte "Nachricht" des Sheets landet.
+        'message' => ($configText !== '' ? "Konfiguration (Website):\n" . $configText . "\n\n" : '') . $message,
     ], load_sheets_webhook_config());
 } catch (Throwable $exception) {
     error_log('Kontaktformular Sheets-Webhook-Fehler: ' . $exception->getMessage());

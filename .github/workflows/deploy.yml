@@ -33,5 +33,9 @@ jobs:
             **/package*.json
             **/CLAUDE.md
             **/README.md
+            **/PROMPT.md
+            **/MAP.md
+            **/RESEARCH.md
+            **/kalkulation.html
             **/forno-twin/**
             **/sheets-integration/**

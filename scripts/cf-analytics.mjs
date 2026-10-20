@@ -14,7 +14,7 @@ import { writeFile, mkdir } from 'node:fs/promises';
 const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
 const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
 // Der Beacon-Token ist ohnehin öffentlich im Seitenquelltext – als Default ok.
-const SITE_TAG = process.env.CLOUDFLARE_SITE_TAG || '558d48c00c6d4458ac8390fbc7f5b566';
+const CONFIGURED_SITE_TAG = process.env.CLOUDFLARE_SITE_TAG || '558d48c00c6d4458ac8390fbc7f5b566';
 
 if (!API_TOKEN || !ACCOUNT_ID) {
     console.error('Fehlende Secrets: CLOUDFLARE_API_TOKEN und/oder CLOUDFLARE_ACCOUNT_ID sind nicht gesetzt.');
@@ -28,6 +28,60 @@ const start = new Date(today);
 start.setUTCDate(start.getUTCDate() - (DAYS - 1));
 const START = fmt(start);
 const END = fmt(today);
+
+// --- Selbstdiagnose: Welche Site-Tags liefern in diesem Account überhaupt Daten? ---
+// Hintergrund: Der Beacon-Token im Quelltext und der "Site-Tag" aus dem Cloudflare-Dashboard
+// sind zwei verschiedene Werte. Ein falscher siteTag-Filter liefert still 0 Zeilen, keinen Fehler.
+// Diese Abfrage läuft getrennt und darf fehlschlagen, ohne den Bericht zu verhindern.
+let siteTagDiagnosis = '';
+let SITE_TAG = CONFIGURED_SITE_TAG;
+try {
+    const diagQuery = `
+query {
+  viewer {
+    accounts(filter: { accountTag: "${ACCOUNT_ID}" }) {
+      sites: rumPageloadEventsAdaptiveGroups(
+        filter: { date_geq: "${START}", date_leq: "${END}" }
+        limit: 20
+        orderBy: [count_DESC]
+      ) {
+        count
+        dimensions { siteTag }
+      }
+    }
+  }
+}`;
+    const diagRes = await fetch('https://api.cloudflare.com/client/v4/graphql', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${API_TOKEN}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: diagQuery }),
+    });
+    const diag = diagRes.ok ? await diagRes.json() : null;
+    const sites = diag?.data?.viewer?.accounts?.[0]?.sites || [];
+    if (diag?.errors?.length) {
+        siteTagDiagnosis = `Site-Tag-Prüfung nicht möglich (GraphQL: ${diag.errors[0]?.message || 'Fehler'}).`;
+    } else if (!sites.length) {
+        siteTagDiagnosis = 'Im gesamten Account gibt es im Zeitraum keine Web-Analytics-Daten, unabhängig vom Site-Tag.';
+    } else {
+        const known = sites.map((s) => `${s.dimensions?.siteTag} (${s.count} Aufrufe)`).join(', ');
+        const configuredHasData = sites.some((s) => s.dimensions?.siteTag === CONFIGURED_SITE_TAG);
+        if (configuredHasData) {
+            siteTagDiagnosis = `Konfigurierter Site-Tag liefert Daten. Vorhandene Site-Tags: ${known}.`;
+        } else if (sites.length === 1 && sites[0].dimensions?.siteTag) {
+            // Genau ein Site-Tag mit Daten: den nehmen, statt still 0 zu melden.
+            SITE_TAG = sites[0].dimensions.siteTag;
+            siteTagDiagnosis = `Der konfigurierte Site-Tag "${CONFIGURED_SITE_TAG}" liefert keine Daten. `
+              + `Automatisch auf den einzigen Site-Tag mit Daten umgestellt: ${known}. `
+              + 'Dauerhaft fixen: diesen Wert als Secret CLOUDFLARE_SITE_TAG eintragen.';
+        } else {
+            siteTagDiagnosis = `Der konfigurierte Site-Tag "${CONFIGURED_SITE_TAG}" liefert keine Daten, andere schon: ${known}. `
+              + 'Den passenden Site-Tag aus dem Cloudflare-Dashboard (Analytics & Logs → Web Analytics → Site → Manage site) '
+              + 'als Secret CLOUDFLARE_SITE_TAG setzen.';
+        }
+    }
+} catch (err) {
+    siteTagDiagnosis = `Site-Tag-Prüfung übersprungen (${err?.message || err}).`;
+}
 
 const group = (alias, extraFilter, dims, orderBy, limit) => `
   ${alias}: rumPageloadEventsAdaptiveGroups(
@@ -83,6 +137,7 @@ if (!account) {
 const sumCount = (rows) => rows.reduce((a, r) => a + (r.count || 0), 0);
 const sumVisits = (rows) => rows.reduce((a, r) => a + (r.sum?.visits || 0), 0);
 
+
 const byDate = account.byDate || [];
 const last7 = byDate.slice(-7);
 const prev7 = byDate.slice(-14, -7);
@@ -122,7 +177,7 @@ insights.push(`- **Beliebteste Seite:** ${topPage ? `${topPage.label} (${topPage
 // Einfache, regelbasierte Hinweise/Empfehlungen.
 const tips = [];
 if (views30 === 0) {
-    tips.push('Noch keine Daten im Zeitraum. Der Beacon ist live — Werte erscheinen, sobald die Seite besucht wird. Prüfen: Cloudflare-Beacon im Quelltext vorhanden und Seite über die korrekte Domain aufgerufen.');
+    tips.push('Keine Daten im Zeitraum. Erst die Messung prüfen, bevor "kein Traffic" angenommen wird: Beacon im Quelltext, korrekte Domain, und ob der Site-Tag-Filter stimmt (siehe Messprüfung unten).');
 } else if (views7 === 0) {
     tips.push('In den letzten 7 Tagen kein Traffic, im 30-Tage-Fenster aber schon. Saisonaler Einbruch oder fehlende Sichtbarkeit — ggf. Google-Business-Profil und Social-Posts ankurbeln.');
 } else {
@@ -138,7 +193,19 @@ if (views30 === 0) {
 }
 if (!tips.length) tips.push('Keine Auffälligkeiten — Werte im erwartbaren Rahmen.');
 
-const autoEval = `${insights.join('\n')}\n\n**Hinweise:**\n${tips.map((t) => `- ${t}`).join('\n')}\n`;
+// Zwei Zeilen, die Claude direkt übernehmen kann: Was heißt das, was ist der nächste Schritt.
+const meaning = views30 === 0
+    ? 'Die Zahlen sind nicht belastbar, solange die Messung nicht geprüft ist.'
+    : views7 === 0
+        ? 'Diese Woche kam niemand über die Website, im Monat davor schon.'
+        : `Diese Woche ${views7} Seitenaufrufe bei ${visits7} Besuchen, Trend ${trend(views7, viewsPrev7)} zur Vorwoche.`;
+const nextStep = views30 === 0
+    ? 'Messprüfung unten lesen und den Site-Tag korrigieren, dann eine Woche warten.'
+    : !topRef
+        ? 'Google-Unternehmensprofil und Verlinkungen stärken, fast alle Besuche kommen direkt.'
+        : `Quelle "${topRef.label}" weiter ausbauen und die Anfragen pro Woche danebenlegen.`;
+
+const autoEval = `${insights.join('\n')}\n- **Was heißt das:** ${meaning}\n- **Nächster Schritt:** ${nextStep}\n\n**Hinweise:**\n${tips.map((t) => `- ${t}`).join('\n')}\n\n**Messprüfung:** ${siteTagDiagnosis || 'nicht ausgeführt'}\n`;
 
 const table = (rows, key, label) => {
     if (!rows || !rows.length) return `_Noch keine Daten._\n`;
