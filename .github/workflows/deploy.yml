@@ -35,3 +35,4 @@ jobs:
             **/README.md
             **/forno-twin/**
             **/sheets-integration/**
+            **/content-pipeline/**
