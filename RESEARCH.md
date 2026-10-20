@@ -7,7 +7,6 @@ Stand: 2026-10-19. Branch `claude/brave-knuth-jtg3ka`.
 
 Alles, was hier steht, ist auf der Seite entweder weggelassen oder mit "im Angebot" / "auf Anfrage" formuliert, bis eine Antwort da ist. Die Nummern bleiben stabil (bestätigte Fragen stehen unten unter "Bestätigt").
 
-1. **Extras-Preise.** Vorschlag (hergeleitet aus den Paketdifferenzen und `kalkulation.html`): Antipasti-Empfang zu Classic 7 € p. P., Dessert 5 € p. P., erweiterte Antipasti zu Event 3 € p. P., Zusatz-Servierstunde 150 € pauschal. Solange nicht bestätigt, steht im Code `price: null` und auf der Seite "Preis im Angebot" (`index.html`, Objekt `PRICING`). **Status: offen, Wettbewerbsvergleich läuft.**
 6. **Anzahlung / Zahlungsplan.** Seite: 10 % nach Angebotsbestätigung. In Mails bis 05/2026 auch 30 % und 50 %, seit 09/2026 durchgehend 10 %. Seite bleibt bei 10 %. Restzahlung wann? Barzahlung möglich?
 7. **Stornierung.** Einzige Aussage in Mails (03/2026): Anzahlung wird bei kompletter Absage erstattet. Soll das als Regel auf die Seite?
 8. **Finale Gästezahl.** Mails: "bis 14 Tage vor dem Event anpassbar", "Abrechnung nach tatsächlicher Gästezahl". Auf der Seite als FAQ übernommen. Bestätigen.
@@ -22,6 +21,8 @@ Alles, was hier steht, ist auf der Seite entweder weggelassen oder mit "im Angeb
 18. **Inhaber-Foto und ein Ich-Satz** für den Kontaktbereich: lieferst du beides?
 
 ## Bestätigt
+
+- **Extras-Preise** (bestätigt 2026-10-20, nach Wettbewerbsvergleich: Antipasti-Zubuchung am Markt 10 bis 15 € p. P., Dessert 4,50 bis 6 €, Porzellan 1,50 €): Antipasti-Empfang zu Classic 10 € p. P., Dessert 6 € p. P., erweiterte Antipasti zu Event 4 € p. P., Mietporzellan 3,50 € p. P., Zusatz-Servierstunde 180 € pauschal. Getränke-Bar und später Pizza-Snack bleiben auf Anfrage. So gesetzt in `index.html` (`PRICING`) und `llms.txt`. Logik: Classic + Antipasti = 37 € = Event, Event + Dessert + Upgrade = 47 € = Premium, die Pakete bleiben die besseren Bündel.
 
 Vom Inhaber bestätigt am 2026-10-19 und eingebaut. Die Nummern entsprechen den früheren offenen Fragen.
 

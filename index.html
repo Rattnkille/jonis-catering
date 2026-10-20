@@ -2972,7 +2972,7 @@
                 </div>
 
             </div>
-            <p class="packages-addons"><strong>Dazubuchbar:</strong> Antipasti, Dessert, Mietporzellan, Getränke-Bar, Zusatzstunden. Preise im Angebot.</p>
+            <p class="packages-addons"><strong>Dazubuchbar:</strong> Antipasti-Empfang 10 € p. P., Dessert 6 € p. P., Mietporzellan 3,50 € p. P., Zusatzstunde 180 €. Getränke-Bar und später Pizza-Snack auf Anfrage.</p>
         </div>
     </section>
 
@@ -4045,14 +4045,14 @@
                 beratung: { label: 'Beratung gewünscht', pp: null, includes: [] }
             },
             extras: {
-                antipasti: { label: 'Antipasti-Empfang', unit: 'pp', price: null, packages: ['classic'] },
-                antipastiPlus: { label: 'Erweiterte Antipasti-Auswahl', unit: 'pp', price: null, packages: ['event'] },
-                dessert: { label: 'Dessert', includedLabel: 'Dessert: Tiramisu oder Panna Cotta', unit: 'pp', price: null, packages: ['classic', 'event'] },
-                tableware: { label: 'Mietporzellan', unit: 'pp', price: null, packages: ['classic', 'event', 'premium'] },
+                antipasti: { label: 'Antipasti-Empfang', unit: 'pp', price: 10, packages: ['classic'] },
+                antipastiPlus: { label: 'Erweiterte Antipasti-Auswahl', unit: 'pp', price: 4, packages: ['event'] },
+                dessert: { label: 'Dessert', includedLabel: 'Dessert: Tiramisu oder Panna Cotta', unit: 'pp', price: 6, packages: ['classic', 'event'] },
+                tableware: { label: 'Mietporzellan', unit: 'pp', price: 3.5, packages: ['classic', 'event', 'premium'] },
                 drinks: { label: 'Getränke oder Aperol-Bar', unit: 'pp', price: null, packages: ['classic', 'event', 'premium'] },
                 lateNight: { label: 'Später Pizza-Snack', unit: 'flat', price: null, packages: ['classic', 'event', 'premium'] }
             },
-            extraHour: { price: null, max: 3 },
+            extraHour: { price: 180, max: 3 },
             // Kinder bis maxAge zahlen factor x Paketpreis (bestätigt vom Inhaber).
             kids: { maxAge: 12, factor: 0.5 },
             // Bis includedKm um Bremen inklusive, danach Pauschale je Zone (Entfernung unbekannt, daher nie im Richtwert).
@@ -4080,7 +4080,9 @@
         const $ = (sel, root) => (root || document).querySelector(sel);
         const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
         const nf = new Intl.NumberFormat('de-DE', { maximumFractionDigits: 0 });
-        const money = n => nf.format(n) + ' €';
+        const nf2 = new Intl.NumberFormat('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        // Ganze Beträge ohne Nachkommastellen (2.960 €), sonst mit zwei (3,50 €).
+        const money = n => (Number.isInteger(n) ? nf : nf2).format(n) + ' €';
         const round10 = n => Math.round(n / 10) * 10;
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -4192,7 +4194,7 @@
                 billed: billed,
                 small: guests < PRICING.minGuests,
                 priced: priced,
-                pp: priced ? Math.round(pp) : null,
+                pp: priced ? Math.round(pp * 100) / 100 : null,
                 kids: kids,
                 // Kinder zahlen nur beim Paketpreis die Hälfte; Extras pro Person gelten für alle Gäste.
                 total: priced ? round10(packageSum(pkg.pp, billed, kids) + (pp - pkg.pp) * billed + flat) : null,
