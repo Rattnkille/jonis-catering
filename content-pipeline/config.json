@@ -1,0 +1,18 @@
+{
+  "drive": {
+    "inbox": "1we6bwju0a-2Lkj9ECSRtUDDbxbK4y2c-",
+    "social_media_root": "1FLQERRyJXr2rPIQoSCHVU7rw0jmXB7IF",
+    "videos": "1U5NdHv3_7PohZeBuTIKd-xre2tt4ABsC",
+    "fotos_export": "1RtKvHsADeCKV2Wm45RZggpt_i5jMdW2A",
+    "arbeitsordner": "1ur0cS-DB3fjzThDkK3nphTXrgdHyzWAZ",
+    "fertig": "1fZIV_IQ6I8CyK9tth-3Iq-blO4ZVnIzW",
+    "fertig_zum_posten": "1rzWfsMe-JCN3eGZT2N4KfLhWTV1USRzD",
+    "posting_log": "16hXEFtX8lzJmOKXqqQj76fwBXP9-RNLX",
+    "playbook": "1S5QI0uQjjmsJxgL3TRV-uAtruujM8m7C"
+  },
+  "posting": {
+    "videos_per_week": 7,
+    "time": "18:00",
+    "web_max_mb": 9.5
+  }
+}
