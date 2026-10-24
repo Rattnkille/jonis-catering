@@ -285,6 +285,20 @@ $contactPrefLabels = [
     'telefon'  => 'Telefon',
     'whatsapp' => 'WhatsApp',
 ];
+// Pizzen der Favoriten-Tafel. Muss zu den .menu-card-name-Einträgen in index.html passen,
+// sonst wird eine Sorte stillschweigend verworfen.
+$pizzaNames = [
+    'La Marinera Noble',
+    'La Reina Margarita',
+    'San Champiñón',
+    'La Guerrera OG Pepperoni',
+    'El Atún Valiente',
+    'La Picante Dulzura',
+    'Quattro Formaggi',
+    'La Diavola',
+    'La Verde',
+    'La Funghi Vegana',
+];
 
 $name      = clean_field($_POST['name']      ?? '');
 $email     = clean_field($_POST['email']     ?? '');
@@ -302,6 +316,8 @@ $message   = is_string($_POST['message'] ?? null) ? trim($_POST['message']) : ''
 // Neue Felder des Konfigurators (alle optional; alte Requests ohne diese Felder funktionieren unverändert).
 $package      = clean_choice($_POST['package'] ?? '', array_keys($packageLabels));
 $extras       = clean_choices($_POST['extras'] ?? [], array_keys($extraLabels));
+// Favoriten kommen als "Name|Name|…" aus dem versteckten Feld; höchstens 6, nur bekannte Sorten.
+$pizzas       = array_slice(clean_choices(explode('|', clean_field($_POST['pizzas'] ?? '')), $pizzaNames), 0, 6);
 $extraHours   = clean_int($_POST['extra_hours'] ?? '', 0, 3);
 $kids         = clean_int($_POST['kids'] ?? '', 0, 9999);
 // Kinder dürfen nicht mehr sein als Gäste (das Formular begrenzt das per JS; ohne JS gilt diese Prüfung).
@@ -363,6 +379,9 @@ $subject = $subjectParts
 $configLines = [];
 if ($package !== '') {
     $configLines[] = 'Paket:              ' . $packageLabels[$package];
+}
+if ($pizzas) {
+    $configLines[] = 'Favoriten-Pizzen:   ' . implode(', ', $pizzas);
 }
 if ($extras) {
     $configLines[] = 'Extras:             ' . implode(', ', array_map(static function ($key) use ($extraLabels) {
@@ -462,6 +481,7 @@ try {
         'dietary' => $dietary,
         // Neue Keys des Konfigurators (das Sheet ignoriert unbekannte Keys).
         'package' => $package,
+        'pizzas' => $pizzas,
         'extras' => $extras,
         'extra_hours' => $extraHours,
         'kids' => $kids,
