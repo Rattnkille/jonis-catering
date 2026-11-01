@@ -1,6 +1,6 @@
 # FORNO TWIN – Evaluationsbericht
 
-Stand: 2026-10-25T09:08:51+00:00 | Testfälle: synthetisch (data/synthetic_events.json)
+Stand: 2026-11-01T11:16:05+00:00 | Testfälle: synthetisch (data/synthetic_events.json)
 
 ## Kennzahlen
 
