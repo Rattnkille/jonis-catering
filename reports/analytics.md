@@ -1,26 +1,26 @@
 # Cloudflare Web Analytics – Bericht
 
-> Automatisch generiert am 2026-10-26 12:34 UTC.
-> Zeitraum: **2026-09-27 bis 2026-10-26** (letzte 30 Tage). Quelle: Cloudflare Web Analytics (RUM), cookieless.
+> Automatisch generiert am 2026-11-02 15:13 UTC.
+> Zeitraum: **2026-10-04 bis 2026-11-02** (letzte 30 Tage). Quelle: Cloudflare Web Analytics (RUM), cookieless.
 
 ## Überblick
 
 | Kennzahl | Letzte 7 Tage | Letzte 30 Tage |
 |---|---|---|
-| Seitenaufrufe | 170 | 460 |
-| Besuche | 100 | 290 |
+| Seitenaufrufe | 140 | 460 |
+| Besuche | 70 | 290 |
 
 ## Automatische Auswertung
 
-- **Seitenaufrufe (7 Tage):** 170 — Trend ggü. Vorwoche: ▼ -15 %
-- **Besuche (7 Tage):** 100
+- **Seitenaufrufe (7 Tage):** 140 — Trend ggü. Vorwoche: ▼ -33 %
+- **Besuche (7 Tage):** 70
 - **Stärkste Quelle:** jonis-catering.de (170 Aufrufe)
 - **Beliebteste Seite:** / (420 Aufrufe)
-- **Was heißt das:** Diese Woche 170 Seitenaufrufe bei 100 Besuchen, Trend ▼ -15 % zur Vorwoche.
+- **Was heißt das:** Diese Woche 140 Seitenaufrufe bei 70 Besuchen, Trend ▼ -33 % zur Vorwoche.
 - **Nächster Schritt:** Quelle "jonis-catering.de" weiter ausbauen und die Anfragen pro Woche danebenlegen.
 
 **Hinweise:**
-- Keine Auffälligkeiten — Werte im erwartbaren Rahmen.
+- Deutlicher Rückgang ggü. Vorwoche (>20 %). Quellen prüfen: Ist eine wichtige Referrer-Quelle weggebrochen?
 
 **Messprüfung:** Der konfigurierte Site-Tag "558d48c00c6d4458ac8390fbc7f5b566" liefert keine Daten. Automatisch auf den einzigen Site-Tag mit Daten umgestellt: af3abe79317047409c83bc3b871404e3 (460 Aufrufe). Dauerhaft fixen: diesen Wert als Secret CLOUDFLARE_SITE_TAG eintragen.
 
@@ -28,10 +28,6 @@
 
 | Datum | Seitenaufrufe | Besuche |
 |---|---|---|
-| 2026-09-27 | 10 | 10 |
-| 2026-09-28 | 30 | 10 |
-| 2026-09-29 | 10 | 10 |
-| 2026-10-02 | 20 | 10 |
 | 2026-10-07 | 20 | 20 |
 | 2026-10-08 | 20 | 10 |
 | 2026-10-11 | 20 | 20 |
@@ -46,20 +42,22 @@
 | 2026-10-22 | 40 | 30 |
 | 2026-10-23 | 10 | 0 |
 | 2026-10-24 | 10 | 0 |
-| 2026-10-26 | 10 | 0 |
+| 2026-10-26 | 30 | 20 |
+| 2026-10-27 | 20 | 10 |
+| 2026-10-30 | 10 | 0 |
+| 2026-11-02 | 20 | 10 |
 
 
 ## Top-Quellen (Referrer)
 
 | Referrer-Host | Seitenaufrufe |
 |---|---|
-| (direkt/unbekannt) | 180 |
+| (direkt/unbekannt) | 190 |
 | jonis-catering.de | 170 |
-| www.google.com | 50 |
-| l.instagram.com | 20 |
+| www.google.com | 30 |
+| l.instagram.com | 30 |
+| m.facebook.com | 20 |
 | www.google.nl | 10 |
-| m.facebook.com | 10 |
-| www.iusseek.com | 10 |
 | www.jonis-catering.de | 10 |
 
 
@@ -88,21 +86,21 @@
 
 | Gerätetyp | Seitenaufrufe |
 |---|---|
-| desktop | 230 |
-| mobile | 230 |
+| mobile | 280 |
+| desktop | 180 |
 
 
 ## Browser
 
 | Browser | Seitenaufrufe |
 |---|---|
-| MobileSafari | 130 |
-| Chrome | 100 |
-| Unknown | 50 |
-| Edge | 50 |
+| MobileSafari | 150 |
+| Unknown | 70 |
+| Chrome | 60 |
+| Edge | 40 |
 | Instagram | 40 |
 | ChromeDerivative | 40 |
 | ChromeHeadless | 20 |
+| ChromeMobile | 20 |
 | Safari | 20 |
-| ChromeMobile | 10 |
 
