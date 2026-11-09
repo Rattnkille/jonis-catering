@@ -1,22 +1,22 @@
 # Cloudflare Web Analytics – Bericht
 
-> Automatisch generiert am 2026-11-02 15:13 UTC.
-> Zeitraum: **2026-10-04 bis 2026-11-02** (letzte 30 Tage). Quelle: Cloudflare Web Analytics (RUM), cookieless.
+> Automatisch generiert am 2026-11-09 15:43 UTC.
+> Zeitraum: **2026-10-11 bis 2026-11-09** (letzte 30 Tage). Quelle: Cloudflare Web Analytics (RUM), cookieless.
 
 ## Überblick
 
 | Kennzahl | Letzte 7 Tage | Letzte 30 Tage |
 |---|---|---|
-| Seitenaufrufe | 140 | 460 |
-| Besuche | 70 | 290 |
+| Seitenaufrufe | 130 | 460 |
+| Besuche | 80 | 300 |
 
 ## Automatische Auswertung
 
-- **Seitenaufrufe (7 Tage):** 140 — Trend ggü. Vorwoche: ▼ -33 %
-- **Besuche (7 Tage):** 70
-- **Stärkste Quelle:** jonis-catering.de (170 Aufrufe)
-- **Beliebteste Seite:** / (420 Aufrufe)
-- **Was heißt das:** Diese Woche 140 Seitenaufrufe bei 70 Besuchen, Trend ▼ -33 % zur Vorwoche.
+- **Seitenaufrufe (7 Tage):** 130 — Trend ggü. Vorwoche: ▼ -35 %
+- **Besuche (7 Tage):** 80
+- **Stärkste Quelle:** jonis-catering.de (160 Aufrufe)
+- **Beliebteste Seite:** / (430 Aufrufe)
+- **Was heißt das:** Diese Woche 130 Seitenaufrufe bei 80 Besuchen, Trend ▼ -35 % zur Vorwoche.
 - **Nächster Schritt:** Quelle "jonis-catering.de" weiter ausbauen und die Anfragen pro Woche danebenlegen.
 
 **Hinweise:**
@@ -28,8 +28,6 @@
 
 | Datum | Seitenaufrufe | Besuche |
 |---|---|---|
-| 2026-10-07 | 20 | 20 |
-| 2026-10-08 | 20 | 10 |
 | 2026-10-11 | 20 | 20 |
 | 2026-10-12 | 50 | 20 |
 | 2026-10-13 | 30 | 20 |
@@ -46,14 +44,16 @@
 | 2026-10-27 | 20 | 10 |
 | 2026-10-30 | 10 | 0 |
 | 2026-11-02 | 20 | 10 |
+| 2026-11-03 | 20 | 20 |
+| 2026-11-06 | 20 | 20 |
 
 
 ## Top-Quellen (Referrer)
 
 | Referrer-Host | Seitenaufrufe |
 |---|---|
-| (direkt/unbekannt) | 190 |
-| jonis-catering.de | 170 |
+| (direkt/unbekannt) | 200 |
+| jonis-catering.de | 160 |
 | www.google.com | 30 |
 | l.instagram.com | 30 |
 | m.facebook.com | 20 |
@@ -65,9 +65,9 @@
 
 | Pfad | Seitenaufrufe |
 |---|---|
-| / | 420 |
+| / | 430 |
 | /index.html | 20 |
-| /hochzeit-pizza-catering-bremen/ | 20 |
+| /hochzeit-pizza-catering-bremen/ | 10 |
 
 
 ## Top-Länder
@@ -86,21 +86,22 @@
 
 | Gerätetyp | Seitenaufrufe |
 |---|---|
-| mobile | 280 |
-| desktop | 180 |
+| mobile | 270 |
+| desktop | 190 |
 
 
 ## Browser
 
 | Browser | Seitenaufrufe |
 |---|---|
-| MobileSafari | 150 |
+| MobileSafari | 120 |
 | Unknown | 70 |
 | Chrome | 60 |
 | Edge | 40 |
 | Instagram | 40 |
 | ChromeDerivative | 40 |
-| ChromeHeadless | 20 |
-| ChromeMobile | 20 |
+| ChromeHeadless | 30 |
+| ChromeMobile | 30 |
 | Safari | 20 |
+| SamsungInternet | 10 |
 
