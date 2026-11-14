@@ -21,7 +21,10 @@
     <meta name="twitter:image" content="https://jonis-catering.de/img/hero.jpg">
     <link rel="canonical" href="https://jonis-catering.de/">
     <link rel="alternate" hreflang="de-DE" href="https://jonis-catering.de/">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/assets/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
 
     <!-- Google Search Console: Verifizierung. -->
     <meta name="google-site-verification" content="hFQKc1sUOvG5C8BqekHsEt0VaX09e7tRdnb4f1gNszM">
@@ -261,6 +264,43 @@
 
         .logo span {
             color: var(--primary);
+        }
+
+        /* Header-Logo: Maskottchen + Schriftzug */
+        .site-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 0 0 auto;
+            line-height: 1;
+        }
+
+        .site-logo img {
+            display: block;
+            width: auto;
+            height: 44px;
+        }
+
+        .site-logo .logo-text {
+            color: var(--dark);
+            white-space: nowrap;
+        }
+
+        .site-logo .logo-text span {
+            color: var(--primary);
+        }
+
+        @media (max-width: 380px) {
+            .site-logo { gap: 0.35rem; }
+            .site-logo img { height: 36px; }
+            .site-logo.logo { font-size: 1.3rem; }
+        }
+
+        /* Schmale Desktops: Logo + 8 Menuepunkte + CTA passen sonst nicht in eine Zeile */
+        @media (min-width: 1024px) and (max-width: 1199.98px) {
+            .site-logo img { height: 38px; }
+            .site-logo.logo { font-size: 1.3rem; }
+            .header .nav-desktop { gap: 1.25rem; }
         }
 
         .nav-desktop {
@@ -1518,6 +1558,12 @@
         .reviews-cta {
             text-align: center;
             margin-top: 2rem;
+        }
+
+        /* Langer Button-Text darf auf sehr schmalen Handys (320px) umbrechen */
+        .reviews-cta .btn {
+            max-width: 100%;
+            white-space: normal;
         }
 
         /* ============================================
@@ -2909,7 +2955,10 @@
          ============================================ -->
     <header class="header" id="header">
         <div class="container header-inner">
-            <a href="#" class="logo">JONIS <span>CATERING</span></a>
+            <a href="#" class="logo site-logo" aria-label="JONIS Catering – zur Startseite">
+                <img src="assets/jonis-mascot-farbe.svg" alt="" width="38" height="44">
+                <span class="logo-text">JONIS <span>CATERING</span></span>
+            </a>
 
             <nav class="nav-desktop">
                 <a href="#leistungen">Leistungen</a>
