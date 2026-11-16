@@ -1,39 +1,33 @@
 # Cloudflare Web Analytics – Bericht
 
-> Automatisch generiert am 2026-11-09 15:43 UTC.
-> Zeitraum: **2026-10-11 bis 2026-11-09** (letzte 30 Tage). Quelle: Cloudflare Web Analytics (RUM), cookieless.
+> Automatisch generiert am 2026-11-16 15:18 UTC.
+> Zeitraum: **2026-10-18 bis 2026-11-16** (letzte 30 Tage). Quelle: Cloudflare Web Analytics (RUM), cookieless.
 
 ## Überblick
 
 | Kennzahl | Letzte 7 Tage | Letzte 30 Tage |
 |---|---|---|
-| Seitenaufrufe | 130 | 460 |
-| Besuche | 80 | 300 |
+| Seitenaufrufe | 150 | 410 |
+| Besuche | 130 | 290 |
 
 ## Automatische Auswertung
 
-- **Seitenaufrufe (7 Tage):** 130 — Trend ggü. Vorwoche: ▼ -35 %
-- **Besuche (7 Tage):** 80
-- **Stärkste Quelle:** jonis-catering.de (160 Aufrufe)
-- **Beliebteste Seite:** / (430 Aufrufe)
-- **Was heißt das:** Diese Woche 130 Seitenaufrufe bei 80 Besuchen, Trend ▼ -35 % zur Vorwoche.
+- **Seitenaufrufe (7 Tage):** 150 — Trend ggü. Vorwoche: ▲ +25 %
+- **Besuche (7 Tage):** 130
+- **Stärkste Quelle:** jonis-catering.de (120 Aufrufe)
+- **Beliebteste Seite:** / (370 Aufrufe)
+- **Was heißt das:** Diese Woche 150 Seitenaufrufe bei 130 Besuchen, Trend ▲ +25 % zur Vorwoche.
 - **Nächster Schritt:** Quelle "jonis-catering.de" weiter ausbauen und die Anfragen pro Woche danebenlegen.
 
 **Hinweise:**
-- Deutlicher Rückgang ggü. Vorwoche (>20 %). Quellen prüfen: Ist eine wichtige Referrer-Quelle weggebrochen?
+- Deutliches Wachstum ggü. Vorwoche (>20 %). Schauen, welche Quelle/Seite den Anstieg trägt, und dort nachlegen.
 
-**Messprüfung:** Der konfigurierte Site-Tag "558d48c00c6d4458ac8390fbc7f5b566" liefert keine Daten. Automatisch auf den einzigen Site-Tag mit Daten umgestellt: af3abe79317047409c83bc3b871404e3 (460 Aufrufe). Dauerhaft fixen: diesen Wert als Secret CLOUDFLARE_SITE_TAG eintragen.
+**Messprüfung:** Der konfigurierte Site-Tag "558d48c00c6d4458ac8390fbc7f5b566" liefert keine Daten. Automatisch auf den einzigen Site-Tag mit Daten umgestellt: af3abe79317047409c83bc3b871404e3 (410 Aufrufe). Dauerhaft fixen: diesen Wert als Secret CLOUDFLARE_SITE_TAG eintragen.
 
 ## Verlauf pro Tag
 
 | Datum | Seitenaufrufe | Besuche |
 |---|---|---|
-| 2026-10-11 | 20 | 20 |
-| 2026-10-12 | 50 | 20 |
-| 2026-10-13 | 30 | 20 |
-| 2026-10-14 | 30 | 20 |
-| 2026-10-15 | 40 | 30 |
-| 2026-10-16 | 10 | 10 |
 | 2026-10-19 | 60 | 50 |
 | 2026-10-20 | 30 | 20 |
 | 2026-10-21 | 10 | 0 |
@@ -46,18 +40,24 @@
 | 2026-11-02 | 20 | 10 |
 | 2026-11-03 | 20 | 20 |
 | 2026-11-06 | 20 | 20 |
+| 2026-11-10 | 50 | 50 |
+| 2026-11-11 | 20 | 20 |
+| 2026-11-13 | 10 | 10 |
+| 2026-11-14 | 10 | 0 |
+| 2026-11-15 | 10 | 10 |
+| 2026-11-16 | 30 | 20 |
 
 
 ## Top-Quellen (Referrer)
 
 | Referrer-Host | Seitenaufrufe |
 |---|---|
-| (direkt/unbekannt) | 200 |
-| jonis-catering.de | 160 |
-| www.google.com | 30 |
+| (direkt/unbekannt) | 190 |
+| jonis-catering.de | 120 |
+| www.google.com | 40 |
 | l.instagram.com | 30 |
-| m.facebook.com | 20 |
-| www.google.nl | 10 |
+| m.facebook.com | 10 |
+| www.facebook.com | 10 |
 | www.jonis-catering.de | 10 |
 
 
@@ -65,8 +65,9 @@
 
 | Pfad | Seitenaufrufe |
 |---|---|
-| / | 430 |
+| / | 370 |
 | /index.html | 20 |
+| /firmenfeier-pizza-catering-bremen/ | 10 |
 | /hochzeit-pizza-catering-bremen/ | 10 |
 
 
@@ -74,34 +75,30 @@
 
 | Land | Seitenaufrufe |
 |---|---|
-| DE | 340 |
-| US | 50 |
-| GB | 30 |
-| CN | 20 |
-| IE | 10 |
-| NL | 10 |
+| DE | 310 |
+| US | 40 |
+| GB | 40 |
+| FR | 10 |
+| FI | 10 |
 
 
 ## Geräte
 
-| Gerätetyp | Seitenaufrufe |
-|---|---|
-| mobile | 270 |
-| desktop | 190 |
+_Noch keine Daten._
 
 
 ## Browser
 
 | Browser | Seitenaufrufe |
 |---|---|
-| MobileSafari | 120 |
-| Unknown | 70 |
-| Chrome | 60 |
-| Edge | 40 |
+| MobileSafari | 80 |
+| Chrome | 70 |
 | Instagram | 40 |
 | ChromeDerivative | 40 |
-| ChromeHeadless | 30 |
+| ChromeHeadless | 40 |
 | ChromeMobile | 30 |
-| Safari | 20 |
-| SamsungInternet | 10 |
+| Unknown | 30 |
+| Safari | 30 |
+| Edge | 20 |
+| Firefox | 20 |
 
