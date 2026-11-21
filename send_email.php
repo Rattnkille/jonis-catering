@@ -420,9 +420,6 @@ if ($estimateTotal !== null && $package !== '' && $package !== 'beratung') {
     if ($estimatePp !== null) {
         $estimateText .= ' (' . format_euro($estimatePp) . ' p. P.)';
     }
-    if (ctype_digit($guests) && (int) $guests < 50) {
-        $estimateText .= ', berechnet für 50 Personen';
-    }
     if ($configLines) {
         $configLines[] = '';
     }
