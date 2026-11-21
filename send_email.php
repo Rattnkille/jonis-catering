@@ -266,7 +266,10 @@ $extraLabels = [
     'antipastiPlus' => 'Erweiterte Antipasti-Auswahl',
     'dessert'       => 'Dessert: Tiramisu, Panna Cotta oder süße Dessert-Pizza',
     'tableware'     => 'Mietporzellan statt Pappteller/Holzbretter',
-    'drinks'        => 'Getränke oder Aperol-Bar',
+    'drinksSoft'     => 'Getränke-Flatrate alkoholfrei (12 € p. P.)',
+    'drinksBeerWine' => 'Getränke-Flatrate mit Bier und Wein (22 € p. P.)',
+    'aperol'         => 'Aperol Spritz (8 € p. P.)',
+    'drinks'        => 'Getränke oder Aperol-Bar', // ältere Formularversion, falls noch im Browser-Cache
     'lateNight'     => 'Später Pizza-Snack (z. B. Mitternacht)',
 ];
 $settingLabels = [
