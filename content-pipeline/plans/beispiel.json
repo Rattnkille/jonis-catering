@@ -1,0 +1,12 @@
+{
+  "id": "BEISPIEL_Hinter_den_Kulissen",
+  "segments": [
+    {"src": "IMG_2439.MOV", "start": 0.0, "dur": 2.2, "focus_x": 0.62, "text": ["So kommt sie aus", "dem Steinofen"]},
+    {"src": "58D74EEE-FFA3-4344-8A84-4CFD1834EF46.jpg", "dur": 2.0, "text": ["Von Hand belegt"]},
+    {"src": "copy_85CA.mov", "start": 1.2, "dur": 2.4, "text": ["Rein in den Steinofen"]},
+    {"src": "copy_85CA.mov", "start": 4.6, "dur": 2.0, "text": ["Kurz drehen, fertig"]},
+    {"src": "DSCF5380.JPG", "dur": 2.2, "focus_x": 0.18, "text": ["Direkt an deine Gäste"]},
+    {"src": "IMG_2433.MOV", "start": 0.0, "dur": 2.4, "focus_x": 0.36}
+  ],
+  "end": {"src": "f99862c7-e11e-4c92-8e76-ef0ff9517e72.jpg", "focus_x": 0.7, "lines": ["Pizza aus dem Steinofen", "für deine Feier"], "dur": 2.6}
+}

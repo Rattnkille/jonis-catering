@@ -58,6 +58,7 @@ in Bremen & Umgebung (Hochzeiten, Firmenevents, private Feiern). Sprache: Deutsc
 | `.htmlhintrc` | Regeln für den HTML-Linter. |
 | `package.json` | Nur Dev-Tooling (htmlhint) + Hilfs-Skripte. Keine Runtime-Abhängigkeiten. |
 | `.claude/` | SessionStart-Hook + Settings für Claude Code. |
+| `content-pipeline/` | Wöchentliche TikTok-Pipeline (HyperFrames), siehe `content-pipeline/README.md`. Wird nicht deployt. |
 
 ## Befehle
 
