@@ -266,7 +266,10 @@ $extraLabels = [
     'antipastiPlus' => 'Erweiterte Antipasti-Auswahl',
     'dessert'       => 'Dessert: Tiramisu, Panna Cotta oder süße Dessert-Pizza',
     'tableware'     => 'Mietporzellan statt Pappteller/Holzbretter',
-    'drinks'        => 'Getränke oder Aperol-Bar',
+    'drinksSoft'     => 'Getränke-Flatrate alkoholfrei (12 € p. P.)',
+    'drinksBeerWine' => 'Getränke-Flatrate mit Bier und Wein (22 € p. P.)',
+    'aperol'         => 'Aperol Spritz (8 € p. P.)',
+    'drinks'        => 'Getränke oder Aperol-Bar', // ältere Formularversion, falls noch im Browser-Cache
     'lateNight'     => 'Später Pizza-Snack (z. B. Mitternacht)',
 ];
 $settingLabels = [
@@ -416,9 +419,6 @@ if ($estimateTotal !== null && $package !== '' && $package !== 'beratung') {
     $estimateText = 'Richtwert laut Website: ab ca. ' . format_euro($estimateTotal);
     if ($estimatePp !== null) {
         $estimateText .= ' (' . format_euro($estimatePp) . ' p. P.)';
-    }
-    if (ctype_digit($guests) && (int) $guests < 50) {
-        $estimateText .= ', berechnet für 50 Personen';
     }
     if ($configLines) {
         $configLines[] = '';

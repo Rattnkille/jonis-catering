@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JONIS Pizza Catering Bremen | Mobiler Steinofen</title>
-    <meta name="description" content="Neapolitanisches Pizza Catering in Bremen: live gebacken im mobilen Steinofen für Hochzeiten, Firmenevents und private Feiern. Mindestumsatz ab 1.500 €.">
+    <meta name="description" content="Neapolitanisches Pizza Catering in Bremen: live gebacken im mobilen Steinofen für Hochzeiten, Firmenevents und private Feiern. Ab 29 € pro Person, ohne Mindestgästezahl.">
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
     <meta name="keywords" content="Pizza Catering Bremen, Neapolitanische Pizza, Event Catering, Hochzeit Catering, Firmen Catering, Pizza Pop-Up Bremen">
     <meta name="author" content="Jonis Catering">
@@ -1062,6 +1062,111 @@
 
         .packages-addons strong {
             color: var(--dark);
+        }
+
+        /* Getränke-Flatrate unter den Paketkarten */
+        .drinks-box {
+            margin-top: 2.5rem;
+            padding: 1.75rem 1.5rem;
+            background: var(--bg-warm);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-lg);
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        .drinks-box h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .drinks-box-text p {
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .drinks-options {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+
+        .drinks-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.15rem;
+            min-height: 44px;
+            height: 100%;
+            padding: 0.9rem 0.5rem;
+            background: #fff;
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-md);
+            text-align: center;
+            text-decoration: none;
+            color: var(--dark);
+            transition: border-color var(--transition), box-shadow var(--transition);
+        }
+
+        .drinks-option:hover,
+        .drinks-option:focus-visible {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .drinks-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .drinks-price {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            line-height: 1.2;
+        }
+
+        .drinks-unit {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .drinks-note {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        @media (min-width: 900px) {
+            .drinks-box {
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+                align-items: center;
+                padding: 2rem 2.25rem;
+                column-gap: 2.5rem;
+            }
+
+            .drinks-note {
+                grid-column: 2;
+                margin-top: -0.5rem;
+            }
+        }
+
+        /* Getränke-Gruppe im Formular (Schritt 4) */
+        .drinks-group {
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .drinks-group-title {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.25rem;
         }
 
         /* Gäste-Rechner über den Paketkarten (ohne JS ausgeblendet) */
@@ -3136,7 +3241,7 @@
                     <ul class="service-features">
                         <li>Entspannte Atmosphäre für eure Gäste</li>
                         <li>Flexible Menügestaltung</li>
-                        <li>Auch für kleinere Runden, ab 1.500 € Umsatz</li>
+                        <li>Auch für kleinere Runden, ohne Mindestgästezahl</li>
                         <li>Alles inklusive – du genießt einfach</li>
                     </ul>
                     <a href="/private-feier-pizza-catering-bremen/" class="service-card-hint" onclick="event.stopPropagation()">Mehr über Catering für private Feiern erfahren →</a>
@@ -3162,7 +3267,7 @@
                     <output id="calcGuestsOut" for="calcGuests">80</output>
                 </div>
                 <input type="range" id="calcGuests" min="20" max="300" step="10" value="80" aria-describedby="calcGuestsHint">
-                <p class="package-calc-hint" id="calcGuestsHint">Richtwert ohne Extras und Fahrtkosten, mindestens 1.500 €. Kinder bis 12 Jahre zahlen die Hälfte. Mehr als 300 Gäste? Frag einfach an.</p>
+                <p class="package-calc-hint" id="calcGuestsHint">Richtwert ohne Extras und Fahrtkosten. Kinder bis 12 Jahre zahlen die Hälfte. Mehr als 300 Gäste? Frag einfach an.</p>
             </div>
             <div class="packages-grid">
 
@@ -3171,7 +3276,7 @@
                     <h3>Classic</h3>
                     <p class="package-desc">Pizza pur – live gebacken, direkt vom Ofen</p>
                     <div class="package-price">ab €29 <span>/ Person</span></div>
-                    <p class="package-note">Mindestumsatz 1.500 € · inkl. MwSt.</p>
+                    <p class="package-note">Keine Mindestgästezahl · inkl. MwSt.</p>
                     <p class="package-total" data-card-total="classic"></p>
                     <div class="package-divider"></div>
                     <ul class="package-features">
@@ -3193,7 +3298,7 @@
                     <h3>Event</h3>
                     <p class="package-desc">Pizza + Antipasti – das komplette Erlebnis</p>
                     <div class="package-price">ab €40 <span>/ Person</span></div>
-                    <p class="package-note">Mindestumsatz 1.500 € · inkl. MwSt.</p>
+                    <p class="package-note">Keine Mindestgästezahl · inkl. MwSt.</p>
                     <p class="package-total" data-card-total="event"></p>
                     <div class="package-divider"></div>
                     <ul class="package-features">
@@ -3213,7 +3318,7 @@
                     <h3>Premium</h3>
                     <p class="package-desc">Vom Aperitif bis zum Dessert – alles aus einer Hand</p>
                     <div class="package-price">ab €51 <span>/ Person</span></div>
-                    <p class="package-note">Mindestumsatz 1.500 € · inkl. MwSt.</p>
+                    <p class="package-note">Keine Mindestgästezahl · inkl. MwSt.</p>
                     <p class="package-total" data-card-total="premium"></p>
                     <div class="package-divider"></div>
                     <ul class="package-features">
@@ -3229,8 +3334,23 @@
                 </div>
 
             </div>
+
+            <!-- Getränke-Flatrate: Kacheln wählen die Variante im Anfrageformular vor (data-extra) -->
+            <div class="drinks-box" id="getraenke">
+                <div class="drinks-box-text">
+                    <h3>Getränke gleich mitbuchen</h3>
+                    <p>Getränke-Flatrate für 4 Stunden. Wir schenken aus und bringen die Gläser mit. Ein Ansprechpartner für Essen und Getränke, eine Rechnung.</p>
+                </div>
+                <ul class="drinks-options">
+                    <li><a href="#kontakt" class="drinks-option" data-extra="drinksSoft"><span class="drinks-name">Alkoholfrei</span><span class="drinks-price">12 €</span><span class="drinks-unit">p. P.</span></a></li>
+                    <li><a href="#kontakt" class="drinks-option" data-extra="drinksBeerWine"><span class="drinks-name">Mit Bier und Wein</span><span class="drinks-price">22 €</span><span class="drinks-unit">p. P.</span></a></li>
+                    <li><a href="#kontakt" class="drinks-option" data-extra="aperol"><span class="drinks-name">Aperol Spritz dazu</span><span class="drinks-price">+8 €</span><span class="drinks-unit">p. P.</span></a></li>
+                </ul>
+                <p class="drinks-note">Antippen, dann ist die Variante in deiner Anfrage schon angekreuzt.</p>
+            </div>
+
             <p class="packages-addons"><strong>Hochzeit:</strong> Eigenes Hochzeitspaket für 64 € p. P. mit Antipasti-Empfang, 4 Stunden Pizza, Dessert, Mitternachts-Pizza sowie Porzellan und Besteck. <a href="/hochzeit-pizza-catering-bremen/">Mehr zum Hochzeitspaket</a></p>
-            <p class="packages-addons"><strong>Dazubuchbar:</strong> Antipasti-Empfang 11 € p. P., Dessert 7 € p. P., Porzellan und Besteck 4,50 € p. P., Zusatzstunde 220 €. <strong>Getränke-Flatrate</strong> (4 Stunden, inkl. Ausschank und Gläsern): alkoholfrei 12 € p. P., mit Bier und Wein 22 € p. P., Aperol Spritz zusätzlich 8 € p. P.</p>
+            <p class="packages-addons"><strong>Dazubuchbar:</strong> Antipasti-Empfang 11 € p. P., Dessert 7 € p. P., Porzellan und Besteck 4,50 € p. P., Zusatzstunde 220 €.</p>
             <p class="packages-addons"><strong>Für Unternehmen:</strong> Nettopreise Classic 27 €, Event 37 €, Premium 47 € p. P. zzgl. 7 % MwSt., Getränke zzgl. 19 % MwSt. Privatkunden: alle Preise inkl. MwSt. Preise gültig für Feiern ab 2027.</p>
         </div>
     </section>
@@ -3473,7 +3593,7 @@
                 <div class="faq-item">
                     <button type="button" class="faq-question" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1">Ab wie vielen Personen kann ich Catering buchen?</button>
                     <div class="faq-answer" id="faq-a-1">
-                        <div class="faq-answer-inner">Statt einer festen Mindestgästezahl gilt ein Mindestumsatz für Speisen von 1.500 €, an Samstagen und Sonntagen von Mai bis September von 1.900 €. Kleinere Feiern sind damit ausdrücklich möglich. Mit dem Event-Paket erreicht ihr den Mindestumsatz zum Beispiel ab rund 38 Gästen.</div>
+                        <div class="faq-answer-inner">Es gibt keine Mindestgästezahl und keinen Mindestumsatz. Der Preis ergibt sich einfach aus Gästezahl mal Paketpreis, Kinder bis 12 Jahre zahlen die Hälfte. Kleinere Feiern sind damit ausdrücklich möglich.</div>
                     </div>
                 </div>
 
@@ -3488,6 +3608,13 @@
                     <button type="button" class="faq-question" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3">Was ist alles im Catering-Preis enthalten?</button>
                     <div class="faq-answer" id="faq-a-3">
                         <div class="faq-answer-inner">Alle Pakete beinhalten Steinofen, frische Zutaten, An- und Abfahrt im Umkreis von 15 km um Bremen (darüber hinaus 50 € bis 30 km, 90 € bis 50 km, weiter entfernt 2,50 € je zusätzlichem Kilometer), Auf- und Abbau sowie Servicepersonal. Im Classic-Paket ist eine Pizza-Flatrate enthalten (ab 29 € p.P.), im Event-Paket kommen Antipasti dazu (ab 40 € p.P.), im Premium-Paket zusätzlich individuell abgestimmte Menüoptionen und Dessert (ab 51 € p.P.). Das Hochzeitspaket kostet 64 € p.P. Es gibt keine versteckten Kosten.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-question" id="faq-q-12" aria-expanded="false" aria-controls="faq-a-12">Könnt ihr auch die Getränke übernehmen?</button>
+                    <div class="faq-answer" id="faq-a-12">
+                        <div class="faq-answer-inner">Ja. Mit der Getränke-Flatrate schenken wir 4 Stunden lang aus, die Gläser bringen wir mit. Alkoholfrei kostet sie 12 € pro Person, mit Bier und Wein 22 € pro Person. Aperol Spritz gibt es für 8 € pro Person dazu. Du kannst die Getränke direkt in der Anfrage ankreuzen.</div>
                     </div>
                 </div>
 
@@ -3620,7 +3747,7 @@
                                 <div class="form-group">
                                     <label for="guests">Anzahl Gäste *</label>
                                     <input type="number" id="guests" name="guests" min="20" max="2000" inputmode="numeric" required placeholder="z. B. 80" aria-describedby="guests-hint">
-                                    <p class="field-hint" id="guests-hint">Keine Mindestgästezahl. Es gilt ein Mindestumsatz von 1.500 €, an Wochenenden von Mai bis September 1.900 €.</p>
+                                    <p class="field-hint" id="guests-hint">Keine Mindestgästezahl und kein Mindestumsatz. Abgerechnet wird Gästezahl mal Paketpreis.</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="kids">davon Kinder bis 12 Jahre</label>
@@ -3687,6 +3814,33 @@
                         <fieldset class="wizard-step" data-title="Extras">
                             <legend tabindex="-1"><span class="step-kicker">Schritt 4 von 6</span>Möchtest du etwas dazubuchen?</legend>
                             <p class="step-help">Alles optional, nichts ist vorausgewählt.</p>
+                            <div class="drinks-group">
+                                <p class="drinks-group-title">Getränke gleich mitbuchen?</p>
+                                <p class="step-help">Flatrate für 4 Stunden, wir schenken aus und bringen die Gläser mit.</p>
+                                <div class="choice-grid">
+                                    <label class="choice-card choice-card--check extra-option" data-extra="drinksSoft">
+                                        <input type="checkbox" name="extras[]" value="drinksSoft">
+                                        <span class="choice-body">
+                                            <span class="choice-title">Getränke-Flatrate alkoholfrei</span>
+                                            <span class="choice-meta extra-price" data-extra-price>12 € p. P.</span>
+                                        </span>
+                                    </label>
+                                    <label class="choice-card choice-card--check extra-option" data-extra="drinksBeerWine">
+                                        <input type="checkbox" name="extras[]" value="drinksBeerWine">
+                                        <span class="choice-body">
+                                            <span class="choice-title">Getränke-Flatrate mit Bier und Wein</span>
+                                            <span class="choice-meta extra-price" data-extra-price>22 € p. P.</span>
+                                        </span>
+                                    </label>
+                                    <label class="choice-card choice-card--check extra-option" data-extra="aperol">
+                                        <input type="checkbox" name="extras[]" value="aperol">
+                                        <span class="choice-body">
+                                            <span class="choice-title">Aperol Spritz dazu</span>
+                                            <span class="choice-meta extra-price" data-extra-price>8 € p. P.</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
                             <p class="step-help extras-static-note">Im Event-Paket sind Antipasti schon enthalten, im Premium-Paket Antipasti, erweiterte Antipasti und Dessert.</p>
                             <div class="choice-grid" id="extrasList">
                                 <label class="choice-card choice-card--check extra-option" data-extra="antipasti">
@@ -3715,14 +3869,6 @@
                                     <span class="choice-body">
                                         <span class="choice-title">Porzellan und Besteck statt Pappteller/Holzbretter</span>
                                         <span class="choice-meta extra-price" data-extra-price>Preis im Angebot</span>
-                                    </span>
-                                </label>
-                                <label class="choice-card choice-card--check extra-option" data-extra="drinks">
-                                    <input type="checkbox" name="extras[]" value="drinks">
-                                    <span class="choice-body">
-                                        <span class="choice-title">Getränke oder Aperol-Bar</span>
-                                        <span class="choice-meta extra-price" data-extra-price>Preis im Angebot</span>
-                                        <span class="choice-meta">Flatrate alkoholfrei 12 € p. P., mit Bier und Wein 22 € p. P., Aperol Spritz zusätzlich 8 € p. P.</span>
                                     </span>
                                 </label>
                                 <label class="choice-card choice-card--check extra-option" data-extra="lateNight">
@@ -4228,7 +4374,7 @@
                 features: [
                     'Entspannte Atmosphäre für eure Gäste',
                     'Flexible Menügestaltung',
-                    'Auch für kleinere Runden, ab 1.500 € Umsatz',
+                    'Auch für kleinere Runden, ohne Mindestgästezahl',
                     'Alles inklusive – du genießt einfach'
                 ],
                 cta: 'Private Feier',
@@ -4423,8 +4569,9 @@
         // Einzige Quelle für den Richtwert. price: null heißt "Preis im Angebot".
         // Preise für Extras erst eintragen, wenn Jonathan sie freigegeben hat.
         const PRICING = {
-            // Mindestumsatz Speisen statt Mindestgäste. Saison: Sa/So von Mai bis September.
-            minRevenue: { standard: 1500, season: 1900, seasonMonths: [5, 6, 7, 8, 9] },
+            // Kein Mindestumsatz (Entscheidung Inhaber, 21.11.2026): Gästezahl mal Paketpreis.
+            // Werte bewusst auf 0 statt Logik ausbauen, so bleibt der Baukasten unverändert.
+            minRevenue: { standard: 0, season: 0, seasonMonths: [] },
             packages: {
                 classic: { label: 'Classic', pp: 29, includes: [] },
                 event: { label: 'Event', pp: 40, includes: ['antipasti'] },
@@ -4436,7 +4583,10 @@
                 antipastiPlus: { label: 'Erweiterte Antipasti-Auswahl', unit: 'pp', price: 4, packages: ['event'] },
                 dessert: { label: 'Dessert', includedLabel: 'Dessert: Tiramisu oder Panna Cotta', unit: 'pp', price: 7, packages: ['classic', 'event'] },
                 tableware: { label: 'Porzellan und Besteck', unit: 'pp', price: 4.5, packages: ['classic', 'event', 'premium'] },
-                drinks: { label: 'Getränke oder Aperol-Bar', unit: 'pp', price: null, packages: ['classic', 'event', 'premium'] },
+                // Getränke (drink: true) zählen nicht zum Mindestumsatz Speisen. excludes: die beiden Flatrates schließen sich aus.
+                drinksSoft: { label: 'Getränke-Flatrate alkoholfrei', unit: 'pp', price: 12, drink: true, excludes: 'drinksBeerWine', packages: ['classic', 'event', 'premium'] },
+                drinksBeerWine: { label: 'Getränke-Flatrate mit Bier und Wein', unit: 'pp', price: 22, drink: true, excludes: 'drinksSoft', packages: ['classic', 'event', 'premium'] },
+                aperol: { label: 'Aperol Spritz', unit: 'pp', price: 8, drink: true, packages: ['classic', 'event', 'premium'] },
                 lateNight: { label: 'Später Pizza-Snack', unit: 'flat', price: null, packages: ['classic', 'event', 'premium'] }
             },
             extraHour: { price: 220, max: 3 },
@@ -4598,12 +4748,18 @@
             const kids = Math.min(Math.max(parseInt(st.kids, 10) || 0, 0), guests);
             const open = [];
             let pp = pkg.pp;
+            let drinksPp = 0;
             let flat = 0;
             (st.extras || []).forEach(key => {
                 const ex = PRICING.extras[key];
                 if (!ex || includedIn(pkg, key)) return;
                 if (ex.price === null) { open.push(ex.label); return; }
-                if (ex.unit === 'pp') pp += ex.price; else flat += ex.price;
+                if (ex.unit === 'pp') {
+                    pp += ex.price;
+                    if (ex.drink) drinksPp += ex.price;
+                } else {
+                    flat += ex.price;
+                }
             });
             const hours = parseInt(st.extra_hours, 10) || 0;
             if (hours > 0) {
@@ -4612,8 +4768,9 @@
             }
             open.push('ggf. Fahrtkosten: ' + travelText());
             const priced = pkg.pp !== null;
-            // Mindestumsatz gilt für den Speisenumsatz (Paket plus Extras pro Person), Pauschalen kommen obendrauf.
-            const food = priced ? packageSum(pkg.pp, billed, kids) + (pp - pkg.pp) * billed : 0;
+            // Mindestumsatz gilt für den Speisenumsatz (Paket plus Speisen-Extras pro Person). Getränke und Pauschalen kommen obendrauf.
+            const food = priced ? packageSum(pkg.pp, billed, kids) + (pp - pkg.pp - drinksPp) * billed : 0;
+            const drinks = drinksPp * billed;
             const belowMin = priced && food < minRev;
             return {
                 pkg: pkg,
@@ -4625,7 +4782,7 @@
                 pp: priced ? Math.round(pp * 100) / 100 : null,
                 kids: kids,
                 // Kinder zahlen nur beim Paketpreis die Hälfte; Extras pro Person gelten für alle Gäste.
-                total: priced ? round10(Math.max(food, minRev) + flat) : null,
+                total: priced ? round10(Math.max(food, minRev) + drinks + flat) : null,
                 open: open
             };
         }
@@ -4796,6 +4953,14 @@
             }
         }
 
+        // Zwei Getränke-Flatrates gleichzeitig ergeben keinen Sinn: die andere abwählen.
+        function uncheckExcluded(key) {
+            const ex = PRICING.extras[key];
+            if (!ex || !ex.excludes) return;
+            const other = $('input[name="extras[]"][value="' + ex.excludes + '"]', form);
+            if (other) other.checked = false;
+        }
+
         function applyCompany() {
             const on = form.elements.namedItem('occasion').value === 'firmenevent';
             companyGroup.hidden = !on;
@@ -4949,8 +5114,9 @@
             clearTimeout(timer);
             timer = setTimeout(() => { update(); save(); }, 250);
         });
-        form.addEventListener('change', () => {
+        form.addEventListener('change', e => {
             clearTimeout(timer);
+            if (e.target && e.target.name === 'extras[]' && e.target.checked) uncheckExcluded(e.target.value);
             applyCompany();
             applyExtras();
             update();
@@ -5058,9 +5224,9 @@
             sumToggle.textContent = open ? 'Weniger' : 'Details';
         });
 
-        // Hero-Chips, Paketkarten und Modal-CTA: Wert vorwählen, zum ersten offenen Schritt springen
+        // Hero-Chips, Paketkarten, Getränke-Kacheln und Modal-CTA: Wert vorwählen, zum ersten offenen Schritt springen
         document.addEventListener('click', e => {
-            const link = e.target.closest ? e.target.closest('a[data-occasion], a[data-package]') : null;
+            const link = e.target.closest ? e.target.closest('a[data-occasion], a[data-package], a[data-extra]') : null;
             if (!link || form.hidden) return;
             e.preventDefault();
             [['occasion', link.dataset.occasion], ['package', link.dataset.package]].forEach(pair => {
@@ -5068,6 +5234,13 @@
                 const radio = $('input[name="' + pair[0] + '"][value="' + pair[1] + '"]', form);
                 if (radio) radio.checked = true;
             });
+            if (link.dataset.extra && PRICING.extras[link.dataset.extra]) {
+                const box = $('input[name="extras[]"][value="' + link.dataset.extra + '"]', form);
+                if (box && !box.disabled) {
+                    box.checked = true;
+                    uncheckExcluded(link.dataset.extra);
+                }
+            }
             // Paketkarte nach Nutzung des Gäste-Reglers: Gästezahl in den Wizard übernehmen
             if (link.dataset.package && calcRange && calcRange.dataset.touched) guestsInput.value = calcRange.value;
             applyCompany();
@@ -5093,7 +5266,7 @@
                 "@type": "FoodEstablishment",
                 "@id": "https://jonis-catering.de/#business",
                 "name": "Jonis Catering",
-                "description": "Neapolitanische Pizza Catering für Hochzeiten, Firmenevents und private Feiern in Bremen und Umgebung. Live im Steinofen gebacken, Mindestumsatz ab 1.500 €.",
+                "description": "Neapolitanische Pizza Catering für Hochzeiten, Firmenevents und private Feiern in Bremen und Umgebung. Live im Steinofen gebacken, ohne Mindestgästezahl.",
                 "url": "https://jonis-catering.de/",
                 "telephone": "+4942168431162",
                 "email": "info@jonis-catering.de",
@@ -5199,6 +5372,45 @@
                                 "priceCurrency": "EUR",
                                 "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitText": "Person" }
                             }
+                        },
+                        {
+                            "@type": "Offer",
+                            "name": "Getränke-Flatrate alkoholfrei",
+                            "description": "Alkoholfreie Getränke für 4 Stunden, mit Ausschank und Gläsern. Dazubuchbar zu jedem Paket.",
+                            "priceCurrency": "EUR",
+                            "price": "12",
+                            "priceSpecification": {
+                                "@type": "UnitPriceSpecification",
+                                "price": "12",
+                                "priceCurrency": "EUR",
+                                "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitText": "Person" }
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "name": "Getränke-Flatrate mit Bier und Wein",
+                            "description": "Getränke mit Bier und Wein für 4 Stunden, mit Ausschank und Gläsern. Dazubuchbar zu jedem Paket.",
+                            "priceCurrency": "EUR",
+                            "price": "22",
+                            "priceSpecification": {
+                                "@type": "UnitPriceSpecification",
+                                "price": "22",
+                                "priceCurrency": "EUR",
+                                "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitText": "Person" }
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "name": "Aperol Spritz",
+                            "description": "Aperol Spritz zusätzlich zur Getränke-Flatrate.",
+                            "priceCurrency": "EUR",
+                            "price": "8",
+                            "priceSpecification": {
+                                "@type": "UnitPriceSpecification",
+                                "price": "8",
+                                "priceCurrency": "EUR",
+                                "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitText": "Person" }
+                            }
                         }
                     ]
                 },
@@ -5235,7 +5447,7 @@
                         "name": "Ab wie vielen Personen kann ich Catering buchen?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Statt einer festen Mindestgästezahl gilt ein Mindestumsatz für Speisen von 1.500 €, an Samstagen und Sonntagen von Mai bis September von 1.900 €. Kleinere Feiern sind damit ausdrücklich möglich. Mit dem Event-Paket erreicht ihr den Mindestumsatz zum Beispiel ab rund 38 Gästen."
+                            "text": "Es gibt keine Mindestgästezahl und keinen Mindestumsatz. Der Preis ergibt sich einfach aus Gästezahl mal Paketpreis, Kinder bis 12 Jahre zahlen die Hälfte. Kleinere Feiern sind damit ausdrücklich möglich."
                         }
                     },
                     {
@@ -5252,6 +5464,14 @@
                         "acceptedAnswer": {
                             "@type": "Answer",
                             "text": "Alle Pakete beinhalten Steinofen, frische Zutaten, An- und Abfahrt im Umkreis von 15 km um Bremen (darüber hinaus 50 € bis 30 km, 90 € bis 50 km, weiter entfernt 2,50 € je zusätzlichem Kilometer), Auf- und Abbau sowie Servicepersonal. Im Classic-Paket ist eine Pizza-Flatrate enthalten (ab 29 € p.P.), im Event-Paket kommen Antipasti dazu (ab 40 € p.P.), im Premium-Paket zusätzlich individuell abgestimmte Menüoptionen und Dessert (ab 51 € p.P.). Das Hochzeitspaket kostet 64 € p.P. Es gibt keine versteckten Kosten."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Könnt ihr auch die Getränke übernehmen?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Ja. Mit der Getränke-Flatrate schenken wir 4 Stunden lang aus, die Gläser bringen wir mit. Alkoholfrei kostet sie 12 € pro Person, mit Bier und Wein 22 € pro Person. Aperol Spritz gibt es für 8 € pro Person dazu. Du kannst die Getränke direkt in der Anfrage ankreuzen."
                         }
                     },
                     {
